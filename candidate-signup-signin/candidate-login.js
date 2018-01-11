@@ -113,7 +113,7 @@ module.exports = {
     browser.expect.element('input[id=user_password]').to.be.visible;
     browser.expect.element('input[name=commit]').to.be.present;
     browser.expect.element('input[name=commit]').to.be.visible;
-    browser.expect.element('input[name=commit]').to.have.value.that.equals('Submit');
+    browser.expect.element('input[name=commit]').to.have.value.that.equals('Login');
     browser.expect.element('.f-pwd').to.be.present;
     browser.expect.element('.f-pwd').to.be.visible;
     browser.expect.element('.f-pwd').text.to.contain('(Forgot your password?)');
@@ -139,7 +139,7 @@ module.exports = {
     browser.click('input[type=submit]');
     browser.pause(5000);
     browser.elements('css selector', menu, navigationAfterLogin);
-    browser.assert.urlEquals(browser.launch_url + '/j', 'Candidate signup Sucessful.');
+    browser.assert.urlEquals(browser.launch_url + '/j', 'Candidate login Sucessful.');
     browser.end();
   }
 };

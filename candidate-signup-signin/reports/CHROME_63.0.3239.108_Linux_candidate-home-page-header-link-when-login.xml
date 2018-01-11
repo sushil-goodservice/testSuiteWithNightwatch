@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="2">
+
+  <testsuite name="candidate-home-page-header-link-when-login"
+    errors="0" failures="0" hostname="" id="" package="candidate-home-page-header-link-when-login" skipped="0"
+    tests="2" time="21.62" timestamp="Thu, 11 Jan 2018 05:22:14 GMT">
+  
+    <testcase name="Home" classname="candidate-home-page-header-link-when-login" time="7.605" assertions="26">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Navigation" classname="candidate-home-page-header-link-when-login" time="14.01" assertions="20">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

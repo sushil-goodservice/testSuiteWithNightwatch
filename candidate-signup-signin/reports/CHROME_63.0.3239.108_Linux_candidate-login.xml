@@ -5,9 +5,15 @@
 
   <testsuite name="candidate-login"
     errors="0" failures="0" hostname="" id="" package="candidate-login" skipped="0"
-    tests="1" time="15.20" timestamp="Thu, 11 Jan 2018 07:46:44 GMT">
+    tests="1" time="15.73" timestamp="Mon, 15 Jan 2018 05:43:06 GMT">
   
-    <testcase name="Signup" classname="candidate-login" time="15.20" assertions="115">
+    <testcase name="Signup" classname="candidate-login" time="15.73" assertions="118">
+
+    
+
+    
+
+    
 
     
 

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="2">
+
+  <testsuite name="recruiter-home-page-header-link-not-login"
+    errors="0" failures="0" hostname="" id="" package="recruiter-home-page-header-link-not-login" skipped="0"
+    tests="2" time="15.58" timestamp="Mon, 15 Jan 2018 11:03:21 GMT">
+  
+    <testcase name="Recruiter-Home" classname="recruiter-home-page-header-link-not-login" time="9.600" assertions="16">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Navigation" classname="recruiter-home-page-header-link-not-login" time="5.982" assertions="11">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

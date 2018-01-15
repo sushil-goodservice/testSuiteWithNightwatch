@@ -47,6 +47,7 @@ module.exports = {
     browser.expect.element(menu).to.be.present;
     browser.expect.element(menu).to.be.visible;
     browser.elements('css selector', menu, navigation);
+    
     function navigationAfterLogin(items) {
       browser.expect.element(menu + ' .profile-link a.dropdown-toggle').to.be.present;
       browser.expect.element(menu + ' .profile-link a.dropdown-toggle').to.be.visible;
@@ -68,11 +69,14 @@ module.exports = {
       browser.expect.element(menu + ':nth-of-type(2) a span').text.to.contain('FOR RECRUITERS');
       browser.expect.element(menu + ':nth-of-type(2) a').to.have.attribute('href').which.contains('/user/sign_up?is_recruiter=true');
     }
-    browser.click('a.ga-trackable');
+    // browser.click('a.ga-trackable');
+    browser.click(menu + ':nth-of-type(2) a span', function(response){
+      this.assert.ok(browser === this, 'Clicked to redirect to recruiter signup page.');
+    });
     browser.waitForElementPresent('body', 2000);
     browser.expect.element('.page-popup-like').to.be.present;
     browser.expect.element('.page-popup-like').to.be.visible;
-    browser.expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Candidate Signup');
+    browser.expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Recruiter Signup');
     browser.expect.element('label[for=user_email]').to.be.present;
     browser.expect.element('label[for=user_email]').to.be.visible;
     browser.expect.element('label[for=user_email]').text.to.contain('Email');
@@ -89,19 +93,19 @@ module.exports = {
     browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').to.be.present;
     browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').text.to.contain('Login with Google+');
-    browser.assert.attributeContains('.pt-2 a.btn-googleplus', 'href', '/user/auth/google_oauth2');
+    browser.assert.attributeContains('.pt-2 a.btn-googleplus', 'href', '/user/auth/google_oauth2?is_recruiter=true');
     browser.expect.element('.pt-2 a:nth-of-type(2)').to.be.present;
     browser.expect.element('.pt-2 a:nth-of-type(2)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(2)').text.to.contain('Already registered? Click here to Login');
-    browser.assert.attributeContains('.pt-2 a:nth-of-type(2)', 'href', '/user/sign_in');
+    browser.assert.attributeContains('.pt-2 a:nth-of-type(2)', 'href', '/user/sign_in?is_recruiter=true');
     browser.expect.element('.pt-2 a:nth-of-type(3)').to.be.present;
     browser.expect.element('.pt-2 a:nth-of-type(3)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(3)').text.to.contain('Resend Email Confirmation');
-    browser.assert.attributeContains('.pt-2 a:nth-of-type(3)', 'href', '/user/confirmation/new');
+    browser.assert.attributeContains('.pt-2 a:nth-of-type(3)', 'href', '/user/confirmation/new?is_recruiter=true');
     browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.present;
     browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.visible;
-    browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Recruiter Signup');
-    browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_up?is_recruiter=true');
+    browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Candidate Signup');
+    browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_up');
     browser.click('.pt-2 a:nth-of-type(1).btn-googleplus');
     browser.waitForElementPresent('body', 5000);
     //browser.url('https://www.gmail.com');
@@ -113,7 +117,7 @@ module.exports = {
     browser.waitForElementPresent('body', 1000);
     browser.pause(5000);
     browser.elements('css selector', menu, navigationAfterLogin);
-    browser.saveScreenshot('./screenshots/candidate-g-plus-signup.png');
+    browser.saveScreenshot('./screenshots/recruiter-g-plus-signup.png');
     browser.assert.urlEquals(browser.launch_url + '/j#', 'Candidate login Sucessful.');
     browser.end();
   }

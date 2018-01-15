@@ -72,7 +72,7 @@ module.exports = {
     browser.waitForElementPresent('body', 2000);
     browser.expect.element('.page-popup-like').to.be.present;
     browser.expect.element('.page-popup-like').to.be.visible;
-    browser.expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Candidate Signup');
+    browser.expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Recruiter Signup');
     browser.expect.element('label[for=user_email]').to.be.present;
     browser.expect.element('label[for=user_email]').to.be.visible;
     browser.expect.element('label[for=user_email]').text.to.contain('Email');

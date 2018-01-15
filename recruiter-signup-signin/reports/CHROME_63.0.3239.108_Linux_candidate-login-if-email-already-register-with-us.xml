@@ -3,13 +3,11 @@
             failures="0"
             tests="1">
 
-  <testsuite name="candidate-login"
-    errors="0" failures="0" hostname="" id="" package="candidate-login" skipped="0"
-    tests="1" time="15.85" timestamp="Mon, 15 Jan 2018 05:55:24 GMT">
+  <testsuite name="candidate-login-if-email-already-register-with-us"
+    errors="0" failures="0" hostname="" id="" package="candidate-login-if-email-already-register-with-us" skipped="0"
+    tests="1" time="19.31" timestamp="Mon, 15 Jan 2018 05:46:45 GMT">
   
-    <testcase name="Signup" classname="candidate-login" time="15.85" assertions="118">
-
-    
+    <testcase name="Signup" classname="candidate-login-if-email-already-register-with-us" time="19.31" assertions="117">
 
     
 

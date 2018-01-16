@@ -71,7 +71,7 @@ module.exports = {
     browser.click('a.ga-trackable');
     browser.expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Candidate Signup');
     browser.waitForElementPresent('body', 2000);
-    browser.setValue('input[type=email]', 'kapur.r1985+23@gmail.com');
+    browser.setValue('input[type=email]', 'kapur.r1985+27@gmail.com');
     browser.setValue('input[type=password]', 'goodservice');
     browser.click('input[type=submit]');
     browser.pause(5000);
@@ -83,11 +83,8 @@ module.exports = {
     browser.click('.CwaK9', function(response) {
       this.assert.ok(browser === this, 'Login to G-mail Account.');
     });
-    //browser.pause(25000);
-    // browser.click('.CwaK9');
+    browser.pause(25000);
     browser.waitForElementPresent('body', 1000);
-    //browser.click('span.yP');
-    browser.pause(20000);
     browser.elements('css selector', menu, navigationAfterLogin);
     browser.assert.urlEquals(browser.launch_url + '/j', 'Candidate signup Sucessful.');
     browser.end();

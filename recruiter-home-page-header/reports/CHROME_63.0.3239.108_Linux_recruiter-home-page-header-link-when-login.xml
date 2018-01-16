@@ -5,9 +5,9 @@
 
   <testsuite name="recruiter-home-page-header-link-when-login"
     errors="0" failures="0" hostname="" id="" package="recruiter-home-page-header-link-when-login" skipped="0"
-    tests="2" time="24.83" timestamp="Mon, 15 Jan 2018 11:03:55 GMT">
+    tests="2" time="31.53" timestamp="Tue, 16 Jan 2018 04:13:04 GMT">
   
-    <testcase name="Recruiter-Home" classname="recruiter-home-page-header-link-when-login" time="5.591" assertions="16">
+    <testcase name="Recruiter-Home" classname="recruiter-home-page-header-link-when-login" time="8.337" assertions="16">
 
     
 
@@ -42,7 +42,7 @@
     
     </testcase>
   
-    <testcase name="Navigation" classname="recruiter-home-page-header-link-when-login" time="19.24" assertions="57">
+    <testcase name="Navigation" classname="recruiter-home-page-header-link-when-login" time="23.19" assertions="57">
 
     
 

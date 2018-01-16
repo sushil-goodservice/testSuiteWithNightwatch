@@ -3,11 +3,75 @@
             failures="0"
             tests="1">
 
-  <testsuite name="candidate-signup-with-google-plus"
-    errors="0" failures="0" hostname="" id="" package="candidate-signup-with-google-plus" skipped="0"
-    tests="1" time="18.59" timestamp="Tue, 16 Jan 2018 04:15:21 GMT">
+  <testsuite name="recruiter-login-if-email-already-register-with-us"
+    errors="0" failures="0" hostname="" id="" package="recruiter-login-if-email-already-register-with-us" skipped="0"
+    tests="1" time="19.91" timestamp="Tue, 16 Jan 2018 04:26:35 GMT">
   
-    <testcase name="Signup" classname="candidate-signup-with-google-plus" time="18.59" assertions="85">
+    <testcase name="Signup" classname="recruiter-login-if-email-already-register-with-us" time="19.91" assertions="117">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
 

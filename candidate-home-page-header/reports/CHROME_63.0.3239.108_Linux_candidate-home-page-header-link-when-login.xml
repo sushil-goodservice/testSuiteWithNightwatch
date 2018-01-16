@@ -5,9 +5,9 @@
 
   <testsuite name="candidate-home-page-header-link-when-login"
     errors="0" failures="0" hostname="" id="" package="candidate-home-page-header-link-when-login" skipped="0"
-    tests="2" time="21.62" timestamp="Thu, 11 Jan 2018 05:22:14 GMT">
+    tests="2" time="22.13" timestamp="Tue, 16 Jan 2018 04:10:11 GMT">
   
-    <testcase name="Home" classname="candidate-home-page-header-link-when-login" time="7.605" assertions="26">
+    <testcase name="Home" classname="candidate-home-page-header-link-when-login" time="7.622" assertions="26">
 
     
 
@@ -62,7 +62,7 @@
     
     </testcase>
   
-    <testcase name="Navigation" classname="candidate-home-page-header-link-when-login" time="14.01" assertions="20">
+    <testcase name="Navigation" classname="candidate-home-page-header-link-when-login" time="14.51" assertions="20">
 
     
 

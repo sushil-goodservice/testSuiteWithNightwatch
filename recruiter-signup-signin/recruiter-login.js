@@ -68,7 +68,7 @@ module.exports = {
       browser.expect.element(menu + ':nth-of-type(2) a span').text.to.contain('FOR RECRUITERS');
       browser.expect.element(menu + ':nth-of-type(2) a').to.have.attribute('href').which.contains('/user/sign_up?is_recruiter=true');
     }
-    browser.click('a.ga-trackable');
+    browser.click('.recruiter-link a.ga-trackable');
     browser.waitForElementPresent('body', 2000);
     browser.expect.element('.page-popup-like').to.be.present;
     browser.expect.element('.page-popup-like').to.be.visible;

@@ -5,9 +5,11 @@
 
   <testsuite name="recruiter-login-if-email-already-register-with-us"
     errors="0" failures="0" hostname="" id="" package="recruiter-login-if-email-already-register-with-us" skipped="0"
-    tests="1" time="15.81" timestamp="Thu, 18 Jan 2018 07:09:13 GMT">
+    tests="1" time="20.33" timestamp="Thu, 18 Jan 2018 08:19:45 GMT">
   
-    <testcase name="Signup" classname="recruiter-login-if-email-already-register-with-us" time="15.81" assertions="129">
+    <testcase name="Signup" classname="recruiter-login-if-email-already-register-with-us" time="20.33" assertions="130">
+
+    
 
     
 

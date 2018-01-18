@@ -79,9 +79,7 @@ module.exports = {
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a').text.to.equal('Logout');
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a').to.have.attribute('href').which.contains('/user/sign_out');
     }
-    browser.click('.recruiter-link a.ga-trackable', function(response){
-         this.assert.ok(browser === this, "Recruiter Signup link clicked in Home Page.");
-    });
+    browser.click('.recruiter-link a.ga-trackable');
     browser.waitForElementPresent('body', 2000);
     browser.expect.element('.page-popup-like').to.be.present;
     browser.expect.element('.page-popup-like').to.be.visible;
@@ -106,19 +104,16 @@ module.exports = {
     browser.expect.element('.pt-2 a:nth-of-type(2)').to.be.present;
     browser.expect.element('.pt-2 a:nth-of-type(2)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(2)').text.to.contain('Already registered? Click here to Login');
-    browser.assert.attributeContains('.pt-2 a:nth-of-type(2)', 'href', '/user/sign_in?is_recruiter=true');
+    browser.assert.attributeContains('.pt-2 a:nth-of-type(2)', 'href', '/user/sign_in');
     browser.expect.element('.pt-2 a:nth-of-type(3)').to.be.present;
     browser.expect.element('.pt-2 a:nth-of-type(3)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(3)').text.to.contain('Resend Email Confirmation');
-    browser.assert.attributeContains('.pt-2 a:nth-of-type(3)', 'href', '/user/confirmation/new?is_recruiter=true');
+    browser.assert.attributeContains('.pt-2 a:nth-of-type(3)', 'href', '/user/confirmation/new');
     browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.present;
     browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Candidate Signup');
     browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_up');
-    browser.setValue('input[type=user_email]', 'kapur.r1985@gmail.com');
-    browser.setValue('input[type=user_password]', 'goodservice');
-    browser.click('input[type=submit]');
-    browser.pause(5000);
+    browser.click('a.block.text-blue');
     browser.waitForElementPresent('body', 2000);
     browser.expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Recruiter Login');
     browser.expect.element('label[for=user_email]').to.be.present;

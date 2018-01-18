@@ -121,7 +121,7 @@ module.exports = {
     browser.setValue('input[id=company]', ['GoodService',  browser.Keys.ENTER]);
     browser.setValue('input[name=phone]', ['9821634189',  browser.Keys.ENTER]);
     browser.click('input[type=submit]', function(response){
-        browser.assert.ok(this, 'Recruiter Signup button submit.');
+        this.assert.ok(browser === this, 'Recruiter Signup button submit.');
     });
     browser.pause(2000);
     browser.expect.element('.alert.alert-danger').to.be.present;

@@ -48,6 +48,7 @@ module.exports = {
     browser.expect.element(menu).to.be.visible;
     browser.elements('css selector', menu, navigation);
     function navigationAfterLogin(items) {
+      browser.waitForElementPresent(menu + ' .profile-link a.dropdown-toggle', 1000, false);
       browser.expect.element(menu + ' .profile-link a.dropdown-toggle').to.be.present;
       browser.expect.element(menu + ' .profile-link a.dropdown-toggle').to.be.visible;
       browser.expect.element(menu + ' .profile-link a.dropdown-toggle  > span.d-block').text.to.contain('MY PROFILE');
@@ -68,10 +69,12 @@ module.exports = {
       browser.expect.element(menu + ':nth-of-type(2) a span').text.to.contain('FOR RECRUITERS');
       browser.expect.element(menu + ':nth-of-type(2) a').to.have.attribute('href').which.contains('/user/sign_up?is_recruiter=true');
     }
-    browser.click('a.ga-trackable');
+    browser.click('a.ga-trackable', function(response){
+      this.assert.ok(browser == this, 'Click on the FOR CANDIDATES link and redirect to candidate signup page.');
+    });
     browser.expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Candidate Signup');
     browser.waitForElementPresent('body', 2000);
-    browser.setValue('input[type=email]', 'kapur.r1985+27@gmail.com');
+    browser.setValue('input[type=email]', 'kapur.r1985+35@gmail.com');
     browser.setValue('input[type=password]', 'goodservice');
     browser.click('input[type=submit]');
     browser.pause(5000);
@@ -84,7 +87,10 @@ module.exports = {
       this.assert.ok(browser === this, 'Login to G-mail Account.');
     });
     browser.pause(25000);
-    browser.waitForElementPresent('body', 1000);
+     browser.url(browser.launch_url + '/j', function(result) {
+      this.assert.ok(browser == this, 'Current Url Matched.');
+     });
+    browser.waitForElementPresent('body.desktop-visible', 2000);
     browser.elements('css selector', menu, navigationAfterLogin);
     browser.assert.urlEquals(browser.launch_url + '/j', 'Candidate signup Sucessful.');
     browser.end();

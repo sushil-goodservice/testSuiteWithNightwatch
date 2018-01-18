@@ -100,7 +100,7 @@ module.exports = {
     browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').to.be.present;
     browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').text.to.contain('Login with Google+');
-    browser.assert.attributeContains('.pt-2 a.btn-googleplus', 'href', '/user/auth/google_oauth2');
+    browser.assert.attributeContains('.pt-2 a.btn-googleplus', 'href', '/user/auth/google_oauth2?is_recruiter=true');
     browser.expect.element('.pt-2 a:nth-of-type(2)').to.be.present;
     browser.expect.element('.pt-2 a:nth-of-type(2)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(2)').text.to.contain('Already registered? Click here to Login');

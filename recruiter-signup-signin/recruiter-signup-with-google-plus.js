@@ -9,6 +9,7 @@ module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
   'Signup': function (browser) {
     var menu = '.links .links-item';
+    var afterLoginMenu = '.headerlink-with-icon';
     browser.url(browser.launch_url);
     browser.waitForElementPresent('body', 5000);
     browser.assert.title('Landing - the best tech jobs in 1 place');
@@ -49,28 +50,39 @@ module.exports = {
     browser.elements('css selector', menu, navigation);
     
     function navigationAfterLogin(items) {
-      browser.expect.element(menu + ' .profile-link a.dropdown-toggle').to.be.present;
-      browser.expect.element(menu + ' .profile-link a.dropdown-toggle').to.be.visible;
-      browser.expect.element(menu + ' .profile-link a.dropdown-toggle  > span.d-block').text.to.contain('MY PROFILE');
-      browser.click(menu + ' .profile-link a.dropdown-toggle', function(response) {
-        this.assert.ok(browser === this, 'Candidate dropdown-menu clicked.');
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle').to.be.present;
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle').to.be.visible;
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu').to.be.present;
+      browser.click(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle', function(response) {
+        this.assert.ok(browser === this, 'Recruiter header-menu dropdown-menu clicked.');
       });
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu').to.be.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a').to.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a').to.have.attribute('href').which.contains('/profile/edit');
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a span').to.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a span').to.be.visible;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a span').text.to.equal('My Profile');
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a').to.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a').to.have.attribute('href').which.contains('/user/sign_out');
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a span').to.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a > span').to.be.visible;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a span').text.to.equal('Logout');
-      browser.expect.element(menu + ':nth-of-type(2) a span').text.to.contain('FOR RECRUITERS');
-      browser.expect.element(menu + ':nth-of-type(2) a').to.have.attribute('href').which.contains('/user/sign_up?is_recruiter=true');
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a').to.present;
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a').to.be.visible;
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a').text.to.equal('My Jobs');
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a').to.have.attribute('href').which.contains('/recruiter/jobs');      
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(2) a').to.present;
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(2) a').to.be.visible;
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(2) a').text.to.equal('Add new Jobs');
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(2) a').to.have.attribute('href').which.contains('/recruiter/jobs/new');
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(3) a').to.present;
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(3) a').to.be.visible;
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(3) a').text.to.equal('Candidate Database');
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(3) a').to.have.attribute('href').which.contains('/recruiter/candidate_infos');
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(4) a').to.present;
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(4) a').to.be.visible;
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(4) a').text.to.equal('My Profile');
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(4) a').to.have.attribute('href').which.contains('/profile/edit');
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(5) a').to.present;
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(5) a').to.be.visible;
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(5) a').text.to.equal('My Organisation & Team');
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(5) a').to.have.attribute('href').which.contains('/recruiter/organisations');
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a').to.present;
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a').to.be.visible;
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a').text.to.equal('Logout');
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a').to.have.attribute('href').which.contains('/user/sign_out');
     }
     // browser.click('a.ga-trackable');
-    browser.click(menu + ':nth-of-type(2) a span', function(response){
+    browser.click(menu + ':nth-of-type(2) a', function(response){
       this.assert.ok(browser === this, 'Clicked to redirect to recruiter signup page.');
     });
     browser.waitForElementPresent('body', 2000);
@@ -114,11 +126,21 @@ module.exports = {
     browser.pause(2000);
     browser.setValue('input[type=password]', 'Kapur.rahul');
     browser.click('.CwaK9');
-    browser.waitForElementPresent('body', 1000);
+    browser.waitForElementPresent('body.layout3.new-design', 4000);
     browser.pause(5000);
+    browser.assert.urlEquals( browser.launch_url + '/recruiter/dashboard#');
+    browser.expect.element('.header-logo').to.be.present;
+    browser.expect.element('.header-logo').to.be.visible;
+    browser.expect.element('.searchBar').to.be.present;
+    browser.expect.element('.searchBar').to.be.visible;
+    browser.expect.element('.btn.btn-sm.blue').to.be.present;
+    browser.expect.element('.btn.btn-sm.blue').to.be.visible;
+    browser.expect.element(afterLoginMenu).to.be.present;
+    browser.expect.element(afterLoginMenu).to.be.visible;
     browser.elements('css selector', menu, navigationAfterLogin);
     browser.saveScreenshot('./screenshots/recruiter-g-plus-signup.png');
-    browser.assert.urlEquals(browser.launch_url + '/j#', 'Candidate login Sucessful.');
+    browser.assert.urlEquals(browser.launch_url + '/recruiter/dashboard#', 'Recruiter login Sucessful.');
+    browser.sessionLogTypes();
     browser.end();
   }
 };

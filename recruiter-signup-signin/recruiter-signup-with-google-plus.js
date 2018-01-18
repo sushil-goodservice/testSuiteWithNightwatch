@@ -8,8 +8,7 @@ var should = chai.should();
 module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
   'Signup': function (browser) {
-    var menu = '.links .links-item';
-    var afterLoginMenu = '.headerlink-with-icon';
+    var menu = '.links .links-item', afterLoginMenu = '.headerlink-with-icon';
     browser.url(browser.launch_url);
     browser.waitForElementPresent('body', 5000);
     browser.assert.title('Landing - the best tech jobs in 1 place');

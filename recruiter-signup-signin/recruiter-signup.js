@@ -115,18 +115,31 @@ module.exports = {
     browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Candidate Signup');
     browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_up');
-    browser.setValue('input[id=user_email]', 'kapur.r1985+40@gmail.com');
+    browser.setValue('input[id=user_email]', 'kapur.r1985+48@gmail.com');
     browser.setValue('input[id=user_password]', 'goodservice');
-    browser.setValue('input[id=user_name]', 'Rahul Kapur');
-    browser.setValue('input[type=company]', 'Goodservice');
+    browser.setValue('input[id=user_name]', 'Rahul Test Kapur');
+    browser.setValue('input[id=company]', 'Goodservice');
     browser.setValue('input[id=phone]', '9821634189');
     browser.click('input[type=submit]', function(response){
         this.assert.ok(browser == this, 'Submiting the recruiter signup form.');
-        browser.url.contains( browser.launch_url + '/showconfirmation?', 'redirecting to the confirmation page.');
     });
     browser.pause(5000);
+    browser.waitForElementPresent('body', 2000);
+    browser.assert.urlContains( 'showconfirmation?', 'redirecting to the confirmation page.');
+    browser.pause(2000);
+    browser.url('https://www.gmail.com');
+    browser.setValue('input[type=email]', 'kapur.r1985@gmail.com');
+    browser.click('.CwaK9');
+    browser.pause(2000);
+    browser.setValue('input[type=password]', 'Kapur.rahul');
+    browser.click('.CwaK9', function(response) {
+      this.assert.ok(browser === this, 'Login to G-mail Account.');
+    });
+    browser.pause(25000);
+    browser.waitForElementPresent('body', 2000);
+    browser.url(browser.launch_url + '/recruiter/candidate_infos');
+    //browser.assert.urlEquals(browser.launch_url + '/recruiter/candidate_infos', 'Recruiter login Sucessful.');
     browser.elements('css selector', menu, navigationAfterLogin);
-    browser.assert.urlEquals(browser.launch_url + '/recruiter/candidate_infos', 'Recruiter login Sucessful.');
     browser.end();
   }
 };

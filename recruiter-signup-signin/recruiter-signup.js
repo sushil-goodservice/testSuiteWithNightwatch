@@ -51,9 +51,11 @@ module.exports = {
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle').to.be.present;
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle').to.be.visible;
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu').to.be.present;
+      browser.pause(2000);
       browser.click(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle', function(response) {
         this.assert.ok(browser === this, 'Recruiter header-menu dropdown-menu clicked.');
       });
+       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu').to.be.visible;
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a').to.present;
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a').to.be.visible;
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a').text.to.equal('My Jobs');
@@ -76,8 +78,12 @@ module.exports = {
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(5) a').to.have.attribute('href').which.contains('/recruiter/organisations');
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a').to.present;
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a').to.be.visible;
-      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a').text.to.equal('Logout');
-      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a').to.have.attribute('href').which.contains('/user/sign_out');
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a').text.to.equal('Change Password');
+      // browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a').to.have.attribute('href').which.contains('/user/sign_out');
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(7) a').to.present;
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(7) a').to.be.visible;
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(7) a').text.to.equal('Logout');
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(7) a').to.have.attribute('href').which.contains('/user/sign_out');
     }
     browser.click('.recruiter-link a.ga-trackable', function(response){
       browser.assert.urlEquals( browser.launch_url + '/user/sign_up?is_recruiter=true', 'Scuessfully redirecting to recruiter signup page.');
@@ -115,7 +121,7 @@ module.exports = {
     browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Candidate Signup');
     browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_up');
-    browser.setValue('input[id=user_email]', 'kapur.r1985+48@gmail.com');
+    browser.setValue('input[id=user_email]', 'kapur.r1985+53@gmail.com');
     browser.setValue('input[id=user_password]', 'goodservice');
     browser.setValue('input[id=user_name]', 'Rahul Test Kapur');
     browser.setValue('input[id=company]', 'Goodservice');
@@ -138,6 +144,7 @@ module.exports = {
     browser.pause(25000);
     browser.waitForElementPresent('body', 2000);
     browser.url(browser.launch_url + '/recruiter/candidate_infos');
+    browser.expect.element('body.layout3.new-design').to.be.present;
     //browser.assert.urlEquals(browser.launch_url + '/recruiter/candidate_infos', 'Recruiter login Sucessful.');
     browser.elements('css selector', menu, navigationAfterLogin);
     browser.end();

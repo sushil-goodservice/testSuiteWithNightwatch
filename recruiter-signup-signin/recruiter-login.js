@@ -79,7 +79,9 @@ module.exports = {
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a').text.to.equal('Logout');
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a').to.have.attribute('href').which.contains('/user/sign_out');
     }
-    browser.click('.recruiter-link a.ga-trackable');
+    browser.click('.recruiter-link a.ga-trackable', function(response){
+      this.assert.ok(browser === this, 'Recruiter link clicked, redirecting into recruiter signup page.');
+    });
     browser.waitForElementPresent('body', 2000);
     browser.expect.element('.page-popup-like').to.be.present;
     browser.expect.element('.page-popup-like').to.be.visible;
@@ -113,7 +115,9 @@ module.exports = {
     browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Candidate Signup');
     browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_up');
-    browser.click('a.block.text-blue');
+    browser.click('a.block.text-blue', function(response){
+      this.assert.ok(browser === this, 'Recruiter login page link clicked, redirecting recruiter login page.');
+    });
     browser.waitForElementPresent('body', 2000);
     browser.expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Recruiter Login');
     browser.expect.element('label[for=user_email]').to.be.present;

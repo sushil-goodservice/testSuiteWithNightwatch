@@ -191,11 +191,23 @@ module.exports = {
     el2 = elementForm + ':nth-of-type(2) .row .col-md-4.col-sm-4 label.control-label',
     el3 = elementForm + ':nth-of-type(3) .row .col-md-4.col-sm-4 label.control-label',
     el4 = elementForm + ':nth-of-type(4) .row .col-md-4.col-sm-4 label.control-label',
+    el5 = elementForm + ':nth-of-type(5) .row .col-md-4.col-sm-4 label.control-label',
+    el6 = elementForm + ':nth-of-type(6) .row .col-md-4.col-sm-4 label.control-label',
+    el7 = elementForm + ':nth-of-type(7) .row .col-md-4.col-sm-4 label.control-label',
+    el8 = elementForm + ':nth-of-type(8) .row .col-md-4.col-sm-4 label.control-label',
+    el9 = elementForm + ':nth-of-type(9) .row .col-md-4.col-sm-4 label.control-label',
+    el10 = elementForm + ':nth-of-type(10) .row .col-md-4.col-sm-4 label.control-label',
     el = {
       el1:'Who can access this job',
       el2:'Select your company',
       el3:'Role',
-      el4:'Job Title'
+      el4:'Job Title',
+      el5:'Skills',
+      el6:'Function',
+      el7:'City',
+      el8:'Work Experience',
+      el9:'Salary Range',
+      el10:'Job Description',
     };
     function checkFormElementLavels(el, params, text){
       browser.expect.element(params).to.be.present;
@@ -206,6 +218,12 @@ module.exports = {
     checkFormElementLavels(el, el2, el.el2);
     checkFormElementLavels(el, el3, el.el3);
     checkFormElementLavels(el, el4, el.el4);
+    checkFormElementLavels(el, el5, el.el5);
+    checkFormElementLavels(el, el6, el.el6);
+    checkFormElementLavels(el, el7, el.el7);
+    checkFormElementLavels(el, el8, el.el8);
+    checkFormElementLavels(el, el9, el.el9);
+    checkFormElementLavels(el, el10, el.el10);
     browser.end();
   }
 };

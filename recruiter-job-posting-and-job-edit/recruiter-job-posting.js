@@ -9,34 +9,74 @@ module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
   'Signup': function (browser) {
     var menu = '.links .links-item', afterLoginMenu = '.headerlink-with-icon';
-    browser.url(browser.launch_url);
-    browser.waitForElementPresent('body', 5000);
-    browser.assert.title('Landing - the best tech jobs in 1 place');
-    browser.expect.element('.header-logo').to.be.present;
-    browser.expect.element('.header-logo').to.be.visible;
-    browser.expect.element('#user-header-search').to.be.present;
-    browser.expect.element('#user-header-search').to.be.visible;
-    browser.expect.element('.page-heading').to.be.present;
-    browser.expect.element('.page-heading').to.be.visible;
-    browser.expect.element('.header-logo a').to.be.present;
-    browser.expect.element('.header-logo a').to.be.visible;
+    browser.url(browser.launch_url); // open url https://landing.co
+    browser.waitForElementPresent('body', 5000); //check if the body is to be present
+    browser.assert.title('Landing - the best tech jobs in 1 place'); // match the page title
+    // test home page element to be present and visible
+    var home = ['.header-logo', '#user-header-search', '.page-heading', '.header-logo a', '.page-heading h2', '.pagination', '.main-footer'];
+    function homeElement(){
+      for(var i = 0; i < home.length; i++){
+        currentElement = home[i];
+        browser.expect.element(currentElement).to.be.present;
+        browser.expect.element(currentElement).to.be.visible;
+      }
+    }
+    homeElement();
+    // page element text contain
+    var pageTextElement = [
+    {
+      element : '.header-logo a',
+      text : 'LANDING .CO'
+    },
+    {
+      element : '.main-footer .container a:nth-of-type(2)',
+      text : 'LANDING .CO'
+    },
+    { 
+      element : '.page-heading h2',
+      text : 'Browse Jobs'
+    },
+    {
+      element : '.popular-tags .popular-tags-title',
+      text : 'Popular Search Tags:'
+    },
+    {
+      element : '.main-footer .container a:nth-of-type(1)',
+      text : 'Browse Jobs'
+    }
+    ];
+    function pageTextElement(){
+      for(var i = 0; i < pageTextElement.length; i++){
+        var current = pageTextElement[i];
+        browser.expect.element(current.element).text.to.contain(current.text);
+      }
+    }
+    pageTextElement();
+    /*
     browser.expect.element('.header-logo a').text.to.contain('LANDING .CO');
-    browser.expect.element('.header-logo a').to.have.attribute('href').which.contains('/');
-    browser.expect.element('.page-heading h2').to.be.present;
-    browser.expect.element('.page-heading h2').to.be.visible;
-    browser.expect.element('.page-heading h2').text.to.contain('Browse Jobs');
-    browser.expect.element('.popular-tags').to.be.present;
-    browser.expect.element('.popular-tags').to.be.visible;
-    browser.expect.element('.popular-tags .popular-tags-title').text.to.equal('Popular Search Tags:');
-    browser.expect.element('.pagination').to.be.present;
-    browser.expect.element('.pagination').to.be.visible;
-    browser.expect.element('.main-footer').to.be.present;
-    browser.expect.element('.main-footer').to.be.visible;
-    browser.expect.element('.main-footer .container a:nth-of-type(1)').text.to.contain('Browse Jobs');
-    browser.expect.element('.main-footer .container a:nth-of-type(1)').to.have.attribute('href').which.contains('/sitemap');
     browser.expect.element('.main-footer .container a:nth-of-type(2)').text.to.contain('LANDING .CO');
+    browser.expect.element('.page-heading h2').text.to.contain('Browse Jobs');
+    browser.expect.element('.popular-tags .popular-tags-title').text.to.equal('Popular Search Tags:');
+    browser.expect.element('.main-footer .container a:nth-of-type(1)').text.to.contain('Browse Jobs');
+    */
+    // page element link test
+    var pagelinkElement = [
+    {
+      element : '.header-logo a',
+      text : '/'
+    },
+    {
+      element : '.main-footer .container a:nth-of-type(1)',
+      text : '/sitemap'
+    },
+    { 
+      element : '.main-footer .container a:nth-of-type(2)',
+      text : '/'
+    }
+    ];
+    browser.expect.element('.header-logo a').to.have.attribute('href').which.contains('/');
+    browser.expect.element('.main-footer .container a:nth-of-type(1)').to.have.attribute('href').which.contains('/sitemap');
     browser.expect.element('.main-footer .container a:nth-of-type(2)').to.have.attribute('href').which.contains('/');
-    browser.saveScreenshot('./screenshots/expect-home.png');
     function navigation(items) {
       expect(items.value.length).to.equal(2); // Chai module
       browser.expect.element(menu + ':nth-of-type(1) a span').text.to.contain('FOR CANDIDATES');
@@ -111,20 +151,6 @@ module.exports = {
     formInputElementsLabelCheck('label[for=designation]', 'Your Name');
     formInputElementsLabelCheck('label[for=company]', 'Company Name');
     formInputElementsLabelCheck('label[for=phone]', 'Mobile Number');
-    /*
-    browser.expect.element('label[for=user_email]').to.be.present;
-    browser.expect.element('label[for=user_email]').to.be.visible;
-    browser.expect.element('label[for=user_email]').text.to.contain('Email');
-    browser.expect.element('input[id=user_email]').to.be.present;
-    browser.expect.element('input[id=user_email]').to.be.visible;
-    browser.expect.element('label[for=user_password]').to.be.present;
-    browser.expect.element('label[for=user_password]').to.be.visible;
-    browser.expect.element('label[for=user_password]').text.to.contain('Set your password');
-    browser.expect.element('input[id=user_password]').to.be.present;
-    browser.expect.element('input[id=user_password]').to.be.visible;
-    browser.expect.element('input[name=commit]').to.be.present;
-    browser.expect.element('input[name=commit]').to.be.visible;
-    */
     browser.expect.element('input[name=commit]').to.have.value.that.equals('Submit');
     browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').to.be.present;
     browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').to.be.visible;

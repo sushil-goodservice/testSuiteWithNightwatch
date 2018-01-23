@@ -45,13 +45,13 @@ module.exports = {
       text : 'Browse Jobs'
     }
     ];
-    function pageTextElement(){
+    function pageTextElementFn(){
       for(var i = 0; i < pageTextElement.length; i++){
         var current = pageTextElement[i];
         browser.expect.element(current.element).text.to.contain(current.text);
       }
     }
-    pageTextElement();
+    pageTextElementFn();
     
     // page element link test
     var pagelinkElement = [
@@ -68,22 +68,39 @@ module.exports = {
       link : '/'
     }
     ];
-    function pagelinkElement(){
+    function pagelinkElementEn(){
       for(var i = 0; i < pagelinkElement.length; i++){
         var currentPageElement = pagelinkElement[i];
         browser.expect.element(currentPageElement.element).to.have.attribute('href').which.contains(currentPageElement.link);
       }
     }
+    pagelinkElementEn();
+    // menu links check when not login
+    var notLogin = [
+     {
+      element : menu + ':nth-of-type(1) a',
+      text : 'FOR CANDIDATES',
+      link : '/user/sign_up'
+     },
+     {
+      element : menu + ':nth-of-type(2) a',
+      text : 'FOR RECRUITERS',
+      link : '/user/sign_up?is_recruiter=true'
+     }
+    ];
+    
     function navigation(items) {
       expect(items.value.length).to.equal(2); // Chai module
-      browser.expect.element(menu + ':nth-of-type(1) a span').text.to.contain('FOR CANDIDATES');
-      browser.expect.element(menu + ':nth-of-type(1) a').to.have.attribute('href').which.contains('/user/sign_up');
-      browser.expect.element(menu + ':nth-of-type(2) a span').text.to.contain('FOR RECRUITERS');
-      browser.expect.element(menu + ':nth-of-type(2) a').to.have.attribute('href').which.contains('/user/sign_up?is_recruiter=true');
+      for(var i; i < notLogin.length; i++){
+        var current = notLogin[i];
+        browser.expect.element(current.element).text.to.contain(current.text);
+      browser.expect.element(current.element).to.have.attribute('href').which.contains(current.link);
+      }
     }
     browser.expect.element(menu).to.be.present;
     browser.expect.element(menu).to.be.visible;
     browser.elements('css selector', menu, navigation);
+    // after login menu testing
     var el = [
         {
           linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a',
@@ -221,8 +238,9 @@ module.exports = {
     browser.expect.element('.card-box h2').text.to.contain('Add a Job');
     browser.expect.element('#new_job_posting').to.be.present;
     browser.expect.element('#new_job_posting').to.be.visible;
+    // job posting form element label check
     var elementForm =  '#new_job_posting .form-group';
-    el = [
+    var el = [
       {
         tag : elementForm + ':nth-of-type(1) .row .col-md-4.col-sm-4 label.control-label',
         text : 'Who can access this job'
@@ -252,14 +270,14 @@ module.exports = {
         text : 'City'
       },
       {
-        tag: elementForm + ':nth-of-type(8) .row .col-md-4.col-sm-4 label.control-label',
+        tag: elementForm + ':nth-of-type(8) .row .col-md-4 label.control-label',
         text : 'Work Experience' 
       },
       {
-        tag : elementForm + ':nth-of-type(9) .row .col-md-4.col-sm-4 label.control-label',
+        tag : elementForm + ':nth-of-type(9) .row .col-md-4 label.control-label',
         text : 'Salary Range'
       },{
-        tag : elementForm + ':nth-of-type(10) .row .col-md-4.col-sm-4 label.control-label', 
+        tag : elementForm + ':nth-of-type(10) .row .col-md-4 label.control-label', 
         text : 'Job Description'
       }
     ];
@@ -267,10 +285,35 @@ module.exports = {
       for(var i = 0; i < el.length; i++){
         var currentEl = el[i];
         browser.expect.element(currentEl.tag).to.be.present;
-        browser.expect.element(currentcurrentEl.tag).to.be.visible;
+        browser.expect.element(currentEl.tag).to.be.visible;
         browser.expect.element(currentEl.tag).text.to.equal(currentEl.text);
       }
     }
+    checkFormElementLavels(el);
+    // check form input element presents
+    var input = [
+      'job_posting_is_visible_to_all_team_members', 
+      'job_posting_recruiter_team_id',
+      'js-complete-algoliadesignation',
+      'job_posting_title',
+      'job_posting_skills_text-tokenfield',
+      'location',
+      'job_posting_function_name',
+      'job_posting_min_experience',
+      'job_posting_max_experience',
+      'job_posting_min_salary',
+      'job_posting_max_salary',
+      'cke_job_posting_job_description'
+    ];
+    function testFormElements(){
+      for(var i = 0; i < input.length; i++){
+        var currentInput = input[i];
+        browser.expect.element('#' + currentInput).to.be.present;
+        browser.expect.element('#' + currentInput).to.be.visible;
+      }
+    }
+    testFormElements();
+    $()
     browser.end();
   }
 };

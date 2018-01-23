@@ -52,31 +52,28 @@ module.exports = {
       }
     }
     pageTextElement();
-    /*
-    browser.expect.element('.header-logo a').text.to.contain('LANDING .CO');
-    browser.expect.element('.main-footer .container a:nth-of-type(2)').text.to.contain('LANDING .CO');
-    browser.expect.element('.page-heading h2').text.to.contain('Browse Jobs');
-    browser.expect.element('.popular-tags .popular-tags-title').text.to.equal('Popular Search Tags:');
-    browser.expect.element('.main-footer .container a:nth-of-type(1)').text.to.contain('Browse Jobs');
-    */
+    
     // page element link test
     var pagelinkElement = [
     {
       element : '.header-logo a',
-      text : '/'
+      link : '/'
     },
     {
       element : '.main-footer .container a:nth-of-type(1)',
-      text : '/sitemap'
+      link : '/sitemap'
     },
     { 
       element : '.main-footer .container a:nth-of-type(2)',
-      text : '/'
+      link : '/'
     }
     ];
-    browser.expect.element('.header-logo a').to.have.attribute('href').which.contains('/');
-    browser.expect.element('.main-footer .container a:nth-of-type(1)').to.have.attribute('href').which.contains('/sitemap');
-    browser.expect.element('.main-footer .container a:nth-of-type(2)').to.have.attribute('href').which.contains('/');
+    function pagelinkElement(){
+      for(var i = 0; i < pagelinkElement.length; i++){
+        var currentPageElement = pagelinkElement[i];
+        browser.expect.element(currentPageElement.element).to.have.attribute('href').which.contains(currentPageElement.link);
+      }
+    }
     function navigation(items) {
       expect(items.value.length).to.equal(2); // Chai module
       browser.expect.element(menu + ':nth-of-type(1) a span').text.to.contain('FOR CANDIDATES');
@@ -224,44 +221,56 @@ module.exports = {
     browser.expect.element('.card-box h2').text.to.contain('Add a Job');
     browser.expect.element('#new_job_posting').to.be.present;
     browser.expect.element('#new_job_posting').to.be.visible;
-    var elementForm =  '#new_job_posting .form-group',
-    el1 = elementForm + ':nth-of-type(1) .row .col-md-4.col-sm-4 label.control-label',
-    el2 = elementForm + ':nth-of-type(2) .row .col-md-4.col-sm-4 label.control-label',
-    el3 = elementForm + ':nth-of-type(3) .row .col-md-4.col-sm-4 label.control-label',
-    el4 = elementForm + ':nth-of-type(4) .row .col-md-4.col-sm-4 label.control-label',
-    el5 = elementForm + ':nth-of-type(5) .row .col-md-4.col-sm-4 label.control-label',
-    el6 = elementForm + ':nth-of-type(6) .row .col-md-4.col-sm-4 label.control-label',
-    el7 = elementForm + ':nth-of-type(7) .row .col-md-4.col-sm-4 label.control-label',
-    el8 = elementForm + ':nth-of-type(8) .row .col-md-4.col-sm-4 label.control-label',
-    el9 = elementForm + ':nth-of-type(9) .row .col-md-4.col-sm-4 label.control-label',
-    el10 = elementForm + ':nth-of-type(10) .row .col-md-4.col-sm-4 label.control-label',
-    el = {
-      el1:'Who can access this job',
-      el2:'Select your company',
-      el3:'Role',
-      el4:'Job Title',
-      el5:'Skills',
-      el6:'Function',
-      el7:'City',
-      el8:'Work Experience',
-      el9:'Salary Range',
-      el10:'Job Description',
-    };
-    function checkFormElementLavels(el, params, text){
-      browser.expect.element(params).to.be.present;
-      browser.expect.element(params).to.be.visible;
-      browser.expect.element(params).text.to.equal(text);
+    var elementForm =  '#new_job_posting .form-group';
+    el = [
+      {
+        tag : elementForm + ':nth-of-type(1) .row .col-md-4.col-sm-4 label.control-label',
+        text : 'Who can access this job'
+      },
+      {
+        tag: elementForm + ':nth-of-type(2) .row .col-md-4.col-sm-4 label.control-label', 
+        text : 'Select your company'
+      },
+      {
+        tag: elementForm + ':nth-of-type(3) .row .col-md-4.col-sm-4 label.control-label',
+        text : 'Role'
+      },
+      {
+        tag : elementForm + ':nth-of-type(4) .row .col-md-4.col-sm-4 label.control-label',
+        text : 'Job Title'
+      },
+      {
+        tag : elementForm + ':nth-of-type(5) .row .col-md-4.col-sm-4 label.control-label', 
+        text : 'Skills'
+      },
+      {
+        tag : elementForm + ':nth-of-type(6) .row .col-md-4.col-sm-4 label.control-label', 
+        text : 'Function'
+      },
+      {
+        tag : elementForm + ':nth-of-type(7) .row .col-md-4.col-sm-4 label.control-label', 
+        text : 'City'
+      },
+      {
+        tag: elementForm + ':nth-of-type(8) .row .col-md-4.col-sm-4 label.control-label',
+        text : 'Work Experience' 
+      },
+      {
+        tag : elementForm + ':nth-of-type(9) .row .col-md-4.col-sm-4 label.control-label',
+        text : 'Salary Range'
+      },{
+        tag : elementForm + ':nth-of-type(10) .row .col-md-4.col-sm-4 label.control-label', 
+        text : 'Job Description'
+      }
+    ];
+    function checkFormElementLavels(el){
+      for(var i = 0; i < el.length; i++){
+        var currentEl = el[i];
+        browser.expect.element(currentEl.tag).to.be.present;
+        browser.expect.element(currentcurrentEl.tag).to.be.visible;
+        browser.expect.element(currentEl.tag).text.to.equal(currentEl.text);
+      }
     }
-    checkFormElementLavels(el, el1, el.el1);
-    checkFormElementLavels(el, el2, el.el2);
-    checkFormElementLavels(el, el3, el.el3);
-    checkFormElementLavels(el, el4, el.el4);
-    checkFormElementLavels(el, el5, el.el5);
-    checkFormElementLavels(el, el6, el.el6);
-    checkFormElementLavels(el, el7, el.el7);
-    checkFormElementLavels(el, el8, el.el8);
-    checkFormElementLavels(el, el9, el.el9);
-    checkFormElementLavels(el, el10, el.el10);
     browser.end();
   }
 };

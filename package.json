@@ -1,0 +1,28 @@
+{
+  "name": "nightwatch-automation",
+  "version": "1.0.0",
+  "description": "This is create for landing.co automation with nightwatch js.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sushil-goodservice/testSuiteWithNightwatch.git"
+  },
+  "keywords": [
+    "landing.co",
+    "nightwatch"
+  ],
+  "author": "Sushil Kundu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sushil-goodservice/testSuiteWithNightwatch/issues"
+  },
+  "homepage": "https://github.com/sushil-goodservice/testSuiteWithNightwatch#readme",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "nightwatch": "^0.9.19",
+    "selenium-standalone": "^6.12.0"
+  }
+}

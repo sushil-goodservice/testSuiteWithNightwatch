@@ -101,6 +101,17 @@ module.exports = {
     browser.expect.element('.page-popup-like').to.be.present;
     browser.expect.element('.page-popup-like').to.be.visible;
     browser.expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Recruiter Signup');
+    function formInputElementsLabelCheck(element, text){
+      browser.expect.element(element).to.be.present;
+      browser.expect.element(element).to.be.visible;
+      browser.expect.element(element).text.to.contain(text);
+    }
+    formInputElementsLabelCheck('label[for=user_email]', 'Email');
+    formInputElementsLabelCheck('label[for=user_password]', 'Set your password');
+    formInputElementsLabelCheck('label[for=designation]', 'Your Name');
+    formInputElementsLabelCheck('label[for=company]', 'Company Name');
+    formInputElementsLabelCheck('label[for=phone]', 'Mobile Number');
+    /*
     browser.expect.element('label[for=user_email]').to.be.present;
     browser.expect.element('label[for=user_email]').to.be.visible;
     browser.expect.element('label[for=user_email]').text.to.contain('Email');
@@ -113,6 +124,7 @@ module.exports = {
     browser.expect.element('input[id=user_password]').to.be.visible;
     browser.expect.element('input[name=commit]').to.be.present;
     browser.expect.element('input[name=commit]').to.be.visible;
+    */
     browser.expect.element('input[name=commit]').to.have.value.that.equals('Submit');
     browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').to.be.present;
     browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').to.be.visible;

@@ -231,13 +231,24 @@ module.exports = {
       this.assert.ok(browser === this, 'My Job link clicked. Redirecting to recruiter my jobs page create new job page.');
       browser.waitForElementPresent('body', 1000);
       browser.expect.element('body').to.be.visible;
-      browser.expect.element('.forms-box-desktop').to.be.present;
-      browser.expect.element('.forms-box-desktop').to.be.visible;
-      browser.assert.urlEquals( browser.launch_url + '/recruiter/jobs/new');
+      browser.expect.element('.dashboard.full-width.box-min-height').to.be.present;
+      browser.expect.element('.dashboard.full-width.box-min-height').to.be.visible;
+      browser.assert.urlEquals( browser.launch_url + '/recruiter/jobs');
     });
-    browser.expect.element('.card-box h2').text.to.contain('Add a Job');
-    browser.expect.element('#new_job_posting').to.be.present;
-    browser.expect.element('#new_job_posting').to.be.visible;
+     var table = '.table.table-lg.jobs.text-center.bt-none', editJob = table + ' .t-body tr:nth-of-type(1) td.action-cell a.btn-edit-job';
+    browser.expect.element('div.toolbar > h2.toolbar-title').text.to.contain('My Jobs');
+    browser.expect.element(table).to.be.present;
+    browser.expect.element(table).to.be.visible;
+    browser.expect.element(editJob).to.be.present;
+    browser.expect.element(editJob).to.be.visible;
+    browser.click(editJob, function(response){
+      this.assert.ok(browser === this, 'Job edit button clicked.');
+    });
+    var url = browser.execute("document.querySelector(editJob).getAttribute('href')");
+    console.log(url);
+    browser.pause(2000);
+    browser.assert.urlContains( browser.launch_url + '/' + url , 'Job edit page loaded.');
+
     // job posting form element label check
     var elementForm =  '#new_job_posting .form-group';
     var el = [
@@ -347,15 +358,15 @@ module.exports = {
     browser.click('#' + input[7], function(response){
       this.assert.ok(browser === this, 'Job function dropdown clicked.');
     });
-    browser.waitForElementVisible('#' + input[7] + " option[value='2']", 2000);
-    browser.click('#' + input[7] + " option[value='2']", function(response){
+    browser.waitForElementVisible('#' + input[7] + " option[value='3']", 2000);
+    browser.click('#' + input[7] + " option[value='3']", function(response){
       this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
     });
     browser.click('#' + input[8], function(response){
       this.assert.ok(browser === this, 'Job function dropdown clicked.');
     });
-    browser.waitForElementVisible('#' + input[8] + " option[value='3']", 2000);
-    browser.click('#' + input[8] + " option[value='3']", function(response){
+    browser.waitForElementVisible('#' + input[8] + " option[value='4']", 2000);
+    browser.click('#' + input[8] + " option[value='4']", function(response){
       this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
     });
     browser.click('#' + input[9], function(response){

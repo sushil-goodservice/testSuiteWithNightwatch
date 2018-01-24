@@ -339,51 +339,48 @@ module.exports = {
       this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
     });
     browser.setValue('#' + input[6], 'Delhi, India');
+    browser.waitForElementPresent('.pac-container.pac-logo', 2000);
+    browser.waitForElementPresent('.pac-container.pac-logo .pac-item:nth-of-type(1)', 1000);
+    browser.click('.pac-container.pac-logo .pac-item:nth-of-type(1)', function(response){
+      this.assert.ok(browser === this, 'City name selected.');
+    });
     browser.click('#' + input[7], function(response){
       this.assert.ok(browser === this, 'Job function dropdown clicked.');
     });
-    browser.waitForElementVisible("option[value='2']", 2000);
-    browser.click("option[value='2']", function(response){
+    browser.waitForElementVisible('#' + input[7] + " option[value='2']", 2000);
+    browser.click('#' + input[7] + " option[value='2']", function(response){
       this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
     });
     browser.click('#' + input[8], function(response){
       this.assert.ok(browser === this, 'Job function dropdown clicked.');
     });
-    browser.waitForElementVisible("option[value='3']", 2000);
-    browser.click("option[value='3']", function(response){
+    browser.waitForElementVisible('#' + input[8] + " option[value='3']", 2000);
+    browser.click('#' + input[8] + " option[value='3']", function(response){
       this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
     });
     browser.click('#' + input[9], function(response){
       this.assert.ok(browser === this, 'Job function dropdown clicked.');
     });
-    browser.waitForElementVisible("option[value='2']", 2000);
-    browser.click("option[value='2']", function(response){
+    browser.waitForElementVisible('#' + input[9] + " option[value='2']", 2000);
+    browser.click('#' + input[9] + " option[value='2']", function(response){
       this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
     });
     browser.click('#' + input[10], function(response){
       this.assert.ok(browser === this, 'Job function dropdown clicked.');
     });
-    browser.waitForElementVisible("option[value='4']", 2000);
-    browser.click("option[value='4']", function(response){
-      this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
-    });
-    browser.click('#' + input[11], function(response){
-      this.assert.ok(browser === this, 'Job function dropdown clicked.');
-    });
-    browser.waitForElementVisible("option[value='5']", 2000);
-    browser.click("option[value='5']", function(response){
+    browser.waitForElementVisible('#' + input[10] + " option[value='4']", 2000);
+    browser.click('#' + input[10] + " option[value='4']", function(response){
       this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
     });
     browser.expect.element('#cke_1_contents').to.be.present;
     browser.expect.element('#cke_1_contents').to.be.visible;
-    //browser.expect.element('#cke_1_contents > iframe > html').to.be.present;
-    //browser.expect.element('#cke_1_contents > iframe > html').to.be.visible;
     browser.execute('$(".cke_wysiwyg_frame.cke_reset").contents().find("body").html("Good analytical skills; Good in SQL, Coding and scripting with one or more of the following tool Coded UI, HP QTP/UFT. Knowledge of tools like Quality Center/MS TFS for Test repository and defect reporting and tracking; DB2 concepts; SQL; Automation tools like Coded UI, QTP.")');
-    //browser.setValue('#cke_1_contents > iframe > html > body', 'Good analytical skills; Good in SQL, Coding and scripting with one or more of the following tool Coded UI, HP QTP/UFT. Knowledge of tools like Quality Center/MS TFS for Test repository and defect reporting and tracking; DB2 concepts; SQL; Automation tools like Coded UI, QTP.');
     browser.expect.element('input[name=commit]').to.be.present;
     browser.expect.element('input[name=commit]').to.be.visible;
     browser.click('input[name=commit]');
     browser.pause(10000);
+    browser.assert.urlContains('candidate_infos', 'Redirect to candidate listing page. Job sucessfully posted.');
+    browser.pause(3000);
     browser.end();
   }
 };

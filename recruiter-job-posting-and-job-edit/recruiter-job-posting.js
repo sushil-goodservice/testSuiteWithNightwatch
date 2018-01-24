@@ -220,7 +220,7 @@ module.exports = {
     browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Candidate Login');
     browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_in');
-    browser.setValue('input[type=email]', 'kapur.r1985@gmail.com');
+    browser.setValue('input[type=email]', 'sushil@goodservice.in');
     browser.setValue('input[type=password]', 'goodservice');
     browser.click('input[type=submit]');
     browser.pause(5000);
@@ -290,6 +290,7 @@ module.exports = {
       }
     }
     checkFormElementLavels(el);
+    browser.pause(2000);
     // check form input element presents
     var input = [
       'job_posting_is_visible_to_all_team_members', 
@@ -297,8 +298,8 @@ module.exports = {
       'js-complete-algoliadesignation',
       'job_posting_title',
       'job_posting_skills_text-tokenfield',
-      'location',
       'job_posting_function_name',
+      'location',
       'job_posting_min_experience',
       'job_posting_max_experience',
       'job_posting_min_salary',
@@ -313,7 +314,76 @@ module.exports = {
       }
     }
     testFormElements();
-    $()
+    browser.click('select[id="job_posting_is_visible_to_all_team_members"]', function(response){
+      this.assert.ok(browser === this, 'Select job visibility dropdown clicked.');
+    });
+    browser.waitForElementVisible("option[value='true']", 2000);
+    browser.click("option[value='true']", function(response){
+      this.assert.ok(browser === this, 'Select job visibility dropdown clicked and option value selected.');
+    });
+    browser.click('select[id="job_posting_recruiter_team_id"]', function(response){
+      this.assert.ok(browser === this, 'Select team dropdown clicked.');
+    });
+    browser.waitForElementVisible("option[value='659821']", 2000);
+    browser.click("option[value='659821']", function(response){
+      this.assert.ok(browser === this, 'Select team dropdown clicked and value selected.');
+    });
+    browser.setValue('#' + input[2], 'UI Test Automation Engineer');
+    browser.setValue('#' + input[3], 'UI Test Automation Engineer');
+    browser.setValue('#' + input[4], 'Selenium, Nightwatch, Chai, Node.js, npm, End To End Testing,');
+    browser.click('#' + input[5], function(response){
+      this.assert.ok(browser === this, 'Job function dropdown clicked.');
+    });
+    browser.waitForElementVisible("option[value='Software Development']", 2000);
+    browser.click("option[value='Software Development']", function(response){
+      this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
+    });
+    browser.setValue('#' + input[6], 'Delhi, India');
+    browser.click('#' + input[7], function(response){
+      this.assert.ok(browser === this, 'Job function dropdown clicked.');
+    });
+    browser.waitForElementVisible("option[value='2']", 2000);
+    browser.click("option[value='2']", function(response){
+      this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
+    });
+    browser.click('#' + input[8], function(response){
+      this.assert.ok(browser === this, 'Job function dropdown clicked.');
+    });
+    browser.waitForElementVisible("option[value='3']", 2000);
+    browser.click("option[value='3']", function(response){
+      this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
+    });
+    browser.click('#' + input[9], function(response){
+      this.assert.ok(browser === this, 'Job function dropdown clicked.');
+    });
+    browser.waitForElementVisible("option[value='2']", 2000);
+    browser.click("option[value='2']", function(response){
+      this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
+    });
+    browser.click('#' + input[10], function(response){
+      this.assert.ok(browser === this, 'Job function dropdown clicked.');
+    });
+    browser.waitForElementVisible("option[value='4']", 2000);
+    browser.click("option[value='4']", function(response){
+      this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
+    });
+    browser.click('#' + input[11], function(response){
+      this.assert.ok(browser === this, 'Job function dropdown clicked.');
+    });
+    browser.waitForElementVisible("option[value='5']", 2000);
+    browser.click("option[value='5']", function(response){
+      this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
+    });
+    browser.expect.element('#cke_1_contents').to.be.present;
+    browser.expect.element('#cke_1_contents').to.be.visible;
+    //browser.expect.element('#cke_1_contents > iframe > html').to.be.present;
+    //browser.expect.element('#cke_1_contents > iframe > html').to.be.visible;
+    browser.execute('$(".cke_wysiwyg_frame.cke_reset").contents().find("body").html("Good analytical skills; Good in SQL, Coding and scripting with one or more of the following tool Coded UI, HP QTP/UFT. Knowledge of tools like Quality Center/MS TFS for Test repository and defect reporting and tracking; DB2 concepts; SQL; Automation tools like Coded UI, QTP.")');
+    //browser.setValue('#cke_1_contents > iframe > html > body', 'Good analytical skills; Good in SQL, Coding and scripting with one or more of the following tool Coded UI, HP QTP/UFT. Knowledge of tools like Quality Center/MS TFS for Test repository and defect reporting and tracking; DB2 concepts; SQL; Automation tools like Coded UI, QTP.');
+    browser.expect.element('input[name=commit]').to.be.present;
+    browser.expect.element('input[name=commit]').to.be.visible;
+    browser.click('input[name=commit]');
+    browser.pause(10000);
     browser.end();
   }
 };

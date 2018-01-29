@@ -12,8 +12,8 @@ Test environment setup:
   cd folder-name/
 4. run: npm install.
  It will install and save all the dependencies in local system.
- 5. Then run: selenium-standalone start
- This commond will start the selenium server in your local mechine.
+ 5. Then run: selenium-standalone start.
+ This commond will start the selenium server in your local mechine (You should be the root folder of the project directory,where the package.json is located).
  6. Then to run any testcases using nightwatch, just need to use this commond:
   nightwatch -t folder-name/file-name.js
   or

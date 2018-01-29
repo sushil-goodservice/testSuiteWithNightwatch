@@ -21,8 +21,8 @@ Test environment setup:
   or 
   nightwatch -test file-name.js
   
-  - To run test cases wise or tag wise or section wise you need to mention the tag name or section name.
-  - Please go through the nightwatch documentation website to more about the project.
+  - To run test, cases wise or tag wise or section wise you need to mention the tag name or section name.
+  - Please go through the nightwatch documentation website to know more about End-To-End Tesing.
   
 Nightwatch documentation - http://nightwatchjs.org/
 node.js  - https://nodejs.org/en/download/

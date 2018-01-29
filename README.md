@@ -13,7 +13,7 @@ Test environment setup:
 4. run: npm install.
  It will install and save all the dependencies in local system.
 5. To install selenium Server:
-  Mac - brew install selenium-server-standalone --save
+  Mac - brew install selenium-server-standalone --save / 
   Ubuntu - npm install selenium-standalone --save
  6. Install nightwatch: 
    Mac/Ubuntu - npm install nightwatch --save

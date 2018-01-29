@@ -14,4 +14,13 @@ Test environment setup:
  It will install and save all the dependencies in local system.
  5. Then run: selenium-standalone start
  This commond will start the selenium server in your local mechine.
- 
+ 6. Then to run any testcases using nightwatch, just need to use this commond:
+  nightwatch -t folder-name/file-name.js
+  or
+  nightwatch -t file-name.js
+  or 
+  nightwatch -test file-name.js
+  
+  - To run test cases wise or tag wise or section wise you need to mention the tag name or section name.
+  - Please go through the nightwatch documentation website to more about the project.
+  

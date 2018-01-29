@@ -19,9 +19,9 @@ Test environment setup:
    Mac/Ubuntu - npm install nightwatch --save
  7. Install Chai: 
    Mac/Ubuntu - npm install chai --save
- 5. Then run: Ubuntu: selenium-standalone start / Mac - selenium-server -port 4444.
- This commond will start the selenium server in your local mechine (You should be the root folder of the project directory,where the package.json is located).
- 6. Then to run any testcases using nightwatch, just need to use this commond:
+ 8. Then run: Ubuntu: selenium-standalone start / Mac - selenium-server -port 4444.
+  This commond will start the selenium server in your local mechine (You should be the root folder of the project           directory,where the package.json is located).
+ 9. Then to run any testcases using nightwatch, just need to use this commond:
   nightwatch -t folder-name/file-name.js
   or
   nightwatch -t file-name.js

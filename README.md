@@ -24,3 +24,6 @@ Test environment setup:
   - To run test cases wise or tag wise or section wise you need to mention the tag name or section name.
   - Please go through the nightwatch documentation website to more about the project.
   
+Nightwatch documentation - http://nightwatchjs.org/
+node.js  - https://nodejs.org/en/download/
+npm-install - https://docs.npmjs.com/cli/install

@@ -144,6 +144,16 @@ module.exports = {
     browser.assert.urlEquals(browser.launch_url + '/user/password/new', 'Candidate Sucessfully redirect to forgot password page.');
     browser.expect.element('.alert.alert_success').to.be.present;
     browser.expect.element('.alert.alert_success').to.be.visible;
+    browser.expect.element('label[for=user_email]').to.be.present;
+    browser.expect.element('label[for=user_email]').to.be.visible;
+    browser.expect.element('label[for=user_email]').text.to.contain('Email');
+    browser.expect.element('input[name=commit]').to.be.present;
+    browser.expect.element('input[name=commit]').to.be.visible;
+    browser.expect.element('input[name=commit]').to.have.value.that.equals('Email Password Reset Link');
+     browser.expect.element('.btn-googleplus').to.be.present;
+    browser.expect.element('a.btn-googleplus').to.be.visible;
+    browser.expect.element('a.btn-googleplus').text.to.contain('Login with Google+');
+    browser.assert.attributeContains('a.btn-googleplus', 'href', '/user/auth/google_oauth2');
     browser.setValue('input[id=user_email]', 'sushilkundu1433434@gmail.com');
     browser.click('input[type=submit]');
     browser.pause(5000);

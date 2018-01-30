@@ -144,11 +144,13 @@ module.exports = {
     browser.assert.urlEquals(browser.launch_url + '/user/password/new', 'Candidate Sucessfully redirect to forgot password page.');
     browser.expect.element('.alert.alert_success').to.be.present;
     browser.expect.element('.alert.alert_success').to.be.visible;
-    browser.assert.urlEquals(browser.launch_url + '/user/password/new', 'Candidate Sucessfully redirect to forgot password page.');
     browser.expect.element('.alert.alert_success').to.be.present;
     browser.expect.element('.alert.alert_success').to.be.visible;
     browser.expect.element('label[for=user_email]').to.be.present;
     browser.expect.element('label[for=user_email]').to.be.visible;
+    browser.expect.element('.card-box .clearfix h2').to.be.present;
+    browser.expect.element('.card-box .clearfix h2').to.be.visible;
+    browser.expect.element('.card-box .clearfix h2').text.to.equal('Forgot your password?');
     browser.expect.element('label[for=user_email]').text.to.contain('Email');
     browser.expect.element('input[name=commit]').to.be.present;
     browser.expect.element('input[name=commit]').to.be.visible;

@@ -153,12 +153,33 @@ module.exports = {
     browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Candidate Login');
     browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_in');
-    browser.setValue('input[type=email]', 'kapur.r1985@gmail.com');
-    browser.setValue('input[type=password]', 'goodservice');
+    browser.click('.f-pwd', function(response) {
+        this.assert.ok(browser === this, 'Recruiter forgot password link clicked.');
+      });
+    browser.assert.urlEquals(browser.launch_url + '/user/password/new?is_recruiter=true', 'Recruiter Sucessfully redirect to forgot password page.');
+    browser.expect.element('.alert.alert_success').to.be.present;
+    browser.expect.element('.alert.alert_success').to.be.visible;
+    browser.expect.element('.alert.alert_success').to.be.present;
+    browser.expect.element('.alert.alert_success').to.be.visible;
+    browser.expect.element('label[for=user_email]').to.be.present;
+    browser.expect.element('label[for=user_email]').to.be.visible;
+    browser.expect.element('.card-box .clearfix h2').to.be.present;
+    browser.expect.element('.card-box .clearfix h2').to.be.visible;
+    browser.expect.element('.card-box .clearfix h2').text.to.equal('Forgot your password?');
+    browser.expect.element('label[for=user_email]').text.to.contain('Email');
+    browser.expect.element('input[name=commit]').to.be.present;
+    browser.expect.element('input[name=commit]').to.be.visible;
+    browser.expect.element('input[name=commit]').to.have.value.that.equals('Email Password Reset Link');
+    browser.expect.element('.btn-googleplus').to.be.present;
+    browser.expect.element('a.btn-googleplus').to.be.visible;
+    browser.expect.element('a.btn-googleplus').text.to.contain('Login with Google+');
+    browser.assert.attributeContains('a.btn-googleplus', 'href', '/user/auth/google_oauth2?is_recruiter=true');
+    browser.setValue('input[id=user_email]', 'sushilkundu14344@gmail.com');
     browser.click('input[type=submit]');
     browser.pause(5000);
-    browser.elements('css selector', menu, navigationAfterLogin);
-    browser.assert.urlEquals(browser.launch_url + '/recruiter/candidate_infos', 'Recruiter login Sucessful.');
+    browser.expect.element('.alert.alert-danger').to.be.present;
+    browser.expect.element('.alert.alert-danger').to.be.visible;
+    browser.assert.urlContains('/user/password/new?is_recruiter=true', 'Recruiter is not exist.');
     browser.end();
   }
 };

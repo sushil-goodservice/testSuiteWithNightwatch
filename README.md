@@ -27,7 +27,7 @@ Installation Setup and start running test with in 10 minutes.
  </li>
  <li>
   <p>Simply go to the project main folder by using cd commound in terminal.</p>
-  <code>cd folder-name/</p>
+  <code>cd folder-name/</code>
   </li>
  <li>
   <code> npm install </code>

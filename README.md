@@ -1,4 +1,4 @@
- <body>
+<body>
 <h1>testSuiteWithNightwatch</h1>
 <p>
 This repo is used to developer complete test cases with nightwatch framework, chai framework, selenium, npm and web driver.
@@ -19,7 +19,18 @@ Installation Setup and start running test with in 10 minutes.
 <code>sudo apt-get install nodejs </code>
 <p>You will also want to install NPM, which lets you easily manage your different Node.js packages.</p>
  <code>sudo apt-get install npm</code>
- </li>
+ <br>
+ <p>- Guide to install Node and npm in Mac :</p>
+<p>In order to install everything on a Mac, we’ll be running commands in Terminal.</p>
+<p>We’re going to use Node Version Manager (nvm) to install Node.js and npm.</p>
+<code> curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash </code>
+<p>Open the ~/.bash_profile file, and make sure source ~/.bashrc is written in there somewhere. Restart the terminal.</p>
+<p>Run the install command.</p>
+<code> nvm install node </code>
+<p>Run the use command.</p>
+<code>nvm use node </code>
+<p>Now that Node.js and npm are installed, test them by typing node -v and npm -v.</p>
+</li>
 <li>
  <p>Clone this git repo to your local mechine (run through the terminal and for windows need to use git bash).</p>
  <p>run this commound via terminal.</p>

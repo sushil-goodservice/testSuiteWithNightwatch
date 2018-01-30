@@ -20,9 +20,13 @@ Installation Setup and start running test with in 10 minutes.
 <p>You will also want to install NPM, which lets you easily manage your different Node.js packages.</p>
  <p>- sudo apt-get install npm</p>
  </li>
-2. Clone this git repo to your local mechine (run through the terminal and for windows need to use git bash).
-  run this commound:git clone repo-url
-3. Simply go to the project main folder by using cd commound in terminal.
+<li>
+ <p>Clone this git repo to your local mechine (run through the terminal and for windows need to use git bash).</p>
+ <p>run this commound via terminal.</p>
+ <code>- git clone repo-url</code>
+ </li>
+ <li>
+  Simply go to the project main folder by using cd commound in terminal.
   cd folder-name/
 4. run: npm install.
  It will install and save all the dependencies in local system.

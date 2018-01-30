@@ -6,6 +6,14 @@ Installation Setup and start running test with in 10 minutes.
 
 Test environment setup:
 1. Download and Install node.js form nodejs.org.
+- Guide to install Node and npm in Ubuntu :
+Ubuntu has Node.js in its default apt repositories. That version of Node.js can be used to provide a consistent experience   across multiple servers.
+Update your local package index:
+ - sudo apt-get update
+Install Node.js:
+- sudo apt-get install nodejs
+You will also want to install NPM, which lets you easily manage your different Node.js packages.
+- sudo apt-get install npm
 2. Clone this git repo to your local mechine (run through the terminal and for windows need to use git bash).
   run this commound:git clone repo-url
 3. Simply go to the project main folder by using cd commound in terminal.

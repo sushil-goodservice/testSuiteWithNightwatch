@@ -28,15 +28,17 @@ Installation Setup and start running test with in 10 minutes.
  <li>
   <p>Simply go to the project main folder by using cd commound in terminal.</p>
   <code>cd folder-name/</p>
-  <li>
+  </li>
  <li>
   <code> npm install </code>
   <p>It will install and save all the dependencies in local system.</p>
- <li>
+ </li>
  <li>
   <p>To install selenium Server:</p>
-  <code>Mac - brew install selenium-server-standalone --save </code>
-  <code>Ubuntu - npm install selenium-standalone --save</code>
+  <p>Mac -</p>
+  <code> brew install selenium-server-standalone --save </code>
+  <p>Ubuntu -</p>
+  <code>npm install selenium-standalone --save</code>
  </li>
  <li>
   <p>Install nightwatch: </p>
@@ -48,19 +50,20 @@ Installation Setup and start running test with in 10 minutes.
   </li>
  <li>
   <p>Ubuntu: </p>
- <code>selenium-standalone start
+  <code>selenium-standalone start</code>
   <p>Mac: </p>
   <code>selenium-server -port 4444</code>
   <p>This commond will start the selenium server in your local mechine (You should be the root folder of the project           directory,where the package.json is located).</p>
-  <li>
+  </li>
  <li>
   <p> Then to run any testcases using nightwatch, just need to use this commond:</p>
-  <code>nightwatch -t folder-name/file-name.js </code>
-  <code>nightwatch -t file-name.js</code>
+  <code>nightwatch -t folder-name/file-name.js </code><br>
+  <code>nightwatch -t file-name.js</code><br>
   <code>nightwatch -test file-name.js</code>
+  <br>
   - To run test, cases wise or tag wise or section wise you need to mention the tag name or section name.
   - Please go through the nightwatch documentation website to know more about End-To-End Tesing.
-  <li>
+  </li>
 </ol>
   <p>
 Nightwatch documentation - http://nightwatchjs.org/ <br>

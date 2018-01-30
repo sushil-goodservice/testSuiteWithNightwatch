@@ -29,7 +29,7 @@ Installation Setup and start running test with in 10 minutes.
 <code> nvm install node </code>
 <p>Run the use command.</p>
 <code>nvm use node </code>
-<p>Now that Node.js and npm are installed, test them by typing node -v and npm -v.</p>
+ <p>Now that Node.js and npm are installed, test them by typing <code>node -v</code> and <code>npm -v</code>.</p>
 </li>
 <li>
  <p>Clone this git repo to your local mechine (run through the terminal and for windows need to use git bash).</p>

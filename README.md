@@ -79,6 +79,7 @@ Installation Setup and start running test with in 10 minutes.
   <p>
 Nightwatch documentation - http://nightwatchjs.org/ <br>
 node.js  - https://nodejs.org/en/download/ <br>
-npm-install - https://docs.npmjs.com/cli/install
+npm-install - https://docs.npmjs.com/cli/install <br>
+  npm-install-mac - https://www.taniarascia.com/how-to-install-and-use-node-js-and-npm-mac-and-windows/
   </p>
 </body>

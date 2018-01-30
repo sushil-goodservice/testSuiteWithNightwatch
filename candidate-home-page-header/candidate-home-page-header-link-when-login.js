@@ -71,7 +71,9 @@ module.exports = {
     browser.waitForElementPresent('body', 2000);
     browser.setValue('input[type=email]', 'sushilkundu143@gmail.com');
     browser.setValue('input[type=password]', 'goodservice');
-    browser.click('input[type=submit]');
+    browser.click('input[type=submit]', function(response){
+      this.assert.ok(browser === this, 'Candidate login form submitted.');
+    });
     browser.pause(5000);
     browser.waitForElementPresent('body', 2000);
     browser.elements('css selector', menu, testSidebar);

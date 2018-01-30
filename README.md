@@ -1,15 +1,13 @@
-<html>
- <head>
- <title>testSuiteWithNightwatch</title>
- </head>
  <body>
 <h1>testSuiteWithNightwatch</h1>
+<p>
 This repo is used to developer complete test cases with nightwatch framework, chai framework, selenium, npm and web driver.
-
-
+</p>
+<p>
 Installation Setup and start running test with in 10 minutes.
-
-Test environment setup:
+</p>
+ <h4>Test environment setup:</h4>
+ <hr/>
 1. Download and Install node.js form nodejs.org.
 - Guide to install Node and npm in Ubuntu :
 Ubuntu has Node.js in its default apt repositories. That version of Node.js can be used to provide a consistent experience   across multiple servers.

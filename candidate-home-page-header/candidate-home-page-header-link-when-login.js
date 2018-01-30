@@ -44,7 +44,9 @@ module.exports = {
     function testSidebar(items) {
       //expect(items.value.length).to.equal(2); // Chai module
       browser.expect.element(menu + ' .profile-link a.dropdown-toggle  > span.d-block').text.to.contain('MY PROFILE');
-       browser.click(menu + ' .profile-link a.dropdown-toggle  > span.d-block');
+       browser.click(menu + ' .profile-link a.dropdown-toggle  > span.d-block', function(response){
+         this.assert.ok(browser === this, "Profile dropdown clicked.");
+       });
       browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu').to.be.present;
       browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a').to.present;
       browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a').to.have.attribute('href').which.contains('/profile/edit');

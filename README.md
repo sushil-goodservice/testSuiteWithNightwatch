@@ -7,16 +7,19 @@ This repo is used to developer complete test cases with nightwatch framework, ch
 Installation Setup and start running test with in 10 minutes.
 </p>
  <h4>Test environment setup:</h4>
- <hr/>
-1. Download and Install node.js form nodejs.org.
-- Guide to install Node and npm in Ubuntu :
-Ubuntu has Node.js in its default apt repositories. That version of Node.js can be used to provide a consistent experience   across multiple servers.
-Update your local package index:
- - sudo apt-get update
-Install Node.js:
-- sudo apt-get install nodejs
-You will also want to install NPM, which lets you easily manage your different Node.js packages.
+<hr/>
+<ol>
+<li>
+<p> Download and Install node.js form nodejs.org.</p>
+<p>- Guide to install Node and npm in Ubuntu :</p>
+<p>Ubuntu has Node.js in its default apt repositories. That version of Node.js can be used to provide a consistent experience   across multiple servers.</p>
+Update your local package index:<br/>
+ - sudo apt-get update <br/>
+Install Node.js:<br/>
+- sudo apt-get install nodejs <br/>
+You will also want to install NPM, which lets you easily manage your different Node.js packages.<br/>
 - sudo apt-get install npm
+ </li>
 2. Clone this git repo to your local mechine (run through the terminal and for windows need to use git bash).
   run this commound:git clone repo-url
 3. Simply go to the project main folder by using cd commound in terminal.
@@ -41,7 +44,7 @@ You will also want to install NPM, which lets you easily manage your different N
   
   - To run test, cases wise or tag wise or section wise you need to mention the tag name or section name.
   - Please go through the nightwatch documentation website to know more about End-To-End Tesing.
-  
+</ol>
 Nightwatch documentation - http://nightwatchjs.org/ | 
 node.js  - https://nodejs.org/en/download/ | 
 npm-install - https://docs.npmjs.com/cli/install

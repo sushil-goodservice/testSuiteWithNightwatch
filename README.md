@@ -23,7 +23,7 @@ Installation Setup and start running test with in 10 minutes.
 <li>
  <p>Clone this git repo to your local mechine (run through the terminal and for windows need to use git bash).</p>
  <p>run this commound via terminal.</p>
- <code>- git clone repo-url</code>
+ <code>git clone repo-url</code>
  </li>
  <li>
   <p>Simply go to the project main folder by using cd commound in terminal.</p>

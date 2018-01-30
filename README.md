@@ -30,8 +30,8 @@ Installation Setup and start running test with in 10 minutes.
   <code>cd folder-name/</code>
   </li>
  <li>
-  <code> npm install </code>
   <p>It will install and save all the dependencies in local system.</p>
+  <code> npm install </code>
  </li>
  <li>
   <p>To install selenium Server:</p>

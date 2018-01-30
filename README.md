@@ -41,12 +41,12 @@ Installation Setup and start running test with in 10 minutes.
   <code>npm install selenium-standalone --save</code>
  </li>
  <li>
-  <p>Install nightwatch: </p>
-  <code>Mac/Ubuntu - npm install nightwatch --save </code>
+  <p>Install nightwatch (Mac/Ubuntu): </p>
+  <code> npm install nightwatch --save </code>
  </li>
  <li>
-  <p>Install Chai:</p>
-  <code> Mac/Ubuntu - npm install chai --save </code>
+  <p>Install Chai (Mac/Ubuntu):</p>
+  <code> npm install chai --save </code>
   </li>
  <li>
   <p>Ubuntu: </p>
@@ -61,8 +61,8 @@ Installation Setup and start running test with in 10 minutes.
   <code>nightwatch -t file-name.js</code><br>
   <code>nightwatch -test file-name.js</code>
   <br>
-  - To run test, cases wise or tag wise or section wise you need to mention the tag name or section name.
-  - Please go through the nightwatch documentation website to know more about End-To-End Tesing.
+  <p>- To run test, cases wise or tag wise or section wise you need to mention the tag name or section name.</p>
+  <p>- Please go through the nightwatch documentation website to know more about End-To-End Tesing.</p>
   </li>
 </ol>
   <p>

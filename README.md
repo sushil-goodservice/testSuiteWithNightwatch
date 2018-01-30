@@ -1,4 +1,9 @@
-# testSuiteWithNightwatch
+<html>
+ <head>
+ <title>testSuiteWithNightwatch</title>
+ </head>
+ <body>
+<h1>testSuiteWithNightwatch</h1>
 This repo is used to developer complete test cases with nightwatch framework, chai framework, selenium, npm and web driver.
 
 
@@ -42,3 +47,4 @@ You will also want to install NPM, which lets you easily manage your different N
 Nightwatch documentation - http://nightwatchjs.org/ | 
 node.js  - https://nodejs.org/en/download/ | 
 npm-install - https://docs.npmjs.com/cli/install
+</body>

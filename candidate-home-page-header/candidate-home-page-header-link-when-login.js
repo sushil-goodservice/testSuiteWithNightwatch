@@ -65,7 +65,9 @@ module.exports = {
     browser.waitForElementPresent('body', 2000);
     browser.expect.element(menu).to.be.present;
     browser.expect.element(menu).to.be.visible;
-    browser.click('a.ga-trackable');
+    browser.click('a.ga-trackable', function(response){
+      this.assert.ok(browser === this, 'Candidate signup link is clicked.');
+    });
     browser.waitForElementPresent('body', 2000);
     browser.click('a.block.text-blue');
     browser.waitForElementPresent('body', 2000);

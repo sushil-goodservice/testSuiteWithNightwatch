@@ -26,6 +26,8 @@ Installation Setup and start running test with in 10 minutes.
 <code> curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash </code>
 <p>Open the ~/.bash_profile file, and make sure source ~/.bashrc is written in there somewhere. Restart the terminal.</p>
 <p>Run the install command.</p>
+<code>source ~/.nvm/nvm.sh</code>
+<code>touch ~/.bash_profile</code>
 <code> nvm install node </code>
 <p>Run the use command.</p>
 <code>nvm use node </code>

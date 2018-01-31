@@ -8,6 +8,7 @@ var should = chai.should();
 module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
   'Recruiter-Home': function (browser) {
+    console.log(browser.launch_url);
     browser.url(browser.launch_url + '/recruiter/candidate_infos');
     browser.waitForElementPresent('body', 5000);
     browser.assert.title('Landing');

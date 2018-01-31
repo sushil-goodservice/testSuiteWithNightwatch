@@ -74,7 +74,7 @@ module.exports = {
     });
     browser.expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Candidate Signup');
     browser.waitForElementPresent('body', 2000);
-    browser.setValue('input[type=email]', 'kapur.r1985+35@gmail.com');
+    browser.setValue('input[type=email]', 'kapur.r1985+38@gmail.com');
     browser.setValue('input[type=password]', 'goodservice');
     browser.click('input[type=submit]');
     browser.pause(5000);
@@ -91,8 +91,8 @@ module.exports = {
       this.assert.ok(browser == this, 'Current Url Matched.');
      });
     browser.waitForElementPresent('body.desktop-visible', 2000);
-    browser.elements('css selector', menu, navigationAfterLogin);
     browser.assert.urlEquals(browser.launch_url + '/j', 'Candidate signup Sucessful.');
+    browser.elements('css selector', menu, navigationAfterLogin);
     browser.end();
   }
 };

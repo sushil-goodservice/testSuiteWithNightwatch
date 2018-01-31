@@ -121,7 +121,7 @@ module.exports = {
     browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Candidate Signup');
     browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_up');
-    browser.setValue('input[id=user_email]', 'kapur.r1985+53@gmail.com');
+    browser.setValue('input[id=user_email]', 'kapur.r1985+55@gmail.com');
     browser.setValue('input[id=user_password]', 'goodservice');
     browser.setValue('input[id=user_name]', 'Rahul Test Kapur');
     browser.setValue('input[id=company]', 'Goodservice');

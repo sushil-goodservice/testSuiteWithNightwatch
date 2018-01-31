@@ -8,6 +8,7 @@ var should = chai.should();
 module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
   'Home': function (browser) {
+     console.log(browser.launch_url);
     browser.url(browser.launch_url);
     browser.waitForElementPresent('body', 5000);
     browser.assert.title('Landing - the best tech jobs in 1 place');
@@ -69,7 +70,9 @@ module.exports = {
       this.assert.ok(browser === this, 'Candidate signup link is clicked.');
     });
     browser.waitForElementPresent('body', 2000);
-    browser.click('a.block.text-blue');
+    browser.click('a.block.text-blue', function(response){
+      this.assert.ok(browser === this, 'cliked');
+    });
     browser.waitForElementPresent('body', 2000);
     browser.setValue('input[type=email]', 'sushilkundu143@gmail.com');
     browser.setValue('input[type=password]', 'goodservice');

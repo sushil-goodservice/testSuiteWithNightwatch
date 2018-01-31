@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="2">
+
+  <testsuite name="recruiter-home-page-header-link-not-login"
+    errors="0" failures="1" hostname="" id="" package="recruiter-home-page-header-link-not-login" skipped="0"
+    tests="2" time="12.58" timestamp="Tue, 30 Jan 2018 13:41:28 GMT">
+  
+    <testcase name="Recruiter-Home" classname="recruiter-home-page-header-link-not-login" time="6.102" assertions="16">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Navigation" classname="recruiter-home-page-header-link-not-login" time="6.477" assertions="7">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+      <failure message="Expected element &lt;.links-item a&gt; to be visible">    at Object.module.exports.Navigation (/home/goodservice/Desktop/atsTesting/testCases/recruiter-home-page-header/recruiter-home-page-header-link-not-login.js:49:20)</failure>
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

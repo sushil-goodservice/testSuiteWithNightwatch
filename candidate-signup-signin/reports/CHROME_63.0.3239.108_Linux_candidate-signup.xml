@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="1">
+
+  <testsuite name="candidate-signup"
+    errors="0" failures="1" hostname="" id="" package="candidate-signup" skipped="0"
+    tests="1" time="45.20" timestamp="Tue, 30 Jan 2018 14:32:43 GMT">
+  
+    <testcase name="Signup" classname="candidate-signup" time="45.20" assertions="41">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+      <failure message="Timed out while waiting for element &lt;.links .links-item .profile-link a.dropdown-toggle&gt; to be present for 1000 milliseconds.">    at Object.navigationAfterLogin (/home/goodservice/Desktop/atsTesting/testCases/candidate-signup-signin/candidate-signup.js:51:15)</failure>
+
+      <failure message="Expected element &lt;.links .links-item .profile-link a.dropdown-toggle&gt; to be present - element was not found">    at Object.navigationAfterLogin (/home/goodservice/Desktop/atsTesting/testCases/candidate-signup-signin/candidate-signup.js:52:22)</failure>
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

@@ -177,10 +177,12 @@ module.exports = {
     browser.expect.element('.content-box-recruiter .org-heading span.pull-left').to.be.present;
     browser.expect.element('.content-box-recruiter .org-heading span.pull-left').to.be.visible;
     browser.expect.element('.content-box-recruiter .org-heading span.pull-left').text.to.contain('My Organisations');
-    
-    browser.expect.element('');
-    browser.click();
-    browser.pause(2000);
+    browser.expect.element('a.investment-link').to.be.present;
+    browser.expect.element('a.investment-link').to.be.visible;
+    browser.click('a.investment-link', function(response){
+      this.assert.ok(browser === this, 'Organisations remove linked clicked and organisation removed.');
+    });
+    browser.pause(4000);
     browser.end();
   }
 };

@@ -200,6 +200,8 @@ module.exports = {
     browser.click('form#new_company .form-box .form-group:nth-of-type(3) .row .col-md-8.col-sm-8 input[type=submit]', function(response){
       this.assert.ok(browser === this, 'Recruiter add new organisation.');
     });
+    browser.waitForElementVisible('body', 2000);
+    browser.assert.urlEquals(browser.launch_url + '/recruiter/organisations');
     browser.pause(2000);
     browser.end();
   }

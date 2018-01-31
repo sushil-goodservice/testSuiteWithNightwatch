@@ -3,43 +3,11 @@
             failures="0"
             tests="1">
 
-  <testsuite name="recruiter-add-organization"
-    errors="0" failures="0" hostname="" id="" package="recruiter-add-organization" skipped="0"
-    tests="1" time="26.14" timestamp="Wed, 31 Jan 2018 12:42:57 GMT">
+  <testsuite name="recruiter-remove-organization"
+    errors="0" failures="0" hostname="" id="" package="recruiter-remove-organization" skipped="0"
+    tests="1" time="22.98" timestamp="Wed, 31 Jan 2018 12:31:22 GMT">
   
-    <testcase name="Signup" classname="recruiter-add-organization" time="26.14" assertions="161">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
+    <testcase name="Signup" classname="recruiter-remove-organization" time="22.98" assertions="145">
 
     
 

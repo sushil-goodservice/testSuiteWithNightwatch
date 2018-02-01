@@ -200,6 +200,7 @@ module.exports = {
       browser.waitForElementVisible('body.layout3.new-design', 3000);
     });
     browser.assert.urlEquals( browser.launch_url + link );
+    // test if the element with following selector present in this page and visible 
     var teamMemberEl = [
       {selector : '.invite-team-wrapper'},
       {selector : '.cardbox span.font-18.mb-20.bb.d-block.p-15.bold'},
@@ -208,6 +209,7 @@ module.exports = {
       {selector : '.table-responsive.table.table-bordered.mb-30'}
 
     ];
+    
     function testPresentElementsInMembersPage(el){
       for(var i = 0; i < el.length; i++){
           var current = el[i];
@@ -215,6 +217,12 @@ module.exports = {
           browser.expect.element(current).to.be.visible;
       }
     }
+    // test element with following selector having the following text present
+    var checkElementWithTitle = [
+      {selector : '.cardbox span.font-18.mb-20.bb.d-block.p-15.bold'},
+      {},
+      {}
+    ];
     browser.expect.element('.cardbox span.font-18.mb-20.bb.d-block.p-15.bold').text.to.contain('Team Members');
     browser.pause(5000);
     browser.end();

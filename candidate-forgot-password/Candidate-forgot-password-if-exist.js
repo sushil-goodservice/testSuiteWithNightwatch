@@ -1,13 +1,16 @@
 // BDD-style suite with "expect"
+var child_process = require('child_process');
 var chai = require('chai');  
 var assert = chai.assert; 
 var expect = chai.expect;
 var should = chai.should();
+var clean = require('db-test');
 // var expect = require('chai').expect;
 // This test set is for not login condition
 module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
   'Signup': function (browser) {
+    clean.cleandb();
     var menu = '.links .links-item';
     browser.url(browser.launch_url);
     browser.waitForElementPresent('body', 5000);

@@ -10,7 +10,7 @@ module.exports = {
   'Signup': function (browser) {
     var menu = '.links .links-item', afterLoginMenu = '.headerlink-with-icon';
     browser.url(browser.launch_url);
-    browser.waitForElementPresent('body', 5000);
+    browser.waitForElementVisible('body', 5000);
     browser.assert.title('Landing - the best tech jobs in 1 place');
     browser.expect.element('.header-logo').to.be.present;
     browser.expect.element('.header-logo').to.be.visible;
@@ -176,7 +176,7 @@ module.exports = {
     browser.assert.attributeContains('a.btn-googleplus', 'href', '/user/auth/google_oauth2?is_recruiter=true');
     browser.setValue('input[id=user_email]', 'sushilkundu143@gmail.com');
     browser.click('input[type=submit]');
-    browser.pause(5000);
+    browser.waitForElementVisible('body', 2000);
     browser.assert.urlContains('/user/sign_in?is_recruiter=true', 'Recruiter Sucessfully redirect to login.');
     browser.end();
   }

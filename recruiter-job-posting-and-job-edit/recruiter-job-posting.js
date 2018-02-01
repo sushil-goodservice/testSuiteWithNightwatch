@@ -88,7 +88,7 @@ module.exports = {
       link : '/user/sign_up?is_recruiter=true'
      }
     ];
-    
+    //
     function navigation(items) {
       expect(items.value.length).to.equal(2); // Chai module
       for(var i; i < notLogin.length; i++){

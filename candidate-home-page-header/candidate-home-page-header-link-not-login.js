@@ -35,15 +35,15 @@ module.exports = {
     browser.expect.element('.main-footer .container a:nth-of-type(1)').to.have.attribute('href').which.contains('/sitemap');
     browser.expect.element('.main-footer .container a:nth-of-type(2)').text.to.contain('LANDING .CO');
     browser.expect.element('.main-footer .container a:nth-of-type(2)').to.have.attribute('href').which.contains('/');
-    browser.saveScreenshot('./screenshots/expect-home.png');
+    //browser.saveScreenshot('./screenshots/expect-home.png');
     browser.end();
   },
-  // Testing the navigation menu elements and corresponding links
+  // Testing the navigation menu elements and corresponding links for home when user not login
   'Navigation': function (browser) {
     var menu = '.links .links-item';
-    function testSidebar(items) {
+    function testmenuItem(items) {
       expect(items.value.length).to.equal(2); // Chai module
-      browser.expect.element(menu + ':nth-of-type(1) a span').text.to.contain('FOR CANDIDATES');
+      browser.expect.element(menu + ':nth-of-type(1) a span').text.to.contain('FOR CANDIDATES'); // home page menu link text checking
       browser.expect.element(menu + ':nth-of-type(1) a').to.have.attribute('href').which.contains('/user/sign_up');
       browser.expect.element(menu + ':nth-of-type(2) a span').text.to.contain('FOR RECRUITERS');
       browser.expect.element(menu + ':nth-of-type(2) a').to.have.attribute('href').which.contains('/user/sign_up?is_recruiter=true');
@@ -52,8 +52,8 @@ module.exports = {
     browser.waitForElementPresent('body', 1000);
     browser.expect.element(menu).to.be.present;
     browser.expect.element(menu).to.be.visible;
-    browser.elements('css selector', menu, testSidebar);
-    browser.saveScreenshot('./screenshots/expect-home-nav.png');
+    browser.elements('css selector', menu, testmenuItem);
+    //browser.saveScreenshot('./screenshots/expect-home-nav.png');
     browser.end();
   }
 };

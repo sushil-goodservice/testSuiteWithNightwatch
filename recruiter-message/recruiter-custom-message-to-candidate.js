@@ -172,89 +172,17 @@ module.exports = {
     browser.waitForElementVisible('body.layout3.new-design', 2000);
     browser.elements('css selector', menu, navigationAfterLogin);
     browser.assert.urlEquals(browser.launch_url + '/recruiter/candidate_infos', 'Recruiter login Sucessful.');
-    browser.waitForElementVisible('body.layout3.new-design', 2000);
-    browser.url(browser.launch_url + '/recruiter/organisations');
-    browser.expect.element('.content-box-recruiter').to.be.present;
-    browser.expect.element('.content-box-recruiter').to.be.visible;
-    browser.expect.element('table.table.org.table-lg.text-center').to.be.present;
-    browser.expect.element('table.table.org.table-lg.text-center').to.be.visible;
-    browser.expect.element('.content-box-recruiter .org-heading a.outline.pull-right').to.be.present;
-    browser.expect.element('.content-box-recruiter .org-heading a.outline.pull-right').to.be.visible;
-    browser.expect.element('.content-box-recruiter .org-heading a.outline.pull-right').text.to.contain('Add New Organisation');
-    browser.expect.element('.content-box-recruiter .org-heading span.pull-left').to.be.present;
-    browser.expect.element('.content-box-recruiter .org-heading span.pull-left').to.be.visible;
-    browser.expect.element('.content-box-recruiter .org-heading span.pull-left').text.to.contain('My Organisations');
-    var tableElement = browser.element('css selector', 'table.table.org.table-lg.text-center > tr')
-    browser.waitForElementVisible('body', 2000);
+    browser.pause(2000);
+    // the candidate you want search need to set the full name and candidate id here
+    var candidate = 'Rahul Kapur', id = '1304461', url = '/recruiter/candidate_infos/';
+    browser.setValue('input.form-control.ui-autocomplete-input',[ candidate ,  browser.Keys.ENTER]);
+    browser.expect.element('a[href="' + url + id + '"]').to.be.present;
+    browser.expect.element('a[href="' + url + id + '"]').to.be.visible;
     /*
-    var elSelector = "table.table.org.table-lg.text-center tbody tr td:nth-of-type(4) a";
-    var tableTr = browser.execute(function(elSelector){
-      return document.querySelectorAll(elSelector);
+    browser.click('a[href="' + url + id + '"]', function(response){
+        this.assert.ok(browser === this, 'Clicked on candidate resume link.');
     });
     */
-    // redirect to the team member page having the following team id.
-    var defineTeamID = 669092;
-    var link = '/recruiter/organisations/' + defineTeamID + '/members';
-    browser.click('a[href="'+ link +'"]', function(response){
-      this.assert.ok(browser === this, 'Add team member link clicked with team id ' + defineTeamID + '.');
-      browser.waitForElementVisible('body.layout3.new-design', 3000);
-    });
-    browser.assert.urlEquals( browser.launch_url + link );
-    // test if the element with following selector present in this page and visible 
-    var teamMemberEl = [
-      {selector : '.invite-team-wrapper'},
-      {selector : '.cardbox span.font-18.mb-20.bb.d-block.p-15.bold'},
-      {selector : '.add-member-div'},
-      {selector : '.form-box.team-member'},
-      {selector : '.table-responsive .table.table-bordered.mb-30'}
-
-    ];
-    
-    function testPresentElementsInMembersPage(el){
-      for(var i = 0; i < el.length; i++){
-          var current = el[i];
-          browser.expect.element(current).to.be.present;
-          browser.expect.element(current).to.be.visible;
-      }
-    }
-    // test element with following selector fo the page having the following text present
-    var checkElementWithTitle = [
-      {selector : '.cardbox span.font-18.mb-20.bb.d-block.p-15.bold', text : 'Team Members'},
-      {selector : '.add-member-div .row .col-md-12 label.mb-10.bold.font-14', text : 'Add New team member'}
-      // {selector : '.page-popup-like .cardbox .form-box .row .col-md-12 label.mb-10.bold.font-14', text : 'Your team members'}
-    ];
-    function checkTextSelector(checkElementWithTitle){
-      for(var i = 0; i < checkElementWithTitle.length; i++){
-        var currentCheckElement = checkElementWithTitle[i];
-        browser.expect.element(currentCheckElement.selector).to.be.present;
-        browser.expect.element(currentCheckElement.selector).to.be.visible;
-        browser.expect.element(currentCheckElement.selector).text.to.contain(currentCheckElement.text);
-      }
-    }
-    checkTextSelector(checkElementWithTitle);
-    // check add team member form elements are visible and present
-    var checkTeamInviteFormElement = [
-      {selector : 'input[id=invites_0_invite_email]'},
-      {selector : 'input#invites_0_allow_admin_access[type=Checkbox]'},
-      {selector : 'input[type=submit]'}
-    ];
-    function checkInputFormSendInvite(checkTeamInviteFormElement){
-      for(var i = 0; i < checkTeamInviteFormElement.length; i++){
-        var currentTeamInviteFormElement = checkTeamInviteFormElement[i];
-        browser.expect.element(currentTeamInviteFormElement.selector).to.be.present;
-        browser.expect.element(currentTeamInviteFormElement.selector).to.be.visible;
-      }
-    }
-    checkInputFormSendInvite(checkTeamInviteFormElement);
-    // remove existing team member recruiter
-    //Supose you want to remove some person form team which email id is in this list
-    var memberEmail = 'sushilkundu143@gmail.com', // define recruiter email which recruiter you want to delete
-    recruiterID = '380'; // recruiter id
-    browser.click('a[href="/recruiter/organisations/' + recruiterID + '"]', function(response){
-      browser.waitForElementNotPresent(browser === this, 2000, 'Now the recruiter with email id: ' + memberEmail + ' is deleted.');
-      this.assert.ok(browser === this, 'Now the recruiter is not present in team list and team list is udpated.');
-      browser.waitForElementVisible('.alert.alert_success', 2000);
-    });
     browser.pause(5000);
     browser.end();
   }

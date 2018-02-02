@@ -246,10 +246,14 @@ module.exports = {
       }
     }
     checkInputFormSendInvite(checkTeamInviteFormElement);
-    // add email of team member and submit the form
-    browser.setValue('input[id=invites_0_invite_email]', 'sushilkundu143@gmail.com');
-    browser.click('input[type=submit]', function(response){
-      this.assert.ok(browser === this, 'New member add request submitted.');
+    // remove existing team member recruiter
+    //Supose you want to remove some person form team which email id is in this list
+    var memberEmail = 'sushilkundu143@gmail.com', 
+    recruiterID = '375';
+    browser.click('a[href="/recruiter/organisations/' + recruiterID + '"]', function(response){
+         browser.waitForElementNotPresent(this, 2000, 'Now the recruiter with email id: ' + memberEmail + 'is deleted.');
+         this.assert.ok(browser === this, 'Now the recruiter is not present in team list and team list is udpated.');
+         browser.waitForElementVisible('.alert.alert_success', 2000);
     });
     browser.pause(5000);
     browser.end();

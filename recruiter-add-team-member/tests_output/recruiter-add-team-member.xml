@@ -5,9 +5,9 @@
 
   <testsuite name="recruiter-add-team-member"
     errors="1" failures="0" hostname="" id="" package="recruiter-add-team-member" skipped="0"
-    tests="1" time="0.02600" timestamp="Thu, 01 Feb 2018 11:01:21 GMT">
+    tests="1" time="0.04000" timestamp="Fri, 02 Feb 2018 04:49:20 GMT">
   
-    <testcase name="Recruiter  Add Team Member" classname="recruiter-add-team-member" time="0.02600" assertions="0">
+    <testcase name="Recruiter  Add Team Member" classname="recruiter-add-team-member" time="0.04000" assertions="0">
     </testcase>
   
 
@@ -15,9 +15,9 @@
     <system-err>
         Error while running [Recruiter Add Team Member / Recruiter  Add Team Member]:
 
-  TypeError: Cannot read property &#39;labelSelector&#39; of undefined
-    at recruiterLoginFormElements (/home/goodservice/Desktop/atsTesting/testCases/recruiter-add-team-member/recruiter-add-team-member.js:132:27)
-    at Object.module.exports.Recruiter  Add Team Member (/home/goodservice/Desktop/atsTesting/testCases/recruiter-add-team-member/recruiter-add-team-member.js:144:5)
+  ReferenceError: checkSendInviteFormElement is not defined
+    at checkInputFormSendInvite (/home/goodservice/Desktop/atsTesting/testCases/recruiter-add-team-member/recruiter-add-team-member.js:242:26)
+    at Object.module.exports.Recruiter  Add Team Member (/home/goodservice/Desktop/atsTesting/testCases/recruiter-add-team-member/recruiter-add-team-member.js:248:5)
     at Module.call (/usr/local/lib/node_modules/nightwatch/lib/runner/module.js:62:34)
     at /usr/local/lib/node_modules/nightwatch/lib/runner/testcase.js:70:29
     at _fulfilled (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:834:54)

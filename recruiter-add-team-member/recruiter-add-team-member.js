@@ -217,13 +217,40 @@ module.exports = {
           browser.expect.element(current).to.be.visible;
       }
     }
-    // test element with following selector having the following text present
+    // test element with following selector fo the page having the following text present
     var checkElementWithTitle = [
-      {selector : '.cardbox span.font-18.mb-20.bb.d-block.p-15.bold'},
-      {},
-      {}
+      {selector : '.cardbox span.font-18.mb-20.bb.d-block.p-15.bold', text : 'Team Members'},
+      {selector : '.add-member-div .row .col-md-12 label.mb-10.bold.font-14', text : 'Add New team member'}
+      // {selector : '.page-popup-like .cardbox .form-box .row .col-md-12 label.mb-10.bold.font-14', text : 'Your team members'}
     ];
-    browser.expect.element('.cardbox span.font-18.mb-20.bb.d-block.p-15.bold').text.to.contain('Team Members');
+    function checkTextSelector(checkElementWithTitle){
+      for(var i = 0; i < checkElementWithTitle.length; i++){
+        var currentCheckElement = checkElementWithTitle[i];
+        browser.expect.element(currentCheckElement.selector).to.be.present;
+        browser.expect.element(currentCheckElement.selector).to.be.visible;
+        browser.expect.element(currentCheckElement.selector).text.to.contain(currentCheckElement.text);
+      }
+    }
+    checkTextSelector(checkElementWithTitle);
+    // check add team member form elements are visible and present
+    var checkTeamInviteFormElement = [
+      {selector : 'input[id=invites_0_invite_email]'},
+      {selector : 'input#invites_0_allow_admin_access[type=Checkbox]'},
+      {selector : 'input[type=submit]'}
+    ];
+    function checkInputFormSendInvite(checkTeamInviteFormElement){
+      for(var i = 0; i < checkTeamInviteFormElement.length; i++){
+        var currentTeamInviteFormElement = checkTeamInviteFormElement[i];
+        browser.expect.element(currentTeamInviteFormElement.selector).to.be.present;
+        browser.expect.element(currentTeamInviteFormElement.selector).to.be.visible;
+      }
+    }
+    checkInputFormSendInvite(checkTeamInviteFormElement);
+    // add email of team member and submit the form
+    browser.setValue('input[id=invites_0_invite_email]', 'sushilkundu143@gmail.com');
+    browser.click('input[type=submit]', function(response){
+      this.assert.ok(browser === this, 'New member add request submitted.');
+    });
     browser.pause(5000);
     browser.end();
   }

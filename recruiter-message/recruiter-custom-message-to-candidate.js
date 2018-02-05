@@ -201,8 +201,7 @@ module.exports = {
     browser.click('a[href="' + url + id + '"]', function(response){
         this.assert.ok(browser === this, 'Clicked on candidate resume link.');
     });
-    */ 
-    
+    */
     browser.expect.element('.modal-content.rightCustom .modal-footer button.btn.btn-primary').to.be.present;
     browser.expect.element('.modal-content.rightCustom .modal-footer button.btn.btn-primary').to.be.visible;
     browser.click('.modal-content.rightCustom button.btn.btn-primary', function(response){

@@ -5,9 +5,9 @@
 
   <testsuite name="recruiter-custom-message-to-candidate"
     errors="0" failures="0" hostname="" id="" package="recruiter-custom-message-to-candidate" skipped="0"
-    tests="1" time="29.19" timestamp="Mon, 05 Feb 2018 06:55:18 GMT">
+    tests="1" time="38.19" timestamp="Mon, 05 Feb 2018 08:02:52 GMT">
   
-    <testcase name="Recruiter  Add Team Member" classname="recruiter-custom-message-to-candidate" time="29.19" assertions="149">
+    <testcase name="Recruiter  Add Team Member" classname="recruiter-custom-message-to-candidate" time="38.19" assertions="149">
 
     
 

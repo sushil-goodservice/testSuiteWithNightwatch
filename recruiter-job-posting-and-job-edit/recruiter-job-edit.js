@@ -207,6 +207,7 @@ module.exports = {
       { tag : elementForm + ':nth-of-type(9) .row .col-md-4 label.control-label', text : 'Salary Range' },
       { tag : elementForm + ':nth-of-type(10) .row .col-md-4 label.control-label', text : 'Job Description' }
     ];
+    // Check page elements : isPresent, isVisible and inner text check
     function checkFormElementLavels(el){
       for(var i = 0; i < el.length; i++){
         var currentEl = el[i];

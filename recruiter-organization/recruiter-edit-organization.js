@@ -227,7 +227,7 @@ module.exports = {
     }
     formLabelTest(formLabels);
     // form element input value added and submit form to add company info.
-    browser.clearValue('input#company_name' , 'Company Name field is cleared.');
+    browser.clearValue('input#company_name');
     browser.setValue('input#company_name' , 'Hello World');
     browser.click('select#company_industry_id', function(response){
         this.assert.ok(browser === this, 'Industries dropdown clicked.');
@@ -237,8 +237,11 @@ module.exports = {
         this.assert.ok(browser === this, 'Industry type selected.');
     });
     browser.execute('$(".cke_wysiwyg_frame.cke_reset").contents().find("body").html("This is a test Company.")');
-    browser.clearValue('input#company_website' , 'Company url field is cleared.');
+    browser.clearValue('input#company_website');
     browser.setValue('input#company_website' , 'www.helloworld.com');
+    browser.click('input[type=submit]', function(response){
+        this.assert.ok(browser === this, 'Submiting recruiter edit orgainization form.');
+    });
     browser.pause(3000);
     browser.end();
   }

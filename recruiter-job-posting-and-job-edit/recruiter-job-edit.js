@@ -265,6 +265,7 @@ module.exports = {
     browser.click("option[value='Software Development']", function(response){
       this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
     });
+    browser.clearValue('#' + input[6], 'Location input cleared.');
     browser.setValue('#' + input[6], 'Delhi, India');
     browser.waitForElementPresent('.pac-container.pac-logo', 2000);
     browser.waitForElementPresent('.pac-container.pac-logo .pac-item:nth-of-type(1)', 1000);

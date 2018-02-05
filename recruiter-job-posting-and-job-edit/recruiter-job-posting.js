@@ -84,7 +84,7 @@ module.exports = {
         this.assert.ok(browser === this, 'Recruiter header-menu dropdown-menu clicked.');
       });
       for(var i = 0; i < el.length; i++){
-        console.log(el[i].linkTag , el[i].linkTitle , el[i].linkHref);
+       // console.log(el[i].linkTag , el[i].linkTitle , el[i].linkHref);
         browser.expect.element(el[i].linkTag).to.present;
         browser.expect.element(el[i].linkTag).to.be.visible;
         browser.expect.element(el[i].linkTag).text.to.equal(el[i].linkTitle);
@@ -163,7 +163,7 @@ module.exports = {
     browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Candidate Login');
     browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_in');
-    browser.setValue('input[type=email]', 'sushil@goodservice.in');
+    browser.setValue('input[type=email]', 'kapur.r1985@gmail.com');
     browser.setValue('input[type=password]', 'goodservice');
     browser.click('input[type=submit]');
     browser.pause(5000);
@@ -238,8 +238,9 @@ module.exports = {
     browser.click('select[id="job_posting_recruiter_team_id"]', function(response){
       this.assert.ok(browser === this, 'Select team dropdown clicked.');
     });
-    browser.waitForElementVisible("option[value='659821']", 2000);
-    browser.click("option[value='659821']", function(response){
+    // set company id form the option value. For example here is : 669092.
+    browser.waitForElementVisible("option[value='669092']", 2000);
+    browser.click("option[value='669092']", function(response){
       this.assert.ok(browser === this, 'Select team dropdown clicked and value selected.');
     });
     browser.setValue('#' + input[2], 'UI Test Automation Engineer');
@@ -252,9 +253,11 @@ module.exports = {
     browser.click("option[value='Software Development']", function(response){
       this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
     });
+    browser.clearValue('#' + input[6]);
     browser.setValue('#' + input[6], 'Delhi, India');
+    browser.pause(1000);
     browser.waitForElementPresent('.pac-container.pac-logo', 2000);
-    browser.waitForElementPresent('.pac-container.pac-logo .pac-item:nth-of-type(1)', 1000);
+    browser.waitForElementPresent('.pac-container.pac-logo .pac-item:nth-of-type(1)', 2000);
     browser.click('.pac-container.pac-logo .pac-item:nth-of-type(1)', function(response){
       this.assert.ok(browser === this, 'City name selected.');
     });

@@ -172,18 +172,49 @@ module.exports = {
     browser.waitForElementVisible('body.layout3.new-design', 2000);
     browser.elements('css selector', menu, navigationAfterLogin);
     browser.assert.urlEquals(browser.launch_url + '/recruiter/candidate_infos', 'Recruiter login Sucessful.');
-    browser.pause(2000);
+    browser.waitForElementNotPresent('.loader-modal:nth-of-type(1)', 1000);
+    // browser.waitForElementNotVisible('.loader-modal:nth-of-type(1)', 1000);
     // the candidate you want search need to set the full name and candidate id here
     var candidate = 'Rahul Kapur', id = '1304461', url = '/recruiter/candidate_infos/';
     browser.setValue('input.form-control.ui-autocomplete-input',[ candidate ,  browser.Keys.ENTER]);
-    browser.expect.element('a[href="' + url + id + '"]').to.be.present;
-    browser.expect.element('a[href="' + url + id + '"]').to.be.visible;
+    // browser.expect.element('a[href="' + url + id + '"]').to.be.present;
+    // browser.expect.element('a[href="' + url + id + '"]').to.be.visible;
+    browser.pause(3000);
+    browser.url( browser.launch_url + url + id, function(response){
+      browser.waitForElementPresent('body.layout3.new-design', 3000);
+      browser.waitForElementVisible('body.layout3.new-design', 3000);
+      browser.waitForElementNotPresent('div.loader-modal:nth-of-type(1)', 1000);
+      // browser.waitForElementNotVisible('div.loader-modal:nth-of-type(1)', 1000);
+    });
+    browser.pause(2000);
+    browser.click('button.btn.btn-primary.outline.button-blue.dropdown-toggle', function(response){
+      this.assert.ok(browser === this, 'Click on message button in candidate profile.');
+    });
+    browser.expect.element('ul.dropdown-menu.w-100.dropdown-align').to.be.present;
+    browser.expect.element('ul.dropdown-menu.w-100.dropdown-align').to.be.visible;
+    browser.click('ul.dropdown-menu.w-100.dropdown-align li:last-child a', function(response){
+      this.assert.ok(browser === this, 'Click on custom message link form the dropdown.');
+       browser.waitForElementPresent('.modal .modal-dialog.lg-full', 2000);
+       browser.waitForElementVisible('.modal .modal-dialog.lg-full', 2000);
+    });
     /*
     browser.click('a[href="' + url + id + '"]', function(response){
         this.assert.ok(browser === this, 'Clicked on candidate resume link.');
     });
-    */
-    browser.pause(5000);
+    */ 
+    
+    browser.expect.element('.modal-content.rightCustom .modal-footer button.btn.btn-primary').to.be.present;
+    browser.expect.element('.modal-content.rightCustom .modal-footer button.btn.btn-primary').to.be.visible;
+    browser.click('.modal-content.rightCustom button.btn.btn-primary', function(response){
+      this.assert.ok(browser === this, 'Message sending.');
+      browser.waitForElementPresent('.modal-content.rightCustom .modal-body .alert.alert-danger.mb-0', 2000);
+      browser.waitForElementVisible('.modal-content.rightCustom .modal-body .alert.alert-danger.mb-0', 2000);
+    });                  
+    browser.execute('$(".cke_wysiwyg_frame.cke_reset").contents().find("body").html("Hey this is a test. This mail is sended to you only for test purpose. Please ignore this email.")');
+    browser.click('.modal-content.rightCustom button.btn.btn-primary', function(response){
+      this.assert.ok(browser === this, 'Custom message sucessfully in sending process.'); 
+    });
+    browser.pause(2000);
     browser.end();
   }
 };

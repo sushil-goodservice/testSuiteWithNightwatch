@@ -5,87 +5,9 @@
 
   <testsuite name="candidate-job-application-after-login"
     errors="0" failures="0" hostname="" id="" package="candidate-job-application-after-login" skipped="0"
-    tests="1" time="41.18" timestamp="Tue, 06 Feb 2018 05:54:22 GMT">
+    tests="1" time="24.03" timestamp="Tue, 06 Feb 2018 09:55:57 GMT">
   
-    <testcase name="Signup" classname="candidate-job-application-after-login" time="41.18" assertions="130">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
+    <testcase name="Candidate job application after login" classname="candidate-job-application-after-login" time="24.03" assertions="91">
 
     
 

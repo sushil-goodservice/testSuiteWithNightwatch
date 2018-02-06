@@ -63,103 +63,164 @@ module.exports = {
       }
     }
     navigation(menu, menuNotLoginElements);
-    // candidate header navigation link check end here when not login 
-    function navigationAfterLogin(items) {
-      browser.expect.element(menu + ' .profile-link a.dropdown-toggle').to.be.present;
-      browser.expect.element(menu + ' .profile-link a.dropdown-toggle').to.be.visible;
-      browser.expect.element(menu + ' .profile-link a.dropdown-toggle  > span.d-block').text.to.contain('MY PROFILE');
-      browser.click(menu + ' .profile-link a.dropdown-toggle', function(response) {
+    // candidate header navigation link check end here when not login
+    browser.click('a.ga-trackable', function(response){
+      this.assert.ok(browser === this, 'Candidate signup page link clicked.');
+    });
+    // candidate signup page elements, form elements, links, inner text and buttons check - start here
+    browser.waitForElementPresent('body', 2000);
+    // check candidate signup should be present and visible
+    browser.expect.element('form#new_user').to.be.present;
+    browser.expect.element('form#new_user').to.be.visible;
+    // candidate signup page elements, links and button
+    var signupPageElements = [
+      { selector : '.page-popup-like', text: '', link : '' },
+      { selector : '.page-popup-like .card-box h2.mb-15', text: 'Candidate Signup', link : '' },
+      { selector : '.pt-2 a:nth-of-type(1).btn-googleplus', text: 'Login with Google+', link : '/user/auth/google_oauth2' },
+      { selector : '.pt-2 a:nth-of-type(2)', text: 'Already registered? Click here to Login', link : '/user/sign_in' },
+      { selector : '.pt-2 a:nth-of-type(3)', text: 'Resend Email Confirmation', link : '/user/confirmation/new' },
+      { selector : '.pt-2 a:nth-of-type(4)', text: 'Recruiter Signup', link : '/user/sign_up?is_recruiter=true' },
+    ];
+    // candidate singup page elements should be present and visible. Match the link and inner text of anchor tags.
+    function candidateSignupPageElements(signupPageElements){
+        for(x in signupPageElements){
+          var currentSignupPageElements = signupPageElements[x]; 
+          if( currentSignupPageElements.text !== '' && currentSignupPageElements.link !== '') {
+            browser.expect.element(currentSignupPageElements.selector).to.be.present;
+            browser.expect.element(currentSignupPageElements.selector).to.be.visible;
+            browser.expect.element(currentSignupPageElements.selector).text.to.equal(currentSignupFormElements.text);
+            browser.assert.attributeContains(currentSignupPageElements.selector, 'href', currentSignupFormElements.link);
+          } else if( currentSignupPageElements.text !== '' && currentSignupPageElements.link == '') {
+            browser.expect.element(currentSignupPageElements.selector).to.be.present;
+            browser.expect.element(currentSignupPageElements.selector).to.be.visible;
+            browser.expect.element(currentSignupPageElements.selector).text.to.equal(currentSignupPageElements.text);
+          } else {
+            browser.expect.element(currentSignupPageElements.selector).to.be.present;
+            browser.expect.element(currentSignupPageElements.selector).to.be.visible;
+          }
+        }
+      }
+      candidateSignupPageElements(signupPageElements);
+      // Candidate signup form elements, labels, innter text and inputs
+      var signupFormElements = [
+        { label : 'label[for=user_email]', labelText : 'Email', labelInput : 'input[id=user_email]' },
+        { label : 'label[for=user_password]', labelText : 'Set your password', labelInput : 'input[id=user_password]' },
+        { label : '', labelText : 'Submit', labelInput : 'input[name=commit]' }
+      ];
+      // candidate signup form elements, labelsm inner text and input check
+      function candidateSignupFormElements(signupFormElements){
+        for(x in signupFormElements){
+            var currentSignupFormElement = signupFormElements[x];
+            if(currentSignupFormElement.label !== ''){
+              browser.expect.element(currentSignupFormElement.label).to.be.present;
+              browser.expect.element(currentSignupFormElement.label).to.be.visible;
+              browser.expect.element(currentSignupFormElement.label).text.to.contain(currentSignupFormElement.labelText);
+              browser.expect.element(currentSignupFormElement.labelInput).to.be.present;
+              browser.expect.element(currentSignupFormElement.labelInput).to.be.visible;
+            } else {
+              browser.expect.element(currentSignupFormElement.labelInput).to.be.present;
+              browser.expect.element(currentSignupFormElement.labelInput).to.be.visible;
+              browser.expect.element(currentSignupFormElement.labelInput).to.have.value.that.equals(currentSignupFormElement.labelText);
+            }
+        }
+      }
+      candidateSignupFormElements(signupFormElements);
+      // candidate signup page elements, form elements, links and buttons check - end here
+      browser.click('a.block.text-blue', function(response){
+        this.assert.ok(browser === this, 'Candidate login page link clicked and redirect to candidate login page.');
+      });
+      // candidate login page elements, form elements, links and button check - start here
+      browser.waitForElementPresent('body', 2000);
+      // candidate login page elements, selector, inner text and link check
+      var loginPageElements = [
+        { selector : '.page-popup-like', text: '', link : '' },
+        { selector : '.page-popup-like .card-box h2.mb-15', text: 'Candidate Login', link : '' },
+        { selector : '.f-pwd', text: '(Forgot your password?)', link : '/user/password/new' },      
+        { selector : '.pt-2 a:nth-of-type(1).btn-googleplus', text: 'Login with Google+', link : '/user/auth/google_oauth2' },
+        { selector : '.pt-2 a:nth-of-type(2)', text: 'New User? Click here to Signup', link : '/user/sign_up' },
+        { selector : '.pt-2 a:nth-of-type(3)', text: 'Resend Email Confirmation', link : '/user/confirmation/new' },
+        { selector : '.pt-2 a:nth-of-type(4)', text: 'Recruiter Login', link : '/user/sign_in?is_recruiter=true' },
+      ];
+      // candidate login page elements should be present and visible. Match the link and inner text of anchor tags.
+      function candidateSignupPageElements(loginPageElements){
+        for(x in loginFormElements){
+          var currentLoginPageElements = loginFormElements[x]; 
+          if( currentLoginPageElements.text !== '' && currentLoginPageElements.link !== '') {
+            browser.expect.element(currentLoginPageElements.selector).to.be.present;
+            browser.expect.element(currentLoginPageElements.selector).to.be.visible;
+            browser.expect.element(currentLoginPageElements.selector).text.to.equal(currentLoginPageElements.text);
+            browser.assert.attributeContains(currentLoginPageElements.selector, 'href', currentLoginPageElements.link);
+          } else if( currentLoginPageElements.text !== '' && currentLoginPageElements.link == '') {
+            browser.expect.element(currentLoginPageElements.selector).to.be.present;
+            browser.expect.element(currentLoginPageElements.selector).to.be.visible;
+            browser.expect.element(currentLoginPageElements.selector).text.to.equal(currentLoginPageElements.text);
+          } else {
+            browser.expect.element(currentLoginPageElements.selector).to.be.present;
+            browser.expect.element(currentLoginPageElements.selector).to.be.visible;
+          }
+        }
+    }
+    candidateSignupPageElements(loginPageElements);
+    // candidate login page element tesing end here
+    // candidate login form testing - start here
+    var loginFormElements = [
+      { label : 'label[for=user_email]', labelText : 'Email', labelInput : 'input[id=user_email]' },
+      { label : 'label[for=user_password]', labelText : 'Password', labelInput : 'input[id=user_password]' },
+      { label : '', labelText : 'Login', labelInput : 'input[name=commit]' }
+    ];
+    // candidate signup form elements, labelsm inner text and input check
+    function candidateLoginFormElements(loginFormElements){
+      for(x in loginFormElements){
+          var currentLoginFormElement = loginFormElements[x];
+          if(currentLoginFormElement.label !== ''){
+            browser.expect.element(currentLoginFormElement.label).to.be.present;
+            browser.expect.element(currentLoginFormElement.label).to.be.visible;
+            browser.expect.element(currentLoginFormElement.label).text.to.contain(currentLoginFormElement.labelText);
+            browser.expect.element(currentLoginFormElement.labelInput).to.be.present;
+            browser.expect.element(currentLoginFormElement.labelInput).to.be.visible;
+          } else {
+            browser.expect.element(currentLoginFormElement.labelInput).to.be.present;
+            browser.expect.element(currentLoginFormElement.labelInput).to.be.visible;
+            browser.expect.element(currentLoginFormElement.labelInput).to.have.value.that.equals(currentLoginFormElement.labelText);
+          }
+      }
+    }
+    candidateLoginFormElements(loginFormElements);
+    // candidate login form testing - end here
+    // candidate login page elements, form elements, links and button check - end here
+    // candidate login start here
+    function candidateLogin(){
+      browser.setValue('input[type=email]', 'sushilkundu143@gmail.com');
+      browser.setValue('input[type=password]', 'goodservice');
+      browser.click('input[type=submit]');
+    }
+    candidateLogin();
+    browser.pause(5000);
+    // candidate login sucessfully here
+    // Check the navigation menu elements and corresponding links element after login start here 
+    var mainMenuIcon = menu + ' .profile-link a.dropdown-toggle', menuDropdownAfterLogin = menu + ':nth-of-type(1) .profile-link ul.dropdown-menu';
+    var menuLoginElements = [
+      {selector : menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a', text :  'My Profile', href :  '/profile/edit'},
+      {selector : menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a', text :  'Logout', href :  '/user/sign_out'},
+      {selector : menu + ':nth-of-type(2) a', text :  'FOR RECRUITERS', href :  '/user/sign_up?is_recruiter=true'}
+    ];
+    function navigationAfterLogin(mainMenuIcon , menuLoginElements) {
+      browser.expect.element(mainMenuIcon).to.be.present;
+      browser.expect.element(mainMenuIcon).to.be.visible;
+      browser.expect.element(mainMenuIcon + ' span.d-block').text.to.contain('MY PROFILE');
+      browser.click(mainMenuIcon, function(response) {
         this.assert.ok(browser === this, 'Candidate dropdown-menu clicked.');
       });
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu').to.be.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a').to.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a').to.have.attribute('href').which.contains('/profile/edit');
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a span').to.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a span').to.be.visible;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a span').text.to.equal('My Profile');
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a').to.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a').to.have.attribute('href').which.contains('/user/sign_out');
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a span').to.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a > span').to.be.visible;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a span').text.to.equal('Logout');
-      browser.expect.element(menu + ':nth-of-type(2) a span').text.to.contain('FOR RECRUITERS');
-      browser.expect.element(menu + ':nth-of-type(2) a').to.have.attribute('href').which.contains('/user/sign_up?is_recruiter=true');
+      browser.expect.element(menuDropdownAfterLogin).to.be.present;
+      for(i in menuLoginElements){
+        var currentMenuLoginElement = menuLoginElements[i];
+        browser.expect.element(currentMenuLoginElement.selector).to.present;
+        browser.expect.element(currentMenuLoginElement.selector).text.to.equal(currentMenuLoginElement.text);
+        browser.expect.element(currentMenuLoginElement.selector).to.have.attribute('href').which.contains(currentMenuLoginElement.href);
+      }
     }
-    browser.click('a.ga-trackable');
-    browser.waitForElementPresent('body', 2000);
-    browser.expect.element('.page-popup-like').to.be.present;
-    browser.expect.element('.page-popup-like').to.be.visible;
-    browser.expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Candidate Signup');
-    browser.expect.element('label[for=user_email]').to.be.present;
-    browser.expect.element('label[for=user_email]').to.be.visible;
-    browser.expect.element('label[for=user_email]').text.to.contain('Email');
-    browser.expect.element('input[id=user_email]').to.be.present;
-    browser.expect.element('input[id=user_email]').to.be.visible;
-    browser.expect.element('label[for=user_password]').to.be.present;
-    browser.expect.element('label[for=user_password]').to.be.visible;
-    browser.expect.element('label[for=user_password]').text.to.contain('Set your password');
-    browser.expect.element('input[id=user_password]').to.be.present;
-    browser.expect.element('input[id=user_password]').to.be.visible;
-    browser.expect.element('input[name=commit]').to.be.present;
-    browser.expect.element('input[name=commit]').to.be.visible;
-    browser.expect.element('input[name=commit]').to.have.value.that.equals('Submit');
-    browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').to.be.present;
-    browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').to.be.visible;
-    browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').text.to.contain('Login with Google+');
-    browser.assert.attributeContains('.pt-2 a.btn-googleplus', 'href', '/user/auth/google_oauth2');
-    browser.expect.element('.pt-2 a:nth-of-type(2)').to.be.present;
-    browser.expect.element('.pt-2 a:nth-of-type(2)').to.be.visible;
-    browser.expect.element('.pt-2 a:nth-of-type(2)').text.to.contain('Already registered? Click here to Login');
-    browser.assert.attributeContains('.pt-2 a:nth-of-type(2)', 'href', '/user/sign_in');
-    browser.expect.element('.pt-2 a:nth-of-type(3)').to.be.present;
-    browser.expect.element('.pt-2 a:nth-of-type(3)').to.be.visible;
-    browser.expect.element('.pt-2 a:nth-of-type(3)').text.to.contain('Resend Email Confirmation');
-    browser.assert.attributeContains('.pt-2 a:nth-of-type(3)', 'href', '/user/confirmation/new');
-    browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.present;
-    browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.visible;
-    browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Recruiter Signup');
-    browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_up?is_recruiter=true');
-    browser.click('a.block.text-blue');
-    browser.waitForElementPresent('body', 2000);
-    browser.expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Candidate Login');
-    browser.expect.element('label[for=user_email]').to.be.present;
-    browser.expect.element('label[for=user_email]').to.be.visible;
-    browser.expect.element('label[for=user_email]').text.to.contain('Email');
-    browser.expect.element('input[id=user_email]').to.be.present;
-    browser.expect.element('input[id=user_email]').to.be.visible;
-    browser.expect.element('label[for=user_password]').to.be.present;
-    browser.expect.element('label[for=user_password]').to.be.visible;
-    browser.expect.element('label[for=user_password]').text.to.contain('Password');
-    browser.expect.element('input[id=user_password]').to.be.present;
-    browser.expect.element('input[id=user_password]').to.be.visible;
-    browser.expect.element('input[name=commit]').to.be.present;
-    browser.expect.element('input[name=commit]').to.be.visible;
-    browser.expect.element('input[name=commit]').to.have.value.that.equals('Login');
-    browser.expect.element('.f-pwd').to.be.present;
-    browser.expect.element('.f-pwd').to.be.visible;
-    browser.expect.element('.f-pwd').text.to.contain('(Forgot your password?)');
-    browser.assert.attributeContains('.f-pwd', 'href', '/user/password/new');
-    browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').to.be.present;
-    browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').to.be.visible;
-    browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').text.to.contain('Login with Google+');
-    browser.assert.attributeContains('.pt-2 a.btn-googleplus', 'href', '/user/auth/google_oauth2');
-    browser.expect.element('.pt-2 a:nth-of-type(2)').to.be.present;
-    browser.expect.element('.pt-2 a:nth-of-type(2)').to.be.visible;
-    browser.expect.element('.pt-2 a:nth-of-type(2)').text.to.contain('New User? Click here to Signup');
-    browser.assert.attributeContains('.pt-2 a:nth-of-type(2)', 'href', '/user/sign_up');
-    browser.expect.element('.pt-2 a:nth-of-type(3)').to.be.present;
-    browser.expect.element('.pt-2 a:nth-of-type(3)').to.be.visible;
-    browser.expect.element('.pt-2 a:nth-of-type(3)').text.to.contain('Resend Email Confirmation');
-    browser.assert.attributeContains('.pt-2 a:nth-of-type(3)', 'href', '/user/confirmation/new');
-    browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.present;
-    browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.visible;
-    browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Recruiter Login');
-    browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_in?is_recruiter=true');
-    browser.setValue('input[type=email]', 'sushilkundu143@gmail.com');
-    browser.setValue('input[type=password]', 'goodservice');
-    browser.click('input[type=submit]');
-    browser.pause(5000);
-    browser.elements('css selector', menu, navigationAfterLogin);
+    navigationAfterLogin(mainMenuIcon , menuLoginElements);
+    // check the navigation menu elements and corresponding links elements after login end here
     browser.assert.urlEquals(browser.launch_url + '/j', 'Candidate login Sucessful.');
     browser.clearValue('input[name=q]', function(response){
         this.assert.ok(browser === this, 'Clear the search input field.')

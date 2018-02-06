@@ -82,27 +82,28 @@ module.exports = {
     browser.waitForElementPresent('body', 2000);
     browser.pause(5000);
     // Check the navigation menu elements and corresponding links element after login start here 
-    function testSidebar(items) {
-      //expect(items.value.length).to.equal(2); // Chai module
-      browser.expect.element(menu + ' .profile-link a.dropdown-toggle  > span.d-block').text.to.contain('MY PROFILE');
-      browser.click(menu + ' .profile-link a.dropdown-toggle  > span.d-block', function(response){
-        this.assert.ok(browser === this, "Profile dropdown clicked.");
+    var mainMenuIcon = menu + ' .profile-link a.dropdown-toggle', menuDropdownAfterLogin = menu + ':nth-of-type(1) .profile-link ul.dropdown-menu';
+    var menuLoginElements = [
+      {selector : menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a', text :  'My Profile', href :  '/profile/edit'},
+      {selector : menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a', text :  'Logout', href :  '/user/sign_out'},
+      {selector : menu + ':nth-of-type(2) a', text :  'FOR RECRUITERS', href :  '/user/sign_up?is_recruiter=true'}
+    ];
+    function navigationAfterLogin(mainMenuIcon , menuLoginElements) {
+      browser.expect.element(mainMenuIcon).to.be.present;
+      browser.expect.element(mainMenuIcon).to.be.visible;
+      browser.expect.element(mainMenuIcon + ' span.d-block').text.to.contain('MY PROFILE');
+      browser.click(mainMenuIcon, function(response) {
+        this.assert.ok(browser === this, 'Candidate dropdown-menu clicked.');
       });
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu').to.be.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a').to.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a').to.have.attribute('href').which.contains('/profile/edit');
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a span').to.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a span').to.be.visible;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a span').text.to.equal('My Profile');
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a').to.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a').to.have.attribute('href').which.contains('/user/sign_out');
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a span').to.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a > span').to.be.visible;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a span').text.to.equal('Logout');
-      browser.expect.element(menu + ':nth-of-type(2) a span').text.to.contain('FOR RECRUITERS');
-      browser.expect.element(menu + ':nth-of-type(2) a').to.have.attribute('href').which.contains('/user/sign_up?is_recruiter=true');
+      browser.expect.element(menuDropdownAfterLogin).to.be.present;
+      for(i in menuLoginElements){
+        var currentMenuLoginElement = menuLoginElements[i];
+        browser.expect.element(currentMenuLoginElement.selector).to.present;
+        browser.expect.element(currentMenuLoginElement.selector).text.to.equal(currentMenuLoginElement.text);
+        browser.expect.element(currentMenuLoginElement.selector).to.have.attribute('href').which.contains(currentMenuLoginElement.href);
+      }
     }
-    browser.elements('css selector', menu, testSidebar);
+    navigationAfterLogin(mainMenuIcon , menuLoginElements);
     // check the navigation menu elements and corresponding links elements after login end here
     browser.end();
   }

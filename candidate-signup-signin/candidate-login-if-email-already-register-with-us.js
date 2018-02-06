@@ -7,7 +7,7 @@ var should = chai.should();
 // This test set is for not login condition
 module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
-  'Signup': function (browser) {
+  'Candidate Login if email is already exist': function (browser) {
     var menu = '.links .links-item';
     browser.url(browser.launch_url);
     browser.waitForElementPresent('body', 5000);

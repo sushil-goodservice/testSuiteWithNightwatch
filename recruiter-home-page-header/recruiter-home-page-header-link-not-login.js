@@ -1,6 +1,6 @@
 // BDD-style suite with "expect"
-var chai = require('chai');  
-var assert = chai.assert; 
+var chai = require('chai');
+var assert = chai.assert;
 var expect = chai.expect;
 var should = chai.should();
 // var expect = require('chai').expect;
@@ -31,6 +31,7 @@ module.exports = {
   // Testing the navigation menu elements and corresponding links
   'Navigation': function (browser) {
     var menu = '.links-item a';
+
     function testMenuItemsNotLogin(items) {
       expect(items.value.length).to.equal(2); // Chai module
       browser.expect.element(menu + ':nth-of-type(1)').text.to.contain('LOG IN');

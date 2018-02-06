@@ -1,6 +1,6 @@
 // BDD-style suite with "expect"
-var chai = require('chai');  
-var assert = chai.assert; 
+var chai = require('chai');
+var assert = chai.assert;
 var expect = chai.expect;
 var should = chai.should();
 // var expect = require('chai').expect;
@@ -8,14 +8,16 @@ var should = chai.should();
 module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
   'Signup': function (browser) {
-    var menu = '.links .links-item', afterLoginMenu = '.headerlink-with-icon';
+    var menu = '.links .links-item',
+      afterLoginMenu = '.headerlink-with-icon';
     browser.url(browser.launch_url); // open url https://landing.co
     browser.waitForElementPresent('body', 5000); //check if the body is to be present
     browser.assert.title('Landing - the best tech jobs in 1 place'); // match the page title
     // test home page element to be present and visible
     var home = ['.header-logo', '#user-header-search', '.page-heading', '.header-logo a', '.page-heading h2', '.pagination', '.main-footer'];
-    function homeElement(){
-      for(var i = 0; i < home.length; i++){
+
+    function homeElement() {
+      for (var i = 0; i < home.length; i++) {
         currentElement = home[i];
         browser.expect.element(currentElement).to.be.present;
         browser.expect.element(currentElement).to.be.visible;
@@ -23,83 +25,139 @@ module.exports = {
     }
     homeElement();
     // page element text contain
-    var pageTextElement = [
-    { element : '.header-logo a',  text : 'LANDING .CO' },
-    { element : '.main-footer .container a:nth-of-type(2)', text : 'LANDING .CO' },
-    { element : '.page-heading h2', text : 'Browse Jobs' },
-    { element : '.popular-tags .popular-tags-title', text : 'Popular Search Tags:' },
-    { element : '.main-footer .container a:nth-of-type(1)', text : 'Browse Jobs' }
+    var pageTextElement = [{
+        element: '.header-logo a',
+        text: 'LANDING .CO'
+      },
+      {
+        element: '.main-footer .container a:nth-of-type(2)',
+        text: 'LANDING .CO'
+      },
+      {
+        element: '.page-heading h2',
+        text: 'Browse Jobs'
+      },
+      {
+        element: '.popular-tags .popular-tags-title',
+        text: 'Popular Search Tags:'
+      },
+      {
+        element: '.main-footer .container a:nth-of-type(1)',
+        text: 'Browse Jobs'
+      }
     ];
-    function pageTextElementFn(){
-      for(var i = 0; i < pageTextElement.length; i++){
+
+    function pageTextElementFn() {
+      for (var i = 0; i < pageTextElement.length; i++) {
         var current = pageTextElement[i];
         browser.expect.element(current.element).text.to.contain(current.text);
       }
     }
     pageTextElementFn();
-    
+
     // page element link test
-    var pagelinkElement = [
-    { element : '.header-logo a', link : '/' },
-    { element : '.main-footer .container a:nth-of-type(1)', link : '/sitemap' },
-    { element : '.main-footer .container a:nth-of-type(2)', link : '/' }
+    var pagelinkElement = [{
+        element: '.header-logo a',
+        link: '/'
+      },
+      {
+        element: '.main-footer .container a:nth-of-type(1)',
+        link: '/sitemap'
+      },
+      {
+        element: '.main-footer .container a:nth-of-type(2)',
+        link: '/'
+      }
     ];
-    function pagelinkElementEn(){
-      for(var i = 0; i < pagelinkElement.length; i++){
+
+    function pagelinkElementEn() {
+      for (var i = 0; i < pagelinkElement.length; i++) {
         var currentPageElement = pagelinkElement[i];
         browser.expect.element(currentPageElement.element).to.have.attribute('href').which.contains(currentPageElement.link);
       }
     }
     pagelinkElementEn();
     // menu links check when not login
-    var notLogin = [
-     { element : menu + ':nth-of-type(1) a', text : 'FOR CANDIDATES', link : '/user/sign_up'},
-     { element : menu + ':nth-of-type(2) a', text : 'FOR RECRUITERS', link : '/user/sign_up?is_recruiter=true'}
+    var notLogin = [{
+        element: menu + ':nth-of-type(1) a',
+        text: 'FOR CANDIDATES',
+        link: '/user/sign_up'
+      },
+      {
+        element: menu + ':nth-of-type(2) a',
+        text: 'FOR RECRUITERS',
+        link: '/user/sign_up?is_recruiter=true'
+      }
     ];
-    
+
     function navigation(items) {
       expect(items.value.length).to.equal(2); // Chai module
-      for(var i; i < notLogin.length; i++){
+      for (var i; i < notLogin.length; i++) {
         var current = notLogin[i];
         browser.expect.element(current.element).text.to.contain(current.text);
-      browser.expect.element(current.element).to.have.attribute('href').which.contains(current.link);
+        browser.expect.element(current.element).to.have.attribute('href').which.contains(current.link);
       }
     }
     browser.expect.element(menu).to.be.present;
     browser.expect.element(menu).to.be.visible;
     browser.elements('css selector', menu, navigation);
     // after login menu testing
-    var el = [
-        { linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a', linkTitle : 'My Jobs', linkHref : '/recruiter/jobs' },
-        { linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(2) a', linkTitle : 'Add new Jobs', linkHref : '/recruiter/jobs/new' },
-        { linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(3) a', linkTitle : 'Candidate Database', linkHref : '/recruiter/candidate_infos' },
-        { linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(4) a', linkTitle : 'My Profile', linkHref : '/profile/edit' },
-        { linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(5) a', linkTitle : 'My Organisation & Team', linkHref : '/recruiter/organisations' },
-        { linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a', linkTitle : 'Logout', linkHref : '/user/sign_out' }
-      ];
+    var el = [{
+        linkTag: afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a',
+        linkTitle: 'My Jobs',
+        linkHref: '/recruiter/jobs'
+      },
+      {
+        linkTag: afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(2) a',
+        linkTitle: 'Add new Jobs',
+        linkHref: '/recruiter/jobs/new'
+      },
+      {
+        linkTag: afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(3) a',
+        linkTitle: 'Candidate Database',
+        linkHref: '/recruiter/candidate_infos'
+      },
+      {
+        linkTag: afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(4) a',
+        linkTitle: 'My Profile',
+        linkHref: '/profile/edit'
+      },
+      {
+        linkTag: afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(5) a',
+        linkTitle: 'My Organisation & Team',
+        linkHref: '/recruiter/organisations'
+      },
+      {
+        linkTag: afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a',
+        linkTitle: 'Logout',
+        linkHref: '/user/sign_out'
+      }
+    ];
+
     function navigationAfterLogin(el) {
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle').to.be.present;
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle').to.be.visible;
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu').to.be.present;
-      browser.click(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle', function(response) {
+      browser.click(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle', function (response) {
         this.assert.ok(browser === this, 'Recruiter header-menu dropdown-menu clicked.');
       });
-      for(var i = 0; i < el.length; i++){
-        console.log(el[i].linkTag , el[i].linkTitle , el[i].linkHref);
+      for (var i = 0; i < el.length; i++) {
+        console.log(el[i].linkTag, el[i].linkTitle, el[i].linkHref);
         browser.expect.element(el[i].linkTag).to.present;
         browser.expect.element(el[i].linkTag).to.be.visible;
         browser.expect.element(el[i].linkTag).text.to.equal(el[i].linkTitle);
         browser.expect.element(el[i].linkTag).to.have.attribute('href').which.contains(el[i].linkHref);
       }
     }
-    browser.click('.recruiter-link a.ga-trackable', function(response){
+    browser.click('.recruiter-link a.ga-trackable', function (response) {
       this.assert.ok(browser === this, 'Recruiter link clicked, redirecting into recruiter signup page.');
     });
     browser.waitForElementPresent('body', 2000);
     browser.expect.element('.page-popup-like').to.be.present;
     browser.expect.element('.page-popup-like').to.be.visible;
     browser.expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Recruiter Signup');
-    function formInputElementsLabelCheck(element, text){
+
+    function formInputElementsLabelCheck(element, text) {
       browser.expect.element(element).to.be.present;
       browser.expect.element(element).to.be.visible;
       browser.expect.element(element).text.to.contain(text);
@@ -126,7 +184,7 @@ module.exports = {
     browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Candidate Signup');
     browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_up');
-    browser.click('a.block.text-blue', function(response){
+    browser.click('a.block.text-blue', function (response) {
       this.assert.ok(browser === this, 'Recruiter login page link clicked, redirecting recruiter login page.');
     });
     browser.waitForElementPresent('body', 2000);
@@ -171,45 +229,75 @@ module.exports = {
     navigationAfterLogin(el);
     //browser.elements('css selector', afterLoginMenu, navigationAfterLogin);
     browser.assert.urlEquals(browser.launch_url + '/recruiter/candidate_infos', 'Recruiter login Sucessful.');
-    browser.click(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a', function(response){
+    browser.click(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a', function (response) {
       this.assert.ok(browser === this, 'My Job link clicked. Redirecting to recruiter my jobs page create new job page.');
       browser.waitForElementPresent('body', 1000);
       browser.expect.element('body').to.be.visible;
       browser.expect.element('.dashboard.full-width.box-min-height').to.be.present;
       browser.expect.element('.dashboard.full-width.box-min-height').to.be.visible;
-      browser.assert.urlEquals( browser.launch_url + '/recruiter/jobs');
+      browser.assert.urlEquals(browser.launch_url + '/recruiter/jobs');
     });
-     var table = '.table.table-lg.jobs.text-center.bt-none', editJob = table + ' .t-body tr:nth-of-type(1) td.action-cell a.btn-edit-job';
+    var table = '.table.table-lg.jobs.text-center.bt-none',
+      editJob = table + ' .t-body tr:nth-of-type(1) td.action-cell a.btn-edit-job';
     browser.expect.element('div.toolbar > h2.toolbar-title').text.to.contain('My Jobs');
     browser.expect.element(table).to.be.present;
     browser.expect.element(table).to.be.visible;
     browser.expect.element(editJob).to.be.present;
     browser.expect.element(editJob).to.be.visible;
-    browser.click(editJob, function(response){
+    browser.click(editJob, function (response) {
       this.assert.ok(browser === this, 'Job edit button clicked.');
     });
     var url = browser.execute("document.querySelector(editJob).getAttribute('href')");
     console.log(url);
     browser.pause(2000);
-    browser.assert.urlContains( browser.launch_url + '/' + url , 'Job edit page loaded.');
+    browser.assert.urlContains(browser.launch_url + '/' + url, 'Job edit page loaded.');
 
     // job posting form element label check
-    var elementForm =  '#new_job_posting .form-group';
-    var el = [
-      { tag : elementForm + ':nth-of-type(1) .row .col-md-4.col-sm-4 label.control-label', text : 'Who can access this job' },
-      { tag: elementForm + ':nth-of-type(2) .row .col-md-4.col-sm-4 label.control-label', text : 'Select your company' },
-      { tag: elementForm + ':nth-of-type(3) .row .col-md-4.col-sm-4 label.control-label', text : 'Role' },
-      { tag : elementForm + ':nth-of-type(4) .row .col-md-4.col-sm-4 label.control-label', text : 'Job Title' },
-      { tag : elementForm + ':nth-of-type(5) .row .col-md-4.col-sm-4 label.control-label', text : 'Skills' },
-      { tag : elementForm + ':nth-of-type(6) .row .col-md-4.col-sm-4 label.control-label', text : 'Function' },
-      { tag : elementForm + ':nth-of-type(7) .row .col-md-4.col-sm-4 label.control-label', text : 'City' },
-      { tag: elementForm + ':nth-of-type(8) .row .col-md-4 label.control-label', text : 'Work Experience' },
-      { tag : elementForm + ':nth-of-type(9) .row .col-md-4 label.control-label', text : 'Salary Range' },
-      { tag : elementForm + ':nth-of-type(10) .row .col-md-4 label.control-label', text : 'Job Description' }
+    var elementForm = '#new_job_posting .form-group';
+    var el = [{
+        tag: elementForm + ':nth-of-type(1) .row .col-md-4.col-sm-4 label.control-label',
+        text: 'Who can access this job'
+      },
+      {
+        tag: elementForm + ':nth-of-type(2) .row .col-md-4.col-sm-4 label.control-label',
+        text: 'Select your company'
+      },
+      {
+        tag: elementForm + ':nth-of-type(3) .row .col-md-4.col-sm-4 label.control-label',
+        text: 'Role'
+      },
+      {
+        tag: elementForm + ':nth-of-type(4) .row .col-md-4.col-sm-4 label.control-label',
+        text: 'Job Title'
+      },
+      {
+        tag: elementForm + ':nth-of-type(5) .row .col-md-4.col-sm-4 label.control-label',
+        text: 'Skills'
+      },
+      {
+        tag: elementForm + ':nth-of-type(6) .row .col-md-4.col-sm-4 label.control-label',
+        text: 'Function'
+      },
+      {
+        tag: elementForm + ':nth-of-type(7) .row .col-md-4.col-sm-4 label.control-label',
+        text: 'City'
+      },
+      {
+        tag: elementForm + ':nth-of-type(8) .row .col-md-4 label.control-label',
+        text: 'Work Experience'
+      },
+      {
+        tag: elementForm + ':nth-of-type(9) .row .col-md-4 label.control-label',
+        text: 'Salary Range'
+      },
+      {
+        tag: elementForm + ':nth-of-type(10) .row .col-md-4 label.control-label',
+        text: 'Job Description'
+      }
     ];
     // Check page elements : isPresent, isVisible and inner text check
-    function checkFormElementLavels(el){
-      for(var i = 0; i < el.length; i++){
+    function checkFormElementLavels(el) {
+      for (var i = 0; i < el.length; i++) {
         var currentEl = el[i];
         browser.expect.element(currentEl.tag).to.be.present;
         browser.expect.element(currentEl.tag).to.be.visible;
@@ -220,7 +308,7 @@ module.exports = {
     browser.pause(2000);
     // check form input element presents
     var input = [
-      'job_posting_is_visible_to_all_team_members', 
+      'job_posting_is_visible_to_all_team_members',
       'job_posting_recruiter_team_id',
       'js-complete-algoliadesignation',
       'job_posting_title',
@@ -233,71 +321,72 @@ module.exports = {
       'job_posting_max_salary',
       'cke_job_posting_job_description'
     ];
-    function testFormElements(){
-      for(var i = 0; i < input.length; i++){
+
+    function testFormElements() {
+      for (var i = 0; i < input.length; i++) {
         var currentInput = input[i];
         browser.expect.element('#' + currentInput).to.be.present;
         browser.expect.element('#' + currentInput).to.be.visible;
       }
     }
     testFormElements();
-    browser.click('select[id="job_posting_is_visible_to_all_team_members"]', function(response){
+    browser.click('select[id="job_posting_is_visible_to_all_team_members"]', function (response) {
       this.assert.ok(browser === this, 'Select job visibility dropdown clicked.');
     });
     browser.waitForElementVisible("option[value='true']", 2000);
-    browser.click("option[value='true']", function(response){
+    browser.click("option[value='true']", function (response) {
       this.assert.ok(browser === this, 'Select job visibility dropdown clicked and option value selected.');
     });
-    browser.click('select[id="job_posting_recruiter_team_id"]', function(response){
+    browser.click('select[id="job_posting_recruiter_team_id"]', function (response) {
       this.assert.ok(browser === this, 'Select team dropdown clicked.');
     });
     browser.waitForElementVisible("option[value='659821']", 2000);
-    browser.click("option[value='659821']", function(response){
+    browser.click("option[value='659821']", function (response) {
       this.assert.ok(browser === this, 'Select team dropdown clicked and value selected.');
     });
     browser.setValue('#' + input[2], 'UI Test Automation Engineer');
     browser.setValue('#' + input[3], 'UI Test Automation Engineer');
     browser.setValue('#' + input[4], 'Selenium, Nightwatch, Chai, Node.js, npm, End To End Testing,');
-    browser.click('#' + input[5], function(response){
+    browser.click('#' + input[5], function (response) {
       this.assert.ok(browser === this, 'Job function dropdown clicked.');
     });
     browser.waitForElementVisible("option[value='Software Development']", 2000);
-    browser.click("option[value='Software Development']", function(response){
+    browser.click("option[value='Software Development']", function (response) {
       this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
     });
     browser.clearValue('#' + input[6], 'Location input cleared.');
     browser.setValue('#' + input[6], 'Delhi, India');
     browser.waitForElementPresent('.pac-container.pac-logo', 2000);
     browser.waitForElementPresent('.pac-container.pac-logo .pac-item:nth-of-type(1)', 1000);
-    browser.click('.pac-container.pac-logo .pac-item:nth-of-type(1)', function(response){
+    browser.click('.pac-container.pac-logo .pac-item:nth-of-type(1)', function (response) {
       this.assert.ok(browser === this, 'City name selected.');
     });
-    browser.click('#' + input[7], function(response){
+    browser.click('#' + input[7], function (response) {
       this.assert.ok(browser === this, 'Job function dropdown clicked.');
     });
     browser.waitForElementVisible('#' + input[7] + " option[value='3']", 2000);
-    browser.click('#' + input[7] + " option[value='3']", function(response){
+    browser.click('#' + input[7] + " option[value='3']", function (response) {
       this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
     });
-    browser.click('#' + input[8], function(response){
+    browser.click('#' + input[8], function (response) {
       this.assert.ok(browser === this, 'Job function dropdown clicked.');
     });
     browser.waitForElementVisible('#' + input[8] + " option[value='4']", 2000);
-    browser.click('#' + input[8] + " option[value='4']", function(response){
+    browser.click('#' + input[8] + " option[value='4']", function (response) {
       this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
     });
-    browser.click('#' + input[9], function(response){
+    browser.click('#' + input[9], function (response) {
       this.assert.ok(browser === this, 'Job function dropdown clicked.');
     });
     browser.waitForElementVisible('#' + input[9] + " option[value='2']", 2000);
-    browser.click('#' + input[9] + " option[value='2']", function(response){
+    browser.click('#' + input[9] + " option[value='2']", function (response) {
       this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
     });
-    browser.click('#' + input[10], function(response){
+    browser.click('#' + input[10], function (response) {
       this.assert.ok(browser === this, 'Job function dropdown clicked.');
     });
     browser.waitForElementVisible('#' + input[10] + " option[value='4']", 2000);
-    browser.click('#' + input[10] + " option[value='4']", function(response){
+    browser.click('#' + input[10] + " option[value='4']", function (response) {
       this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
     });
     browser.expect.element('#cke_1_contents').to.be.present;

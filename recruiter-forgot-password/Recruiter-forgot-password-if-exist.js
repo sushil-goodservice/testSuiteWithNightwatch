@@ -1,6 +1,6 @@
 // BDD-style suite with "expect"
-var chai = require('chai');  
-var assert = chai.assert; 
+var chai = require('chai');
+var assert = chai.assert;
 var expect = chai.expect;
 var should = chai.should();
 // var expect = require('chai').expect;
@@ -8,7 +8,8 @@ var should = chai.should();
 module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
   'Signup': function (browser) {
-    var menu = '.links .links-item', afterLoginMenu = '.headerlink-with-icon';
+    var menu = '.links .links-item',
+      afterLoginMenu = '.headerlink-with-icon';
     browser.url(browser.launch_url);
     browser.waitForElementVisible('body', 5000);
     browser.assert.title('Landing - the best tech jobs in 1 place');
@@ -37,6 +38,7 @@ module.exports = {
     browser.expect.element('.main-footer .container a:nth-of-type(2)').text.to.contain('LANDING .CO');
     browser.expect.element('.main-footer .container a:nth-of-type(2)').to.have.attribute('href').which.contains('/');
     browser.saveScreenshot('./screenshots/expect-home.png');
+
     function navigation(items) {
       expect(items.value.length).to.equal(2); // Chai module
       browser.expect.element(menu + ':nth-of-type(1) a span').text.to.contain('FOR CANDIDATES');
@@ -47,17 +49,18 @@ module.exports = {
     browser.expect.element(menu).to.be.present;
     browser.expect.element(menu).to.be.visible;
     browser.elements('css selector', menu, navigation);
+
     function navigationAfterLogin(items) {
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle').to.be.present;
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle').to.be.visible;
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu').to.be.present;
-      browser.click(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle', function(response) {
+      browser.click(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle', function (response) {
         this.assert.ok(browser === this, 'Recruiter header-menu dropdown-menu clicked.');
       });
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a').to.present;
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a').to.be.visible;
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a').text.to.equal('My Jobs');
-      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a').to.have.attribute('href').which.contains('/recruiter/jobs');      
+      browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a').to.have.attribute('href').which.contains('/recruiter/jobs');
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(2) a').to.present;
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(2) a').to.be.visible;
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(2) a').text.to.equal('Add new Jobs');
@@ -79,7 +82,7 @@ module.exports = {
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a').text.to.equal('Logout');
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a').to.have.attribute('href').which.contains('/user/sign_out');
     }
-    browser.click('.recruiter-link a.ga-trackable', function(response){
+    browser.click('.recruiter-link a.ga-trackable', function (response) {
       this.assert.ok(browser === this, 'Recruiter link clicked, redirecting into recruiter signup page.');
     });
     browser.waitForElementPresent('body', 2000);
@@ -115,7 +118,7 @@ module.exports = {
     browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Candidate Signup');
     browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_up');
-    browser.click('a.block.text-blue', function(response){
+    browser.click('a.block.text-blue', function (response) {
       this.assert.ok(browser === this, 'Recruiter login page link clicked, redirecting recruiter login page.');
     });
     browser.waitForElementPresent('body', 2000);
@@ -153,9 +156,9 @@ module.exports = {
     browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Candidate Login');
     browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_in');
-    browser.click('.f-pwd', function(response) {
-        this.assert.ok(browser === this, 'Recruiter forgot password link clicked.');
-      });
+    browser.click('.f-pwd', function (response) {
+      this.assert.ok(browser === this, 'Recruiter forgot password link clicked.');
+    });
     browser.assert.urlEquals(browser.launch_url + '/user/password/new?is_recruiter=true', 'Recruiter Sucessfully redirect to forgot password page.');
     browser.expect.element('.alert.alert_success').to.be.present;
     browser.expect.element('.alert.alert_success').to.be.visible;

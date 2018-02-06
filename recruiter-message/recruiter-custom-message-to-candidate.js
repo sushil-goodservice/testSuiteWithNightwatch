@@ -1,6 +1,6 @@
 // BDD-style suite with "expect"
-var chai = require('chai');  
-var assert = chai.assert; 
+var chai = require('chai');
+var assert = chai.assert;
 var expect = chai.expect;
 var should = chai.should();
 // var expect = require('chai').expect;
@@ -8,9 +8,9 @@ var should = chai.should();
 module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
   'Recruiter  Add Team Member': function (browser) {
-    var menu = '.links .links-item', 
-    afterLoginMenu = '.headerlink-with-icon',
-    afterLoginMenuItem = '.headerlink-with-icon .dropdown .dropdown-menu li';
+    var menu = '.links .links-item',
+      afterLoginMenu = '.headerlink-with-icon',
+      afterLoginMenuItem = '.headerlink-with-icon .dropdown .dropdown-menu li';
     browser.url(browser.launch_url);
     browser.waitForElementPresent('body', 5000);
     browser.assert.title('Landing - the best tech jobs in 1 place');
@@ -51,37 +51,61 @@ module.exports = {
     browser.expect.element(menu).to.be.visible;
     browser.elements('css selector', menu, navigation);
     // recruiter header links test after login
-    function recruiterMenuDropdown(element){
+    function recruiterMenuDropdown(element) {
       // each of menu items with in menu dropdown test - presents, visiblity, inner text and link attributes
-      for(var i = 0; i < element.length; i++){
+      for (var i = 0; i < element.length; i++) {
         var currentElement = element[i];
         browser.expect.element(currentElement.linkSelector).to.present; // current link item presents test
         browser.expect.element(currentElement.linkSelector).to.be.visible; // current link item visibility test
         browser.expect.element(currentElement.linkSelector).text.to.equal(currentElement.linkText); // current link item inner-text test 
         browser.expect.element(currentElement.linkSelector).to.have.attribute('href').which.contains(currentElement.linkurl); // current link item url attribure test
-      }      
+      }
     }
+
     function navigationAfterLogin(items) {
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle').to.be.present;
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle').to.be.visible;
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu').to.be.present;
       browser.pause(4000);
-      browser.click(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle', function(response) {
+      browser.click(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle', function (response) {
         browser.waitForElementVisible(afterLoginMenu + ' .dropdown .dropdown-menu', 4000);
         this.assert.ok(browser === this, 'Recruiter header-menu dropdown-menu clicked.');
       });
       // make list of array of all link item in recruiter-menu dropdown after login
-      var menuItems = [
-        { linkSelector : afterLoginMenuItem + ':nth-of-type(1) a', linkText : 'My Jobs', linkurl : '/recruiter/jobs' },
-        { linkSelector : afterLoginMenuItem + ':nth-of-type(2) a', linkText : 'Add new Jobs', linkurl : '/recruiter/jobs/new' },
-        { linkSelector : afterLoginMenuItem + ':nth-of-type(3) a', linkText : 'Candidate Database', linkurl : '/recruiter/candidate_infos' },
-        { linkSelector : afterLoginMenuItem + ':nth-of-type(4) a', linkText : 'My Profile', linkurl : '/profile/edit' },
-        { linkSelector : afterLoginMenuItem + ':nth-of-type(5) a', linkText : 'My Organisation & Team', linkurl : '/recruiter/organisations' },
-        { linkSelector : afterLoginMenuItem + ':nth-of-type(6) a', linkText : 'Logout', linkurl : '/user/sign_out' }
+      var menuItems = [{
+          linkSelector: afterLoginMenuItem + ':nth-of-type(1) a',
+          linkText: 'My Jobs',
+          linkurl: '/recruiter/jobs'
+        },
+        {
+          linkSelector: afterLoginMenuItem + ':nth-of-type(2) a',
+          linkText: 'Add new Jobs',
+          linkurl: '/recruiter/jobs/new'
+        },
+        {
+          linkSelector: afterLoginMenuItem + ':nth-of-type(3) a',
+          linkText: 'Candidate Database',
+          linkurl: '/recruiter/candidate_infos'
+        },
+        {
+          linkSelector: afterLoginMenuItem + ':nth-of-type(4) a',
+          linkText: 'My Profile',
+          linkurl: '/profile/edit'
+        },
+        {
+          linkSelector: afterLoginMenuItem + ':nth-of-type(5) a',
+          linkText: 'My Organisation & Team',
+          linkurl: '/recruiter/organisations'
+        },
+        {
+          linkSelector: afterLoginMenuItem + ':nth-of-type(6) a',
+          linkText: 'Logout',
+          linkurl: '/user/sign_out'
+        }
       ];
       recruiterMenuDropdown(menuItems);
     }
-    browser.click('.recruiter-link a.ga-trackable', function(response){
+    browser.click('.recruiter-link a.ga-trackable', function (response) {
       this.assert.ok(browser === this, 'Recruiter link clicked, redirecting into recruiter signup page.');
     });
     browser.waitForElementPresent('body', 2000);
@@ -117,21 +141,33 @@ module.exports = {
     browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Candidate Signup');
     browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_up');
-    browser.click('a.block.text-blue', function(response){
+    browser.click('a.block.text-blue', function (response) {
       this.assert.ok(browser === this, 'Recruiter login page link clicked, redirecting recruiter login page.');
     });
     browser.waitForElementPresent('body', 2000);
     // recruiter login form, input element and label test
     browser.expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Recruiter Login');
-    var recruiterLoginFormElementsSet = [
-      {elementSelector : 'input[id=user_email]', labelSelector: 'label[for=user_email]' , elementLabelText: 'Email'},
-      {elementSelector : 'input[id=user_password]', labelSelector: 'label[for=user_password]' , elementLabelText: 'Password'},
-      {elementSelector : 'input[name=commit]', labelSelector: '' , elementLabelText: ''},
+    var recruiterLoginFormElementsSet = [{
+        elementSelector: 'input[id=user_email]',
+        labelSelector: 'label[for=user_email]',
+        elementLabelText: 'Email'
+      },
+      {
+        elementSelector: 'input[id=user_password]',
+        labelSelector: 'label[for=user_password]',
+        elementLabelText: 'Password'
+      },
+      {
+        elementSelector: 'input[name=commit]',
+        labelSelector: '',
+        elementLabelText: ''
+      },
     ];
-    function recruiterLoginFormElements(recruiterLoginFormElementsSet){
-      for(var i = 0; i < recruiterLoginFormElementsSet.length; i++){
+
+    function recruiterLoginFormElements(recruiterLoginFormElementsSet) {
+      for (var i = 0; i < recruiterLoginFormElementsSet.length; i++) {
         var currentElements = recruiterLoginFormElementsSet[i];
-        if(currentElements.labelSelector !== '' && currentElements.elementLabelText !== ''){
+        if (currentElements.labelSelector !== '' && currentElements.elementLabelText !== '') {
           browser.expect.element(currentElements.labelSelector).to.be.present;
           browser.expect.element(currentElements.labelSelector).to.be.visible;
           browser.expect.element(currentElements.labelSelector).text.to.contain(currentElements.elementLabelText);
@@ -166,7 +202,7 @@ module.exports = {
     browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_in');
     browser.setValue('input[type=email]', 'kapur.r1985@gmail.com');
     browser.setValue('input[type=password]', 'goodservice');
-    browser.click('input[type=submit]', function(response){
+    browser.click('input[type=submit]', function (response) {
       this.assert.ok(browser === this, 'Recruiter login form clicked.');
     });
     browser.waitForElementVisible('body.layout3.new-design', 2000);
@@ -175,27 +211,29 @@ module.exports = {
     browser.waitForElementNotPresent('.loader-modal:nth-of-type(1)', 1000);
     // browser.waitForElementNotVisible('.loader-modal:nth-of-type(1)', 1000);
     // the candidate you want search need to set the full name and candidate id here
-    var candidate = 'Rahul Kapur', id = '1304461', url = '/recruiter/candidate_infos/';
-    browser.setValue('input.form-control.ui-autocomplete-input',[ candidate ,  browser.Keys.ENTER]);
+    var candidate = 'Rahul Kapur',
+      id = '1304461',
+      url = '/recruiter/candidate_infos/';
+    browser.setValue('input.form-control.ui-autocomplete-input', [candidate, browser.Keys.ENTER]);
     // browser.expect.element('a[href="' + url + id + '"]').to.be.present;
     // browser.expect.element('a[href="' + url + id + '"]').to.be.visible;
     browser.pause(3000);
-    browser.url( browser.launch_url + url + id, function(response){
+    browser.url(browser.launch_url + url + id, function (response) {
       browser.waitForElementPresent('body.layout3.new-design', 3000);
       browser.waitForElementVisible('body.layout3.new-design', 3000);
       browser.waitForElementNotPresent('div.loader-modal:nth-of-type(1)', 1000);
       // browser.waitForElementNotVisible('div.loader-modal:nth-of-type(1)', 1000);
     });
     browser.pause(2000);
-    browser.click('button.btn.btn-primary.outline.button-blue.dropdown-toggle', function(response){
+    browser.click('button.btn.btn-primary.outline.button-blue.dropdown-toggle', function (response) {
       this.assert.ok(browser === this, 'Click on message button in candidate profile.');
     });
     browser.expect.element('ul.dropdown-menu.w-100.dropdown-align').to.be.present;
     browser.expect.element('ul.dropdown-menu.w-100.dropdown-align').to.be.visible;
-    browser.click('ul.dropdown-menu.w-100.dropdown-align li:last-child a', function(response){
+    browser.click('ul.dropdown-menu.w-100.dropdown-align li:last-child a', function (response) {
       this.assert.ok(browser === this, 'Click on custom message link form the dropdown.');
-       browser.waitForElementPresent('.modal .modal-dialog.lg-full', 2000);
-       browser.waitForElementVisible('.modal .modal-dialog.lg-full', 2000);
+      browser.waitForElementPresent('.modal .modal-dialog.lg-full', 2000);
+      browser.waitForElementVisible('.modal .modal-dialog.lg-full', 2000);
     });
     /*
     browser.click('a[href="' + url + id + '"]', function(response){
@@ -204,14 +242,14 @@ module.exports = {
     */
     browser.expect.element('.modal-content.rightCustom .modal-footer button.btn.btn-primary').to.be.present;
     browser.expect.element('.modal-content.rightCustom .modal-footer button.btn.btn-primary').to.be.visible;
-    browser.click('.modal-content.rightCustom button.btn.btn-primary', function(response){
+    browser.click('.modal-content.rightCustom button.btn.btn-primary', function (response) {
       this.assert.ok(browser === this, 'Message sending.');
       browser.waitForElementPresent('.modal-content.rightCustom .modal-body .alert.alert-danger.mb-0', 2000);
       browser.waitForElementVisible('.modal-content.rightCustom .modal-body .alert.alert-danger.mb-0', 2000);
-    });                  
+    });
     browser.execute('$(".cke_wysiwyg_frame.cke_reset").contents().find("body").html("Hey this is a test. This mail is sended to you only for test purpose. Please ignore this email.")');
-    browser.click('.modal-content.rightCustom button.btn.btn-primary', function(response){
-      this.assert.ok(browser === this, 'Custom message sucessfully in sending process.'); 
+    browser.click('.modal-content.rightCustom button.btn.btn-primary', function (response) {
+      this.assert.ok(browser === this, 'Custom message sucessfully in sending process.');
     });
     browser.pause(2000);
     browser.end();

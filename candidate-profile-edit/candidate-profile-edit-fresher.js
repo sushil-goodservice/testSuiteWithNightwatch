@@ -313,7 +313,7 @@ module.exports = {
     // candidate login page elements, form elements, links and button check - end here
     // candidate login start here
     function candidateLogin() {
-      browser.setValue('input[type=email]', 'kapur.r1985@gmail.com');
+      browser.setValue('input[type=email]', 'sushilkundu143@gmail.com');
       browser.setValue('input[type=password]', 'goodservice');
       browser.click('input[type=submit]');
     }
@@ -339,7 +339,6 @@ module.exports = {
         href: '/user/sign_up?is_recruiter=true'
       }
     ];
-
     function navigationAfterLogin(mainMenuIcon, menuLoginElements) {
       browser.expect.element(mainMenuIcon).to.be.present;
       browser.expect.element(mainMenuIcon).to.be.visible;
@@ -358,47 +357,20 @@ module.exports = {
     navigationAfterLogin(mainMenuIcon, menuLoginElements);
     // check the navigation menu elements and corresponding links elements after login end here
     browser.assert.urlEquals(browser.launch_url + '/j', 'Candidate login Sucessful.');
-    // search job by job title
-    browser.clearValue('input[name=q]', function (response) {
-      this.assert.ok(browser === this, 'Clear the search input field.')
+    // Click on Candidate Profile link and redirect to candidate profile edit page
+    /*
+    browser.click(menuLoginElements[0].selector, function(response){
+      this.assert.ok(browser === this, 'Redirecting to candidate profile edit page wait..');
     });
-    browser.setValue('input[name=q]', ['XXX Tester', browser.Keys.ENTER]);
-    // match the job id = 74292 which we are going to apply.
-    browser.expect.element('.jobs-listings .jobs-list a').to.have.attribute('href').which.contains('74292');
-    browser.click('.jobs-listings .jobs-list a', function (response) {
-      this.assert.ok(browser === this, 'clicked to apply link to redirect job details page.');
-    });
+    */
+    browser.url(browser.launch_url + menuLoginElements[0].href, 'Redirect to candidate profile edit page.');
+    browser.waitForElementPresent('body.desktop-visible', 2000);
+    browser.waitForElementVisible('body.desktop-visible', 2000);
+    // check the page heading element
     browser.pause(2000);
-    browser.waitForElementPresent('body', 3000);
-    browser.click('.js-job-apply', function (response) {
-      this.assert.ok(browser === this, 'job applied and redirecting to candidate home page.');
-    });
-    browser.pause(5000);
-    browser.expect.element('#desktop-visible').to.be.present;
-    browser.expect.element('#desktop-visible').to.be.visible;
-    // match job details page job title and company name
-    browser.expect.element('.job-details .column h2').to.be.present;
-    browser.expect.element('.job-details .column h2').to.be.visible;
-    // check company name, job title and company id
-    var companyName = 'XXX Tester',
-      jobTitle = 'UI Test Automation Engineer',
-      companyID = '670483';
-    browser.expect.element('.job-details .column h2').text.to.contain(jobTitle);
-    browser.expect.element('.job-details .column a div.company-name').text.to.contain(companyName);
-    browser.expect.element('.job-details .column a').to.have.attribute('href').which.contains('670483');
-    browser.expect.element('.edit_candidate_info').to.be.present;
-    browser.expect.element('.edit_candidate_info').to.be.visible;
-    // Candidate Job Application form label and email - start here
-    var checkSectionIDJobApplicationFormElements = ['#personal', '#employment', '#education', '#resume'];
-
-    function checkSectionIDJobApplicationForm(checkSectionIDJobApplicationFormElements) {
-      for (i in checkSectionIDJobApplicationFormElements) {
-        var currentElement = checkSectionIDJobApplicationFormElements[i];
-        browser.expect.element(currentElement).to.be.present;
-        browser.expect.element(currentElement).to.be.visible;
-      }
-    }
-    checkSectionIDJobApplicationForm(checkSectionIDJobApplicationFormElements);
+    browser.expect.element('.content-box .page-heading h2').to.be.present;
+    browser.expect.element('.content-box .page-heading h2').to.be.visible;
+    browser.expect.element('.content-box .page-heading h2').text.to.contain('My Profile');
     // all form labels visible in page and inner text
     /*
     var jobApplicationFormLabels = [{
@@ -447,21 +419,36 @@ module.exports = {
     }
     jobApplicationFormLabelsTest(jobApplicationFormLabels);
     */
-    // Candidate Job Application form label check - end here    
+    // Candidate Job Application form label check - end here   
+    // Candidate Profile Edit sections ids checking start here
+    var checkSectionIDJobApplicationFormElements = ['#personal', '#education', '#resume'];
+
+    function checkSectionIDJobApplicationForm(checkSectionIDJobApplicationFormElements) {
+      for (i in checkSectionIDJobApplicationFormElements) {
+        var currentElement = checkSectionIDJobApplicationFormElements[i];
+        browser.expect.element(currentElement).to.be.present;
+        browser.expect.element(currentElement).to.be.visible;
+      }
+    }
+    checkSectionIDJobApplicationForm(checkSectionIDJobApplicationFormElements); 
+    // candidate profile Edit sections ids checking end here
+
     // all form elements present in job application page
     var jobApplicationFormInputs = [
       '.edit_candidate_info #personal .column .row:nth-of-type(1) .form-group .col-md-6 input[id=candidate_info_name]',
       '.edit_candidate_info #personal .column .row:nth-of-type(2) .form-group .col-md-6 input[name=location_empl]',
-      '.edit_candidate_info #personal .column .row:nth-of-type(3) .form-group .col-md-6 input',
-      '.edit_candidate_info #personal .column .row:nth-of-type(4) .form-group .col-md-6 input',
-      '.edit_candidate_info #personal .column .row:nth-of-type(5) .form-group .col-md-6 select',
-      '.edit_candidate_info #personal .column .row:nth-of-type(6) .form-group .col-md-3 select',
-      '.edit_candidate_info #personal .column .row:nth-of-type(6) .form-group .col-md-3 input',
-      '.edit_candidate_info #personal .column .row:nth-of-type(7) .form-group .col-md-6 .tokenfield .token-input.ui-autocomplete-input',
+      '.edit_candidate_info #personal .column .row:nth-of-type(3) .form-group .col-md-6 input[id=candidate_info_phone]',
+      '.edit_candidate_info #personal .column .row:nth-of-type(4) .form-group .col-md-6 select[id=experience]',
+      '.edit_candidate_info #personal .column .row:nth-of-type(5) .form-group .col-md-6 select[id=candidate_info_function_id]',
+      '.edit_candidate_info #personal .column .row:nth-of-type(6) .form-group .col-md-6 select[id=candidate_info_industry_id]',
+      '.edit_candidate_info #personal .column .row:nth-of-type(7) .form-group .col-md-3 input[id=candidate_info_salary]',
+      '.edit_candidate_info #personal .column .row:nth-of-type(8) .form-group .col-md-6 textarea[id=candidate_info_title]',
+      '.edit_candidate_info #personal .column .row:nth-of-type(9) .form-group .col-md-6 .tokenfield .token-input.ui-autocomplete-input',
+      '.edit_candidate_info #personal .column .row:nth-of-type(10) .form-group .col-md-6 select[id=candidate_info_gender]',
       '.edit_candidate_info #resume .column .form-group input#candidate_info_resume_attributes_original',
       'input[type=submit]'
     ];
-    // Candidate Job Application form input elements check - start here 
+    // Candidate Profile form element check - start here 
     function jobApplicationFormLabelsTest(jobApplicationFormInputs) {
       for (i in jobApplicationFormInputs) {
         var currentInput = jobApplicationFormInputs[i];
@@ -470,8 +457,8 @@ module.exports = {
       }
     }
     jobApplicationFormLabelsTest(jobApplicationFormInputs);
-    // candidate job Applciation form input elements check - end here
-    // candidate job application form input filling - start here
+    // Candidate Profile form element check - end here 
+    // candidate pofile form - start here
     function submitingJobApplication(jobApplicationFormInputs){
       browser.clearValue(jobApplicationFormInputs[0]); // clear input field name
       browser.setValue(jobApplicationFormInputs[0], 'Sushil Kundu'); // set input name value to 'Sushil Kundu'
@@ -485,23 +472,45 @@ module.exports = {
       });
       browser.clearValue(jobApplicationFormInputs[2]); // clear the phone number
       browser.setValue(jobApplicationFormInputs[2], '+919821634189'); // Phone number value set
-      browser.clearValue(jobApplicationFormInputs[3]); // clear the phone number      
-      browser.setValue(jobApplicationFormInputs[3], 'sushilkundu143@gmail.com'); // E-mail value set
       // selecting the experience
-      browser.click(jobApplicationFormInputs[4] ,function(response){
+      browser.click(jobApplicationFormInputs[3] ,function(response){
         this.assert.ok(browser === this, 'Experience dropdown clicked.');
       });
       browser.pause(1000);
-      browser.waitForElementPresent( jobApplicationFormInputs[4] + ' option:nth-of-type(2)', 2000);     
-      browser.waitForElementVisible( jobApplicationFormInputs[4] + ' option:nth-of-type(2)', 2000);
+      browser.waitForElementPresent( jobApplicationFormInputs[3] + ' option:nth-of-type(2)', 2000);     
+      browser.waitForElementVisible( jobApplicationFormInputs[3] + ' option:nth-of-type(2)', 2000);
       browser.click(jobApplicationFormInputs[4] + ' option:nth-of-type(2)', function(response){
         this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
       });
       // experience selected
+      // selecting the function
+      browser.click(jobApplicationFormInputs[4] ,function(response){
+        this.assert.ok(browser === this, 'Experience dropdown clicked.');
+      });
+      browser.pause(1000);
+      browser.waitForElementPresent( jobApplicationFormInputs[4] + ' option[value="1"]', 2000);     
+      browser.waitForElementVisible( jobApplicationFormInputs[4] + ' option[value="1"]', 2000);
+      browser.click(jobApplicationFormInputs[4] + ' option[value="1"]', function(response){
+        this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
+      });
+      // end the function
+      // selecting the industry
+      browser.click(jobApplicationFormInputs[5] ,function(response){
+        this.assert.ok(browser === this, 'Experience dropdown clicked.');
+      });
+      browser.pause(1000);
+      browser.waitForElementPresent( jobApplicationFormInputs[5] + ' option[value="68"]', 2000);     
+      browser.waitForElementVisible( jobApplicationFormInputs[5] + ' option[value="68"]', 2000);
+      browser.click(jobApplicationFormInputs[5] + ' option[value="68"]', function(response){
+        this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
+      });
+      // end the industry
       browser.clearValue(jobApplicationFormInputs[6]); // clear the expected ctc field
       browser.setValue(jobApplicationFormInputs[6], '440000'); // set the value of CTC
-      browser.clearValue(jobApplicationFormInputs[7]); // clear the skills
-      browser.setValue(jobApplicationFormInputs[7], 'HTML, CSS, LESS, SASS, jQuery, JavaScript, '); // submiting the skills
+      browser.clearValue(jobApplicationFormInputs[7]); // clear the resume headline textarea
+      browser.setValue(jobApplicationFormInputs[7], 'Looking for frontend Developer opening'); // Set the Resume Headline  
+      browser.clearValue(jobApplicationFormInputs[8]); // clear the skills
+      browser.setValue(jobApplicationFormInputs[8], 'HTML, CSS, LESS, SASS, jQuery, JavaScript, '); // submiting the skills
       // selecting Preferred Job Function
       browser.expect.element('select#candidate_info_function_id.form-control').to.be.present;
       browser.expect.element('select#candidate_info_function_id.form-control').to.be.visible;
@@ -527,44 +536,64 @@ module.exports = {
       });
       // end the Preferred Industry
       // add education button clicked and adding the education details
-      browser.click('.js-add-education', function(response){
-        this.assert.ok(browser === this, 'Add education button clicked.');
-        browser.pause(1000);
-        browser.waitForElementPresent('.add-education-box', 2000);
-        browser.waitForElementVisible('.add-education-box', 2000);
-      });
-      browser.expect.element('.js-educations-remove').to.be.present;
-      browser.expect.element('.js-educations-remove').to.be.visible;
-      // unversity name selected
-      browser.expect.element('.js-educations-remove .row .form-group .col-md-4:nth-of-type(1) input.js-autocomplete-college').to.be.visible;
-      browser.setValue('.js-educations-remove .row .form-group .col-md-4:nth-of-type(1) input.js-autocomplete-college', 'Burdwan University');
-      browser.waitForElementPresent('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(2)', 1000);
-      browser.waitForElementVisible('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(2)', 1000);
-      browser.click('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(2) li:nth-of-type(1)', function(response){
-        this.assert.ok(browser === this, 'University name selected.');
-      });
-      // university name added
-      // Degree Name Selected
-      browser.expect.element('.js-educations-remove .row .form-group .col-md-4:nth-of-type(2) input.js-autocomplete-lect').to.be.visible;
-      browser.setValue('.js-educations-remove .row .form-group .col-md-4:nth-of-type(2) input.js-autocomplete-lect', 'B.E');
-      browser.waitForElementPresent('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(3)' , 1000);
-      browser.waitForElementVisible('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(3)', 1000);
-      browser.click('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type() li:nth-of-type(1)', function(response){
-        this.assert.ok(browser === this, 'University name selected.');
-      });
-      // Degree name Added
-      browser.click('.js-apply-education', function(response){
-        this.assert.ok(browser === this, 'Education added.');
+      browser.element('css selector', '#education .js-education-row', function(result){
+        if(result.value && result.value.ELEMENT) {
+          browser.click('#mpstep4', function(response){
+            this.assert.ok(browser === this, 'Job Application form submitted.');
+          })
+        } else {
+          browser.click('.js-add-education', function(response){
+            this.assert.ok(browser === this, 'Add education button clicked.');
+            browser.pause(1000);
+            browser.waitForElementPresent('.add-education-box', 2000);
+            browser.waitForElementVisible('.add-education-box', 2000);
+          });
+          browser.expect.element('.js-educations-remove').to.be.present;
+          browser.expect.element('.js-educations-remove').to.be.visible;
+          // unversity name selected
+          browser.expect.element('.js-educations-remove .row:nth-of-type(1) .form-group .col-md-7 input.js-autocomplete-college').to.be.visible;
+          browser.setValue('.js-educations-remove .row:nth-of-type(1) .form-group .col-md-7 input.js-autocomplete-college', 'Burdwan University');
+          browser.waitForElementPresent('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(2)', 1000);
+          browser.waitForElementVisible('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(2)', 1000);
+          browser.click('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(2) li:nth-of-type(1)', function(response){
+            this.assert.ok(browser === this, 'University name selected.');
+          });
+          // university name added
+          // Year of Graduation selected
+          browser.expect.element('.js-educations-remove .row:nth-of-type(1) .form-group .col-md-5 select.gradyear').to.be.present;
+          browser.expect.element('.js-educations-remove .row:nth-of-type(1) .form-group .col-md-5 select.gradyear').to.be.visible;
+          browser.click('.js-educations-remove .row:nth-of-type(1) .form-group .col-md-5 select.gradyear', function(response){
+            this.assert.ok(browser === this, 'Preffered function clicked.');
+          });
+          browser.pause(2000);
+          browser.waitForElementVisible('js-educations-remove .row:nth-of-type(1) .form-group .col-md-5 select.gradyear option[value="1967"]', 2000);
+          browser.click('js-educations-remove .row:nth-of-type(1) .form-group .col-md-5 select.gradyear option[value="1967"]', function(response){
+            this.assert.ok(browser === this, 'Job function option value selected.');
+          });
+          // Year of Graduation added
+          // Degree Name Selected
+          browser.expect.element('.js-educations-remove .row:nth-of-type(2) .form-group .col-md-12 input.js-autocomplete-lect').to.be.visible;
+          browser.setValue('.js-educations-remove .row:nth-of-type(2) .form-group .col-md-12 input.js-autocomplete-lect', 'B.E');
+          browser.waitForElementPresent('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(3)' , 1000);
+          browser.waitForElementVisible('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(3)', 1000);
+          browser.click('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(3) li:nth-of-type(1)', function(response){
+            this.assert.ok(browser === this, 'University name selected.');
+          });
+          // Degree name Added
+          // click button to save the education details
+          browser.click('.js-apply-education', function(response){
+            this.assert.ok(browser === this, 'Education added.');
+          });
+          browser.click('#mpstep4', function(response){
+            this.assert.ok(browser === this, 'Job Application form submitted.');
+          })
+        }
       });
       // end the education details
-      browser.click('#mpstep4', function(response){
-        this.assert.ok(browser === this, 'Job Application form submitted.');
-      })
       browser.saveScreenshot('./screenshots/jobapplication.png');
     }
     submitingJobApplication(jobApplicationFormInputs);
-    // end cadidate job application form input filled - end here
-    
+    // candidate profile form - end here
     browser.pause(5000);
     browser.assert.urlContains(browser.launch_url, 'Job Application Submitted.');
     browser.end();

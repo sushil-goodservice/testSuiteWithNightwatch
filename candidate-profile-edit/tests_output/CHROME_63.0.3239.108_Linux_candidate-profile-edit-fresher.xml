@@ -3,11 +3,11 @@
             failures="1"
             tests="1">
 
-  <testsuite name="candidate-job-application-after-login"
-    errors="0" failures="1" hostname="" id="" package="candidate-job-application-after-login" skipped="0"
-    tests="1" time="40.47" timestamp="Wed, 07 Feb 2018 10:48:50 GMT">
+  <testsuite name="candidate-profile-edit-fresher"
+    errors="0" failures="1" hostname="" id="" package="candidate-profile-edit-fresher" skipped="0"
+    tests="1" time="34.45" timestamp="Wed, 07 Feb 2018 13:00:36 GMT">
   
-    <testcase name="Candidate job application after login" classname="candidate-job-application-after-login" time="40.47" assertions="147">
+    <testcase name="Candidate job application after login" classname="candidate-profile-edit-fresher" time="34.45" assertions="158">
 
     
 
@@ -299,7 +299,29 @@
 
     
 
-      <failure message="Timed out while waiting for element &lt;.add-education-box&gt; to be visible for 2000 milliseconds.">    at Object.&lt;anonymous&gt; (/home/goodservice/Desktop/atsTesting/testCases/candidate-job-application/candidate-job-application-after-login.js:534:17)</failure>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+      <failure message="Timed out while waiting for element &lt;js-educations-remove .row:nth-of-type(1) .form-group .col-md-5 select.gradyear option[value=&#34;1967&#34;]&gt; to be present for 2000 milliseconds.">    at Object.&lt;anonymous&gt; (/home/goodservice/Desktop/atsTesting/testCases/candidate-profile-edit/candidate-profile-edit-fresher.js:569:19)</failure>
 
     
     </testcase>

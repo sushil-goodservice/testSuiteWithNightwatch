@@ -389,7 +389,7 @@ module.exports = {
     browser.expect.element('.edit_candidate_info').to.be.present;
     browser.expect.element('.edit_candidate_info').to.be.visible;
     // Candidate Job Application form label and email - start here
-    var checkSectionIDJobApplicationFormElements = ['#personal', '#employment', '#education', '#resume'];
+    var checkSectionIDJobApplicationFormElements = ['#personal', '#education', '#resume'];
 
     function checkSectionIDJobApplicationForm(checkSectionIDJobApplicationFormElements) {
       for (i in checkSectionIDJobApplicationFormElements) {
@@ -400,44 +400,43 @@ module.exports = {
     }
     checkSectionIDJobApplicationForm(checkSectionIDJobApplicationFormElements);
     // all form labels visible in page and inner text
-    /*
     var jobApplicationFormLabels = [{
-        selector: '.edit_candidate_info #personal .column .row:nth-of-type(1) .form-group:nth-of-type(1) .col-md-3 label.label-control',
+        selector: '.edit_candidate_info #personal .column .row:nth-of-type(1) .form-group .col-md-3 label',
         text: 'Name'
       },
       {
-        selector: '.edit_candidate_info #personal .column .row:nth-of-type(2) .form-group:nth-of-type(1) .col-md-3 label.label-control',
+        selector: '.edit_candidate_info #personal .column .row:nth-of-type(2) .form-group .col-md-3 label',
         text: 'Current City'
       },
       {
-        selector: '.edit_candidate_info #personal .column .row:nth-of-type(3) .form-group:nth-of-type(1) .col-md-3 label.label-control',
+        selector: '.edit_candidate_info #personal .column .row:nth-of-type(3) .form-group .col-md-3 label',
         text: 'Phone'
       },
       {
-        selector: '.edit_candidate_info #personal .column .row:nth-of-type(4) .forcm-group:nth-of-type(1) .col-md-3 label.label-control',
+        selector: '.edit_candidate_info #personal .column .row:nth-of-type(4) .forcm-group .col-md-3 label',
         text: 'Email'
       },
       {
-        selector: '.edit_candidate_info #personal .column .row:nth-of-type(5) .form-group:nth-of-type(1) .col-md-3 label.label-control',
+        selector: '.edit_candidate_info #personal .column .row:nth-of-type(5) .form-group .col-md-3 label',
         text: 'Total work experience'
       },
       {
-        selector: '.edit_candidate_info #personal .column .row:nth-of-type(6) .form-group:nth-of-type(1) .col-md-3 label.label-control',
+        selector: '.edit_candidate_info #personal .column .row:nth-of-type(6) .form-group .col-md-3 label',
         text: 'Annual Salary'
       },
       {
-        selector: '.edit_candidate_info #personal .column .row:nth-of-type(7) .form-group:nth-of-type(1) .col-md-3 label.label-control',
+        selector: '.edit_candidate_info #personal .column .row:nth-of-type(7) .form-group .col-md-3 label',
         text: 'Skills'
       },
       {
         selector: '.edit_candidate_info #resume .column .form-group label',
         text: 'Resume Upload'
-      },
+      }
     ];
-    */
     // check label presents, visibility and inner text
     /*
     function jobApplicationFormLabelsTest(jobApplicationFormLabels) {
+      console.log(jobApplicationFormLabels);
       for (x in jobApplicationFormLabels) {
         var currentLabel = jobApplicationFormLabels[x];
         browser.expect.element(currentLabel.selector).to.be.present;
@@ -445,6 +444,7 @@ module.exports = {
         browser.expect.element(currentLabel.selector).text.to.contain(currentLabel.text);
       }
     }
+    
     jobApplicationFormLabelsTest(jobApplicationFormLabels);
     */
     // Candidate Job Application form label check - end here    
@@ -472,7 +472,7 @@ module.exports = {
     jobApplicationFormLabelsTest(jobApplicationFormInputs);
     // candidate job Applciation form input elements check - end here
     // candidate job application form input filling - start here
-    function submitingJobApplication(jobApplicationFormInputs){
+    function submitingJobApplication(jobApplicationFormInputs) {
       browser.clearValue(jobApplicationFormInputs[0]); // clear input field name
       browser.setValue(jobApplicationFormInputs[0], 'Sushil Kundu'); // set input name value to 'Sushil Kundu'
       browser.clearValue(jobApplicationFormInputs[1]); // clear value of current city
@@ -480,7 +480,7 @@ module.exports = {
       browser.pause(1000);
       browser.waitForElementPresent('.pac-container.pac-logo', 2000);
       browser.waitForElementPresent('.pac-container.pac-logo .pac-item:nth-of-type(1)', 2000);
-      browser.click('.pac-container.pac-logo .pac-item:nth-of-type(1)', function(response){
+      browser.click('.pac-container.pac-logo .pac-item:nth-of-type(1)', function (response) {
         this.assert.ok(browser === this, 'City name selected.');
       });
       browser.clearValue(jobApplicationFormInputs[2]); // clear the phone number
@@ -488,13 +488,13 @@ module.exports = {
       browser.clearValue(jobApplicationFormInputs[3]); // clear the phone number      
       browser.setValue(jobApplicationFormInputs[3], 'sushilkundu143@gmail.com'); // E-mail value set
       // selecting the experience
-      browser.click(jobApplicationFormInputs[4] ,function(response){
+      browser.click(jobApplicationFormInputs[4], function (response) {
         this.assert.ok(browser === this, 'Experience dropdown clicked.');
       });
       browser.pause(1000);
-      browser.waitForElementPresent( jobApplicationFormInputs[4] + ' option:nth-of-type(2)', 2000);     
-      browser.waitForElementVisible( jobApplicationFormInputs[4] + ' option:nth-of-type(2)', 2000);
-      browser.click(jobApplicationFormInputs[4] + ' option:nth-of-type(2)', function(response){
+      browser.waitForElementPresent(jobApplicationFormInputs[4] + ' option:nth-of-type(2)', 2000);
+      browser.waitForElementVisible(jobApplicationFormInputs[4] + ' option:nth-of-type(2)', 2000);
+      browser.click(jobApplicationFormInputs[4] + ' option:nth-of-type(2)', function (response) {
         this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
       });
       // experience selected
@@ -505,66 +505,72 @@ module.exports = {
       // selecting Preferred Job Function
       browser.expect.element('select#candidate_info_function_id.form-control').to.be.present;
       browser.expect.element('select#candidate_info_function_id.form-control').to.be.visible;
-      browser.click('select#candidate_info_function_id.form-control', function(response){
+      browser.click('select#candidate_info_function_id.form-control', function (response) {
         this.assert.ok(browser === this, 'Preffered function clicked.');
       });
       browser.pause(2000);
       browser.waitForElementVisible('select#candidate_info_function_id.form-control option[value="1"]', 2000);
-      browser.click('select#candidate_info_function_id.form-control option[value="1"]', function(response){
+      browser.click('select#candidate_info_function_id.form-control option[value="1"]', function (response) {
         this.assert.ok(browser === this, 'Job function option value selected.');
       });
       // end Preferred Function
       // selecting the Preferred Industry
       browser.expect.element('select#candidate_info_industry_id.form-control').to.be.present;
       browser.expect.element('select#candidate_info_industry_id.form-control').to.be.visible;
-      browser.click('select#candidate_info_industry_id.form-control', function(response){
+      browser.click('select#candidate_info_industry_id.form-control', function (response) {
         this.assert.ok(browser === this, 'Preffered function clicked.');
       });
       browser.pause(2000);
       browser.waitForElementVisible('select#candidate_info_industry_id.form-control option[value="68"]', 2000);
-      browser.click('select#candidate_info_industry_id.form-control option[value="68"]', function(response){
+      browser.click('select#candidate_info_industry_id.form-control option[value="68"]', function (response) {
         this.assert.ok(browser === this, 'Job function option value selected.');
       });
       // end the Preferred Industry
       // add education button clicked and adding the education details
-      browser.click('.js-add-education', function(response){
-        this.assert.ok(browser === this, 'Add education button clicked.');
-        browser.pause(1000);
-        browser.waitForElementPresent('.add-education-box', 2000);
-        browser.waitForElementVisible('.add-education-box', 2000);
+      browser.element('css selector', '#education .js-education-row', function (result) {
+        if (result.value && result.value.ELEMENT) {
+          browser.expect.element('.js-education-row').to.be.present;
+          browser.expect.element('.js-education-row').to.be.visible;
+        } else {
+        browser.click('.js-add-education', function (response) {
+          this.assert.ok(browser === this, 'Add education button clicked.');
+          browser.pause(1000);
+          browser.waitForElementPresent('.add-education-box', 2000);
+          browser.waitForElementVisible('.add-education-box', 2000);
+        });
+        browser.expect.element('.js-educations-remove').to.be.present;
+        browser.expect.element('.js-educations-remove').to.be.visible;
+        // unversity name selected
+        browser.expect.element('.js-educations-remove .row .form-group .col-md-4:nth-of-type(1) input.js-autocomplete-college').to.be.visible;
+        browser.setValue('.js-educations-remove .row .form-group .col-md-4:nth-of-type(1) input.js-autocomplete-college', 'Burdwan University');
+        browser.waitForElementPresent('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(2)', 1000);
+        browser.waitForElementVisible('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(2)', 1000);
+        browser.click('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(2) li:nth-of-type(1)', function (response) {
+          this.assert.ok(browser === this, 'University name selected.');
+        });
+        // university name added
+        // Degree Name Selected
+        browser.expect.element('.js-educations-remove .row .form-group .col-md-4:nth-of-type(2) input.js-autocomplete-lect').to.be.visible;
+        browser.setValue('.js-educations-remove .row .form-group .col-md-4:nth-of-type(2) input.js-autocomplete-lect', 'B.E');
+        browser.waitForElementPresent('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(3)', 1000);
+        browser.waitForElementVisible('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(3)', 1000);
+        browser.click('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type() li:nth-of-type(1)', function (response) {
+          this.assert.ok(browser === this, 'University name selected.');
+        });
+        // Degree name Added
+        browser.click('.js-apply-education', function (response) {
+          this.assert.ok(browser === this, 'Education added.');
+        });
+        // end the education details
+        browser.saveScreenshot('./screenshots/jobapplication.png');
+        }
       });
-      browser.expect.element('.js-educations-remove').to.be.present;
-      browser.expect.element('.js-educations-remove').to.be.visible;
-      // unversity name selected
-      browser.expect.element('.js-educations-remove .row .form-group .col-md-4:nth-of-type(1) input.js-autocomplete-college').to.be.visible;
-      browser.setValue('.js-educations-remove .row .form-group .col-md-4:nth-of-type(1) input.js-autocomplete-college', 'Burdwan University');
-      browser.waitForElementPresent('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(2)', 1000);
-      browser.waitForElementVisible('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(2)', 1000);
-      browser.click('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(2) li:nth-of-type(1)', function(response){
-        this.assert.ok(browser === this, 'University name selected.');
-      });
-      // university name added
-      // Degree Name Selected
-      browser.expect.element('.js-educations-remove .row .form-group .col-md-4:nth-of-type(2) input.js-autocomplete-lect').to.be.visible;
-      browser.setValue('.js-educations-remove .row .form-group .col-md-4:nth-of-type(2) input.js-autocomplete-lect', 'B.E');
-      browser.waitForElementPresent('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(3)' , 1000);
-      browser.waitForElementVisible('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type(3)', 1000);
-      browser.click('ul.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content:nth-of-type() li:nth-of-type(1)', function(response){
-        this.assert.ok(browser === this, 'University name selected.');
-      });
-      // Degree name Added
-      browser.click('.js-apply-education', function(response){
-        this.assert.ok(browser === this, 'Education added.');
-      });
-      // end the education details
-      browser.click('#mpstep4', function(response){
-        this.assert.ok(browser === this, 'Job Application form submitted.');
-      })
-      browser.saveScreenshot('./screenshots/jobapplication.png');
     }
     submitingJobApplication(jobApplicationFormInputs);
+    browser.click('#mpstep4', function (response) {
+      this.assert.ok(browser === this, 'Job Application form submitted.');
+    });
     // end cadidate job application form input filled - end here
-    
     browser.pause(5000);
     browser.assert.urlContains(browser.launch_url, 'Job Application Submitted.');
     browser.end();

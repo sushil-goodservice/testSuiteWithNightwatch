@@ -5,9 +5,9 @@
 
   <testsuite name="candidate-home-page-header-link-when-login"
     errors="0" failures="0" hostname="" id="" package="candidate-home-page-header-link-when-login" skipped="0"
-    tests="1" time="14.84" timestamp="Tue, 06 Feb 2018 07:59:07 GMT">
+    tests="1" time="37.77" timestamp="Fri, 09 Feb 2018 04:17:06 GMT">
   
-    <testcase name="Home Page Navigation when Login" classname="candidate-home-page-header-link-when-login" time="14.84" assertions="60">
+    <testcase name="Home Page Navigation when Login" classname="candidate-home-page-header-link-when-login" time="37.77" assertions="60">
 
     
 

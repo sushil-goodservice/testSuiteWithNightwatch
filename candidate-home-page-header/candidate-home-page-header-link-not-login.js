@@ -10,7 +10,7 @@ module.exports = {
   'Home Page Navigation Not Login': function (browser) {
     browser.url(browser.launch_url); // redirect to home page url
     browser.waitForElementPresent('body', 5000); // wait for page body should be loaded.
-    browser.assert.title('Landing - the best tech jobs in 1 place'); // match the home page title
+    browser.assert.title('ATS - the best tech jobs in 1 place'); // match the home page title
     // checkHomePageElementsTextLink: define function to test all the elements present in home page. 
     var homePageElements = [{
         element: '.header-logo',

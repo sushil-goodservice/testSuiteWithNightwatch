@@ -74,9 +74,38 @@ module.exports = {
     }
     checkHomePageElementsTextLink(homePageElements);
     // Home Page element check function end here 
+    // recruiter home page header elements checked
     // Testing the navigation menu elements and corresponding links
-    var menu = '.links-item a';
+    var menuUL = '.dropdown-menu.links-item';
+    var buttonDropdown = '.headerlink-with-icon .dropdown .navbar-toggle';
+    // set element for recruiter menu item when not login
+    var menuElements = [{
+        selector: menuUL + ' li:nth-of-type(1) a',
+        link: '/user/sign_in?is_recruiter=true',
+        text: 'Log In'
+      },
+      {
+        selector: menuUL + ' li:nth-of-type(2) a',
+        link: '/user/sign_up?is_recruiter=true',
+        text: 'Sign Up'
+      }
+    ];
+    // check menu element function when not login
+    function checkRecruiterHomeMenuNotLogin(menuUL, menuElements) {
+      browser.expect.element(menuUL).to.be.present;
+      browser.click(buttonDropdown, function (response) {
+        browser.waitForElementVisible(menuUL, 2000);
+      });
 
+      for (i in menuElements) {
+        var curentEl = menuElements[i];
+        browser.expect.element(curentEl.selector).to.be.present;
+        browser.expect.element(curentEl.selector).text.to.equals(curentEl.text);
+        browser.expect.element(curentEl.selector).to.have.attribute('href').which.contains(curentEl.link);
+      }
+    }
+    checkRecruiterHomeMenuNotLogin(menuUL, menuElements);
+    // end check menu elements function when not login
     browser.end();
   }
 };

@@ -1,37 +1,83 @@
 // BDD-style suite with "expect"
-var chai = require('chai');  
-var assert = chai.assert; 
+var chai = require('chai');
+var assert = chai.assert;
 var expect = chai.expect;
 var should = chai.should();
 // var expect = require('chai').expect;
 // This test set is for not login condition
 module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
-  'Recruiter-Home': function (browser) {
-    browser.url(browser.launch_url + '/recruiter/candidate_infos');
-    browser.waitForElementPresent('body', 5000);
-    browser.assert.title('Landing');
-    browser.expect.element('.header-logo').to.be.present;
-    browser.expect.element('.header-logo').to.be.visible;
-    browser.expect.element('.full-width.search').to.be.present;
-    browser.expect.element('.full-width.search').to.be.visible;
-    browser.expect.element('#candidate-info-container').to.be.present;
-    browser.expect.element('#candidate-info-container').to.be.visible;
-    browser.expect.element('.header-logo a').to.be.present;
-    browser.expect.element('.header-logo a').to.be.visible;
-    browser.expect.element('.sidebar-filter').to.be.present;
-    browser.expect.element('.sidebar-filter').to.be.visible;
-    browser.expect.element('.table-data').to.be.present;
-    browser.expect.element('.table-data').to.be.visible;
-    browser.expect.element('.header-logo a').text.to.contain('LANDING .CO');
-    browser.expect.element('.header-logo a').to.have.attribute('href').which.contains('/');
-    browser.saveScreenshot('./screenshots/expect-home.png');
-    browser.end();
-  },
-  // Testing the navigation menu elements and corresponding links
-  'Navigation': function (browser) {
+  'Recruiter Home Page Navigation When Login': function (browser) {
+    browser.url(browser.launch_url + '/recruiter/candidate_infos'); // redirecting to candidate search page
+    browser.waitForElementPresent('body', 5000); // check if the body is loaded
+    browser.waitForElementNotVisible('.loader-modal', 3000);
+    browser.assert.title('Landing'); // change the page title here
+    var homePageElements = [{
+        element: '.header-logo',
+        text: '',
+        link: ''
+      },
+      {
+        element: '.full-width.search',
+        text: '',
+        link: ''
+      },
+      {
+        element: '#candidate-info-container',
+        text: '',
+        link: ''
+      },
+      {
+        element: '.sidebar-filter',
+        text: '',
+        link: ''
+      },
+      {
+        element: '.table-data',
+        text: '',
+        link: ''
+      },
+      {
+        element: 'ul.flex.vertical-align li a.btn.btn-sm.blue',
+        text: 'Add Job',
+        link: '/recruiter/jobs/new'
+      },
+      {
+        element: '.headerlink-with-icon .dropdown .navbar-toggle',
+        text: '',
+        link: ''
+      },
+      {
+        element: '.header-logo a',
+        text: 'LANDING .CO',
+        link: '/'
+      }
+    ];
+    // Home Page element check function start here 
+    function checkHomePageElementsTextLink(homePageElements) {
+      for (x in homePageElements) {
+        var currentHomePageElements = homePageElements[x];
+        if (currentHomePageElements.text != '' && currentHomePageElements.link != '') {
+          browser.expect.element(currentHomePageElements.element).to.be.present;
+          browser.expect.element(currentHomePageElements.element).to.be.visible;
+          browser.expect.element(currentHomePageElements.element).text.to.contain(currentHomePageElements.text);
+          browser.expect.element(currentHomePageElements.element).to.have.attribute('href').which.equals(browser.launch_url + currentHomePageElements.link);
+        } else if (currentHomePageElements.text != '' && currentHomePageElements.link == '') {
+          browser.expect.element(currentHomePageElements.element).to.be.present;
+          browser.expect.element(currentHomePageElements.element).to.be.visible;
+          browser.expect.element(currentHomePageElements.element).text.to.equals(currentHomePageElements.text);
+        } else {
+          browser.expect.element(currentHomePageElements.element).to.be.present;
+          browser.expect.element(currentHomePageElements.element).to.be.visible;
+        }
+      }
+    }
+    checkHomePageElementsTextLink(homePageElements);
+    // Home Page element check function end here 
+    // recruiter home page header elements checked
     var menuBeforeLogin = '.links-item a';
     var menu = '.headerlink-with-icon';
+
     function testMenuItemsAfterLogin(items) {
       expect(items.value.length).to.equal(1); // Chai module
       browser.expect.element(menu + ' .dropdown-menu li:nth-of-type(1) a').text.to.contain('My Jobs');
@@ -50,7 +96,7 @@ module.exports = {
     }
     browser.url(browser.launch_url + '/recruiter/candidate_infos');
     browser.waitForElementPresent('body', 1000);
-    browser.click(menuBeforeLogin + ':nth-of-type(1)', function(response) {
+    browser.click(menuBeforeLogin + ':nth-of-type(1)', function (response) {
       this.assert.ok(browser === this, 'Open recruiter login page.');
     });
     browser.waitForElementPresent('body', 1000);
@@ -100,7 +146,7 @@ module.exports = {
     browser.expect.element(menu).to.be.visible;
     browser.expect.element(menu + ' .navbar-toggle').to.be.present;
     browser.expect.element(menu + ' .navbar-toggle').to.be.visible;
-    browser.click(menu + ' .navbar-toggle', function(response) {
+    browser.click(menu + ' .navbar-toggle', function (response) {
       this.assert.ok(browser === this, 'Recruiter dropdown-menu open.');
     });
     browser.elements('css selector', menu, testMenuItemsAfterLogin);

@@ -523,25 +523,7 @@ module.exports = {
       browser.clearValue(candidateProfileEditFormElements[7]); // clear the resume headline textarea
       browser.setValue(candidateProfileEditFormElements[7], 'Looking for frontend Developer opening'); // Set the Resume Headline  
       browser.clearValue(candidateProfileEditFormElements[8]); // clear the skills
-      browser.setValue(candidateProfileEditFormElements[8], 'HTML, CSS, LESS, SASS, jQuery, JavaScript, '); // submiting the skills
-      // selecting Preferred Job Function
-      browser.expect.element('select#candidate_info_function_id.form-control').to.be.present;
-      browser.expect.element('select#candidate_info_function_id.form-control').to.be.visible;
-      browser.click('select#candidate_info_function_id.form-control', function (response) {
-        this.assert.ok(browser === this, 'Preffered function clicked.');
-      });
-      browser.pause(2000);
-      browser.waitForElementVisible('select#candidate_info_function_id.form-control option[value="1"]', 2000);
-      browser.click('select#candidate_info_function_id.form-control option[value="1"]', function (response) {
-        this.assert.ok(browser === this, 'Job function option value selected.');
-      });
-      // end Preferred Function
-      // selecting the Preferred Industry
-      browser.expect.element('select#candidate_info_industry_id.form-control').to.be.present;
-      browser.expect.element('select#candidate_info_industry_id.form-control').to.be.visible;
-      browser.click('select#candidate_info_industry_id.form-control', function (response) {
-        this.assert.ok(browser === this, 'Preffered function clicked.');
-      });
+      browser.setValue(candidateProfileEditFormElements[8], 'HTML, CSS, LESS, SASS, jQuery, JavaScript, '); // submiting the skill
       browser.pause(2000);
       browser.waitForElementVisible('select#candidate_info_industry_id.form-control option[value="68"]', 2000);
       browser.click('select#candidate_info_industry_id.form-control option[value="68"]', function (response) {
@@ -552,7 +534,7 @@ module.exports = {
       browser.element('css selector', '#education .js-education-row', function (result) {
         if (result.value && result.value.ELEMENT) {
           browser.click('#mpstep4', function (response) {
-            this.assert.ok(browser === this, 'Job Application form submitted.');
+            this.assert.ok(browser === this , 'Job Application form submitted.');
           });
         } else {
           browser.click('.js-add-education', function (response) {

@@ -24,26 +24,11 @@ module.exports = {
     homeElement();
     // page element text contain
     var pageTextElement = [
-    {
-      element : '.header-logo a',
-      text : 'LANDING .CO'
-    },
-    {
-      element : '.main-footer .container a:nth-of-type(2)',
-      text : 'LANDING .CO'
-    },
-    { 
-      element : '.page-heading h2',
-      text : 'Browse Jobs'
-    },
-    {
-      element : '.popular-tags .popular-tags-title',
-      text : 'Popular Search Tags:'
-    },
-    {
-      element : '.main-footer .container a:nth-of-type(1)',
-      text : 'Browse Jobs'
-    }
+    { element : '.header-logo a', text : 'LANDING .CO' },
+    { element : '.main-footer .container a:nth-of-type(2)', text : 'LANDING .CO' },
+    { element : '.page-heading h2', text : 'Browse Jobs' },
+    { element : '.popular-tags .popular-tags-title',  text : 'Popular Search Tags:' },
+    { element : '.main-footer .container a:nth-of-type(1)', text : 'Browse Jobs' }
     ];
     function pageTextElementFn(){
       for(var i = 0; i < pageTextElement.length; i++){
@@ -52,21 +37,11 @@ module.exports = {
       }
     }
     pageTextElementFn();
-    
     // page element link test
     var pagelinkElement = [
-    {
-      element : '.header-logo a',
-      link : '/'
-    },
-    {
-      element : '.main-footer .container a:nth-of-type(1)',
-      link : '/sitemap'
-    },
-    { 
-      element : '.main-footer .container a:nth-of-type(2)',
-      link : '/'
-    }
+    { element : '.header-logo a', link : '/' },
+    { element : '.main-footer .container a:nth-of-type(1)', link : '/sitemap' },
+    { element : '.main-footer .container a:nth-of-type(2)', link : '/' }
     ];
     function pagelinkElementEn(){
       for(var i = 0; i < pagelinkElement.length; i++){
@@ -77,16 +52,8 @@ module.exports = {
     pagelinkElementEn();
     // menu links check when not login
     var notLogin = [
-     {
-      element : menu + ':nth-of-type(1) a',
-      text : 'FOR CANDIDATES',
-      link : '/user/sign_up'
-     },
-     {
-      element : menu + ':nth-of-type(2) a',
-      text : 'FOR RECRUITERS',
-      link : '/user/sign_up?is_recruiter=true'
-     }
+     { element : menu + ':nth-of-type(1) a',  text : 'FOR CANDIDATES',  link : '/user/sign_up' },
+     { element : menu + ':nth-of-type(2) a', text : 'FOR RECRUITERS', link : '/user/sign_up?is_recruiter=true' }
     ];
     //
     function navigation(items) {
@@ -102,36 +69,12 @@ module.exports = {
     browser.elements('css selector', menu, navigation);
     // after login menu testing
     var el = [
-        {
-          linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a',
-          linkTitle : 'My Jobs',
-          linkHref : '/recruiter/jobs'
-        },
-        {
-          linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(2) a',
-          linkTitle : 'Add new Jobs',
-          linkHref : '/recruiter/jobs/new'
-        },
-        {
-          linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(3) a',
-          linkTitle : 'Candidate Database',
-          linkHref : '/recruiter/candidate_infos'
-        },
-        {
-          linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(4) a',
-          linkTitle : 'My Profile',
-          linkHref : '/profile/edit'
-        },
-        {
-          linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(5) a',
-          linkTitle : 'My Organisation & Team',
-          linkHref : '/recruiter/organisations'
-        },
-        {
-          linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a',
-          linkTitle : 'Logout',
-          linkHref : '/user/sign_out'
-        }
+        { linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(1) a', linkTitle : 'My Jobs', linkHref : '/recruiter/jobs' },
+        { linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(2) a', linkTitle : 'Add new Jobs', linkHref : '/recruiter/jobs/new' },
+        { linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(3) a', linkTitle : 'Candidate Database', linkHref : '/recruiter/candidate_infos' },
+        { linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(4) a', linkTitle : 'My Profile', linkHref : '/profile/edit' },
+        { linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(5) a', linkTitle : 'My Organisation & Team', linkHref : '/recruiter/organisations' },
+        { linkTag : afterLoginMenu + ' .dropdown .dropdown-menu li:nth-of-type(6) a', linkTitle : 'Logout', linkHref : '/user/sign_out' }
       ];
     function navigationAfterLogin(el) {
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle').to.be.present;
@@ -141,7 +84,7 @@ module.exports = {
         this.assert.ok(browser === this, 'Recruiter header-menu dropdown-menu clicked.');
       });
       for(var i = 0; i < el.length; i++){
-        console.log(el[i].linkTag , el[i].linkTitle , el[i].linkHref);
+       // console.log(el[i].linkTag , el[i].linkTitle , el[i].linkHref);
         browser.expect.element(el[i].linkTag).to.present;
         browser.expect.element(el[i].linkTag).to.be.visible;
         browser.expect.element(el[i].linkTag).text.to.equal(el[i].linkTitle);
@@ -220,7 +163,7 @@ module.exports = {
     browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Candidate Login');
     browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_in');
-    browser.setValue('input[type=email]', 'sushil@goodservice.in');
+    browser.setValue('input[type=email]', 'kapur.r1985@gmail.com');
     browser.setValue('input[type=password]', 'goodservice');
     browser.click('input[type=submit]');
     browser.pause(5000);
@@ -241,45 +184,16 @@ module.exports = {
     // job posting form element label check
     var elementForm =  '#new_job_posting .form-group';
     var el = [
-      {
-        tag : elementForm + ':nth-of-type(1) .row .col-md-4.col-sm-4 label.control-label',
-        text : 'Who can access this job'
-      },
-      {
-        tag: elementForm + ':nth-of-type(2) .row .col-md-4.col-sm-4 label.control-label', 
-        text : 'Select your company'
-      },
-      {
-        tag: elementForm + ':nth-of-type(3) .row .col-md-4.col-sm-4 label.control-label',
-        text : 'Role'
-      },
-      {
-        tag : elementForm + ':nth-of-type(4) .row .col-md-4.col-sm-4 label.control-label',
-        text : 'Job Title'
-      },
-      {
-        tag : elementForm + ':nth-of-type(5) .row .col-md-4.col-sm-4 label.control-label', 
-        text : 'Skills'
-      },
-      {
-        tag : elementForm + ':nth-of-type(6) .row .col-md-4.col-sm-4 label.control-label', 
-        text : 'Function'
-      },
-      {
-        tag : elementForm + ':nth-of-type(7) .row .col-md-4.col-sm-4 label.control-label', 
-        text : 'City'
-      },
-      {
-        tag: elementForm + ':nth-of-type(8) .row .col-md-4 label.control-label',
-        text : 'Work Experience' 
-      },
-      {
-        tag : elementForm + ':nth-of-type(9) .row .col-md-4 label.control-label',
-        text : 'Salary Range'
-      },{
-        tag : elementForm + ':nth-of-type(10) .row .col-md-4 label.control-label', 
-        text : 'Job Description'
-      }
+      { tag : elementForm + ':nth-of-type(1) .row .col-md-4.col-sm-4 label.control-label', text : 'Who can access this job' },
+      { tag: elementForm + ':nth-of-type(2) .row .col-md-4.col-sm-4 label.control-label', text : 'Select your company' },
+      { tag: elementForm + ':nth-of-type(3) .row .col-md-4.col-sm-4 label.control-label', text : 'Role' },
+      { tag : elementForm + ':nth-of-type(4) .row .col-md-4.col-sm-4 label.control-label', text : 'Job Title' },
+      { tag : elementForm + ':nth-of-type(5) .row .col-md-4.col-sm-4 label.control-label', text : 'Skills' },
+      { tag : elementForm + ':nth-of-type(6) .row .col-md-4.col-sm-4 label.control-label', text : 'Function' },
+      { tag : elementForm + ':nth-of-type(7) .row .col-md-4.col-sm-4 label.control-label', text : 'City' },
+      { tag: elementForm + ':nth-of-type(8) .row .col-md-4 label.control-label', text : 'Work Experience' },
+      { tag : elementForm + ':nth-of-type(9) .row .col-md-4 label.control-label',  text : 'Salary Range' },
+      { tag : elementForm + ':nth-of-type(10) .row .col-md-4 label.control-label',  text : 'Job Description' }
     ];
     function checkFormElementLavels(el){
       for(var i = 0; i < el.length; i++){
@@ -324,8 +238,9 @@ module.exports = {
     browser.click('select[id="job_posting_recruiter_team_id"]', function(response){
       this.assert.ok(browser === this, 'Select team dropdown clicked.');
     });
-    browser.waitForElementVisible("option[value='659821']", 2000);
-    browser.click("option[value='659821']", function(response){
+    // set company id form the option value. For example here is : 669092.
+    browser.waitForElementVisible("option[value='669092']", 2000);
+    browser.click("option[value='669092']", function(response){
       this.assert.ok(browser === this, 'Select team dropdown clicked and value selected.');
     });
     browser.setValue('#' + input[2], 'UI Test Automation Engineer');
@@ -338,9 +253,11 @@ module.exports = {
     browser.click("option[value='Software Development']", function(response){
       this.assert.ok(browser === this, 'Job function dropdown clicked and option value selected.');
     });
+    browser.clearValue('#' + input[6]);
     browser.setValue('#' + input[6], 'Delhi, India');
+    browser.pause(1000);
     browser.waitForElementPresent('.pac-container.pac-logo', 2000);
-    browser.waitForElementPresent('.pac-container.pac-logo .pac-item:nth-of-type(1)', 1000);
+    browser.waitForElementPresent('.pac-container.pac-logo .pac-item:nth-of-type(1)', 2000);
     browser.click('.pac-container.pac-logo .pac-item:nth-of-type(1)', function(response){
       this.assert.ok(browser === this, 'City name selected.');
     });

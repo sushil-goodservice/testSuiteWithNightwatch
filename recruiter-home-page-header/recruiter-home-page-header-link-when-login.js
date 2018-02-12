@@ -151,8 +151,7 @@ module.exports = {
     recruiterLoginFormElements(recruiterLoginFormElementsSet);
     // recruiter login form, input element and label test - end here
     // recruiter login page links and inner text check - start here
-    var pageElementLinks = [
-      {
+    var pageElementLinks = [{
         selector: '.f-pwd',
         text: '(Forgot your password?)',
         link: '/user/password/new?is_recruiter=true'
@@ -178,8 +177,9 @@ module.exports = {
         link: '/user/sign_in'
       }
     ];
-    function pageElementLinksCheck(pageElementLinks){
-      for(i in pageElementLinks){
+
+    function pageElementLinksCheck(pageElementLinks) {
+      for (i in pageElementLinks) {
         var current = pageElementLinks[i];
         browser.expect.element(current.selector).to.be.present;
         browser.expect.element(current.selector).to.be.visible;
@@ -190,7 +190,23 @@ module.exports = {
     pageElementLinksCheck(pageElementLinks);
     // recruiter login page links and innter text check - end here
     // recruiter login with following credentials
+    function recruiterLogin(recruiterLoginFormElementsSet) {
+      browser.clearValue(recruiterLoginFormElementsSet[0].selector);
+      browser.setValue(recruiterLoginFormElementsSet[0].selector, 'sushilkundu143@gmail.com');
+      browser.clearValue(recruiterLoginFormElementsSet[1].selector);
+      browser.setValue(recruiterLoginFormElementsSet[1].selector, 'E173@sushil');
+      browser.click(recruiterLoginFormElementsSet[2].selector, function (response) {
+        this.assert.ok(browser === this, 'Recruiter Login form submitted.');
+      });
+      browser.waitForElementPresent('body', 1000);
+      browser.waitForElementVisible('body', 1000);
+      browser.assert.urlEquals(browser.launch_url + '/recruiter/candidate_infos', 'Recruiter login Sucessful.');
+    }
+    recruiterLogin(recruiterLoginFormElementsSet);
     // recruiter login sucessfull with following credentials
+    // recruiter dropdown menu elements check - start here
+    var recruiterDropdownMenuLogin = [];
+    // recruiter dropdown menu elements check - end here
     // recruiter login page
     browser.end();
   }

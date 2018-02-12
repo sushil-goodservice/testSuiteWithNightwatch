@@ -191,23 +191,79 @@ module.exports = {
     // recruiter login page links and innter text check - end here
     // recruiter login with following credentials
     function recruiterLogin(recruiterLoginFormElementsSet) {
-      browser.clearValue(recruiterLoginFormElementsSet[0].selector);
-      browser.setValue(recruiterLoginFormElementsSet[0].selector, 'sushilkundu143@gmail.com');
-      browser.clearValue(recruiterLoginFormElementsSet[1].selector);
-      browser.setValue(recruiterLoginFormElementsSet[1].selector, 'E173@sushil');
-      browser.click(recruiterLoginFormElementsSet[2].selector, function (response) {
+      browser.clearValue(recruiterLoginFormElementsSet[0].elementSelector);
+      browser.setValue(recruiterLoginFormElementsSet[0].elementSelector, 'sushilkundu143@gmail.com');
+      browser.clearValue(recruiterLoginFormElementsSet[1].elementSelector);
+      browser.setValue(recruiterLoginFormElementsSet[1].elementSelector, 'goodservice');
+      browser.click(recruiterLoginFormElementsSet[2].elementSelector, function (response) {
         this.assert.ok(browser === this, 'Recruiter Login form submitted.');
       });
       browser.waitForElementPresent('body', 1000);
       browser.waitForElementVisible('body', 1000);
+      browser.waitForElementNotVisible('.loader-modal', 2000);
       browser.assert.urlEquals(browser.launch_url + '/recruiter/candidate_infos', 'Recruiter login Sucessful.');
     }
     recruiterLogin(recruiterLoginFormElementsSet);
     // recruiter login sucessfull with following credentials
     // recruiter dropdown menu elements check - start here
-    var recruiterDropdownMenuLogin = [];
+    var recruiterDropdownLogin = '.headerlink-with-icon .dropdown';
+    var dropDownIcon = recruiterDropdownLogin + ' .dropdown-toggle .navbar-toggle';
+    var dropDownMenu = recruiterDropdownLogin + ' .dropdown-menu';
+    var recruiterDropdownMenuItemsLogin = [{
+        selector: dropDownMenu + ' li:nth-of-type(1) a',
+        text: 'My Jobs',
+        link: '/recruiter/jobs'
+      },
+      {
+        selector: dropDownMenu + ' li:nth-of-type(2) a',
+        text: 'Add new Jobs',
+        link: '/recruiter/jobs/new'
+      },
+      {
+        selector: dropDownMenu + ' li:nth-of-type(3) a',
+        text: 'Candidate Database',
+        link: '/recruiter/candidate_infos'
+      },
+      {
+        selector: dropDownMenu + ' li:nth-of-type(4) a',
+        text: 'My Profile',
+        link: '/profile/edit'
+      },
+      {
+        selector: dropDownMenu + ' li:nth-of-type(5) a',
+        text: 'My Organisation & Team',
+        link: '/recruiter/organisations'
+      },
+      {
+        selector: dropDownMenu + ' li:nth-of-type(6) a',
+        text: 'Logout',
+        link: '/user/sign_out'
+      }
+    ];
+
+    function menuDropdownAfterLoginRecruiter(recruiterDropdownLogin, dropDownIcon, recruiterDropdownMenuItemsLogin) {
+      browser.expect.element(recruiterDropdownLogin).to.be.present;
+      browser.expect.element(recruiterDropdownLogin).to.be.visible;
+      browser.expect.element(dropDownIcon).to.be.present;
+      browser.expect.element(dropDownIcon).to.be.visible;
+      browser.waitForElementNotVisible('.loader-modal', 2000);
+      browser.click(dropDownIcon, function (response) {
+        this.assert.ok(browser === this, 'Menu dropdown link clicked.');
+        browser.expect.element(dropDownMenu).to.be.present;
+        browser.expect.element(dropDownMenu).to.be.visible;
+      });
+      for (i in recruiterDropdownMenuItemsLogin) {
+        var currentItem = recruiterDropdownMenuItemsLogin[i];
+        browser.expect.element(currentItem.selector).to.be.present;
+        browser.expect.element(currentItem.selector).to.be.visible;
+        browser.expect.element(currentItem.selector).text.to.equals(currentItem.text);
+        browser.expect.element(currentItem.selector).to.have.attribute('href').which.contains(currentItem.link);
+      }
+    }
+    menuDropdownAfterLoginRecruiter(recruiterDropdownLogin, dropDownIcon, recruiterDropdownMenuItemsLogin);
     // recruiter dropdown menu elements check - end here
     // recruiter login page
+    browser.pause(2000);
     browser.end();
   }
 };

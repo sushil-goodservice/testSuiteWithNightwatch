@@ -7,38 +7,89 @@ var should = chai.should();
 // This test set is for not login condition
 module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
-  'Signup': function (browser) {
-    var menu = '.links .links-item',
-      afterLoginMenu = '.headerlink-with-icon';
-    browser.url(browser.launch_url);
-    browser.waitForElementPresent('body', 5000);
-    browser.assert.title('Landing - the best tech jobs in 1 place');
-    browser.expect.element('.header-logo').to.be.present;
-    browser.expect.element('.header-logo').to.be.visible;
-    browser.expect.element('#user-header-search').to.be.present;
-    browser.expect.element('#user-header-search').to.be.visible;
-    browser.expect.element('.page-heading').to.be.present;
-    browser.expect.element('.page-heading').to.be.visible;
-    browser.expect.element('.header-logo a').to.be.present;
-    browser.expect.element('.header-logo a').to.be.visible;
-    browser.expect.element('.header-logo a').text.to.contain('LANDING .CO');
-    browser.expect.element('.header-logo a').to.have.attribute('href').which.contains('/');
-    browser.expect.element('.page-heading h2').to.be.present;
-    browser.expect.element('.page-heading h2').to.be.visible;
-    browser.expect.element('.page-heading h2').text.to.contain('Browse Jobs');
-    browser.expect.element('.popular-tags').to.be.present;
-    browser.expect.element('.popular-tags').to.be.visible;
-    browser.expect.element('.popular-tags .popular-tags-title').text.to.equal('Popular Search Tags:');
-    browser.expect.element('.pagination').to.be.present;
-    browser.expect.element('.pagination').to.be.visible;
-    browser.expect.element('.main-footer').to.be.present;
-    browser.expect.element('.main-footer').to.be.visible;
-    browser.expect.element('.main-footer .container a:nth-of-type(1)').text.to.contain('Browse Jobs');
-    browser.expect.element('.main-footer .container a:nth-of-type(1)').to.have.attribute('href').which.contains('/sitemap');
-    browser.expect.element('.main-footer .container a:nth-of-type(2)').text.to.contain('LANDING .CO');
-    browser.expect.element('.main-footer .container a:nth-of-type(2)').to.have.attribute('href').which.contains('/');
-    browser.saveScreenshot('./screenshots/expect-home.png');
-
+  'Recruiter forgot Password If Not Exist': function (browser) {
+    browser.url(browser.launch_url); // redirect to home page url
+    browser.waitForElementPresent('body', 5000); // wait for page body should be loaded.
+    browser.assert.title('Landing - the best tech jobs in 1 place'); // match the home page title
+    // checkHomePageElementsTextLink: define function to test all the elements present in home page. 
+    var homePageElements = [{
+        element: '.header-logo',
+        text: '',
+        link: ''
+      },
+      {
+        element: '#user-header-search',
+        text: '',
+        link: ''
+      },
+      {
+        element: '.page-heading',
+        text: '',
+        link: ''
+      },
+      {
+        element: '.header-logo a',
+        text: 'LANDING .CO',
+        link: '/'
+      },
+      {
+        element: '.page-heading h2',
+        text: 'Browse Jobs',
+        link: ''
+      },
+      {
+        element: '.popular-tags',
+        text: '',
+        link: ''
+      },
+      {
+        element: '.popular-tags .popular-tags-title',
+        text: 'Popular Search Tags:',
+        link: ''
+      },
+      {
+        element: '.pagination',
+        text: '',
+        link: ''
+      },
+      {
+        element: '.main-footer',
+        text: '',
+        link: ''
+      },
+      {
+        element: '.main-footer .container a:nth-of-type(1)',
+        text: 'Browse Jobs',
+        link: '/sitemap'
+      },
+      {
+        element: '.main-footer .container a:nth-of-type(2)',
+        text: 'LANDING .CO',
+        link: '/'
+      }
+    ];
+    // check the page elements are present, visible, having the following text with the following  as mention the array.
+    // Home Page element check function start here 
+    function checkHomePageElementsTextLink(homePageElements) {
+      for (x in homePageElements) {
+        var currentHomePageElements = homePageElements[x];
+        if (currentHomePageElements.text != '' && currentHomePageElements.link != '') {
+          browser.expect.element(currentHomePageElements.element).to.be.present;
+          browser.expect.element(currentHomePageElements.element).to.be.visible;
+          browser.expect.element(currentHomePageElements.element).text.to.contain(currentHomePageElements.text);
+          browser.expect.element(currentHomePageElements.element).to.have.attribute('href').which.contains(currentHomePageElements.link);
+        } else if (currentHomePageElements.text != '' && currentHomePageElements.link == '') {
+          browser.expect.element(currentHomePageElements.element).to.be.present;
+          browser.expect.element(currentHomePageElements.element).to.be.visible;
+          browser.expect.element(currentHomePageElements.element).text.to.contain(currentHomePageElements.text);
+        } else {
+          browser.expect.element(currentHomePageElements.element).to.be.present;
+          browser.expect.element(currentHomePageElements.element).to.be.visible;
+        }
+      }
+    }
+    checkHomePageElementsTextLink(homePageElements);
+    // Home Page element check function end here
     function navigation(items) {
       expect(items.value.length).to.equal(2); // Chai module
       browser.expect.element(menu + ':nth-of-type(1) a span').text.to.contain('FOR CANDIDATES');

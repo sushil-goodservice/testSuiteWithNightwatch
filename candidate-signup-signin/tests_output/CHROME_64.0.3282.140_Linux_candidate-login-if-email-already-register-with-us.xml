@@ -3,11 +3,39 @@
             failures="0"
             tests="1">
 
-  <testsuite name="recruiter-home-page-header-link-when-login"
-    errors="0" failures="0" hostname="" id="" package="recruiter-home-page-header-link-when-login" skipped="0"
-    tests="1" time="53.72" timestamp="Mon, 12 Feb 2018 07:46:38 GMT">
+  <testsuite name="candidate-login-if-email-already-register-with-us"
+    errors="0" failures="0" hostname="" id="" package="candidate-login-if-email-already-register-with-us" skipped="0"
+    tests="1" time="52.85" timestamp="Mon, 12 Feb 2018 07:54:55 GMT">
   
-    <testcase name="Recruiter Home Page Navigation When Login" classname="recruiter-home-page-header-link-when-login" time="53.72" assertions="104">
+    <testcase name="Candidate Login if email is already exist" classname="candidate-login-if-email-already-register-with-us" time="52.85" assertions="118">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
 

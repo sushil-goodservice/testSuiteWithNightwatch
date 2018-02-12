@@ -3,11 +3,95 @@
             failures="0"
             tests="1">
 
-  <testsuite name="recruiter-home-page-header-link-when-login"
-    errors="0" failures="0" hostname="" id="" package="recruiter-home-page-header-link-when-login" skipped="0"
-    tests="1" time="53.72" timestamp="Mon, 12 Feb 2018 07:46:38 GMT">
+  <testsuite name="candidate-job-application-after-login-fresher"
+    errors="0" failures="0" hostname="" id="" package="candidate-job-application-after-login-fresher" skipped="0"
+    tests="1" time="85.34" timestamp="Mon, 12 Feb 2018 09:22:09 GMT">
   
-    <testcase name="Recruiter Home Page Navigation When Login" classname="recruiter-home-page-header-link-when-login" time="53.72" assertions="104">
+    <testcase name="Candidate job application after login" classname="candidate-job-application-after-login-fresher" time="85.34" assertions="146">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
 

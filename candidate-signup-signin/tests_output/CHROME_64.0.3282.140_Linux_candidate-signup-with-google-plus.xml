@@ -3,49 +3,11 @@
             failures="0"
             tests="1">
 
-  <testsuite name="recruiter-home-page-header-link-when-login"
-    errors="0" failures="0" hostname="" id="" package="recruiter-home-page-header-link-when-login" skipped="0"
-    tests="1" time="53.72" timestamp="Mon, 12 Feb 2018 07:46:38 GMT">
+  <testsuite name="candidate-signup-with-google-plus"
+    errors="0" failures="0" hostname="" id="" package="candidate-signup-with-google-plus" skipped="0"
+    tests="1" time="51.36" timestamp="Mon, 12 Feb 2018 07:59:27 GMT">
   
-    <testcase name="Recruiter Home Page Navigation When Login" classname="recruiter-home-page-header-link-when-login" time="53.72" assertions="104">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
+    <testcase name="Signup" classname="candidate-signup-with-google-plus" time="51.36" assertions="85">
 
     
 

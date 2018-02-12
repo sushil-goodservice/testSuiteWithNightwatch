@@ -108,7 +108,7 @@ module.exports = {
     browser.setValue('input[type=email]', 'kapur.r1985@gmail.com');
     browser.click('.CwaK9');
     browser.pause(2000);
-    browser.setValue('input[type=password]', 'Kapur.rahul');
+    browser.setValue('input[type=password]', 'kapur.r1985');
     browser.click('.CwaK9');
     browser.waitForElementPresent('body', 1000);
     browser.pause(5000);

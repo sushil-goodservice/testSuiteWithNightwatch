@@ -10,7 +10,7 @@ var clean = require('db-test');
 module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
   'Signup': function (browser) {
-    clean.cleandb();
+    // clean.cleandb();
     var menu = '.links .links-item';
     browser.url(browser.launch_url);
     browser.waitForElementPresent('body', 5000);

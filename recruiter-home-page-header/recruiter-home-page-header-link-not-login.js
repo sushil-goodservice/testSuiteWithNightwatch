@@ -96,7 +96,6 @@ module.exports = {
       browser.click(buttonDropdown, function (response) {
         browser.waitForElementVisible(menuUL, 2000);
       });
-
       for (i in menuElements) {
         var curentEl = menuElements[i];
         browser.expect.element(curentEl.selector).to.be.present;

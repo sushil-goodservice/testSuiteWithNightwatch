@@ -187,7 +187,7 @@ module.exports = {
     ];
     // candidate login page link checking function
     function cadidateLoginFormLinksTest(candidateLoginFormLinks) {
-      for(var i in candidateLoginFormLinks){
+      for (var i in candidateLoginFormLinks) {
         var currentlinkItem = candidateLoginFormLinks[i];
         browser.useCss().expect.element(currentlinkItem.selector).to.be.present;
         browser.useCss().expect.element(currentlinkItem.selector).to.be.visible;
@@ -198,13 +198,13 @@ module.exports = {
     cadidateLoginFormLinksTest(candidateLoginFormLinks);
     // candidate login page, page elements check - end here
     // candidate login - start here
-    function loginForm(loginFormElements){
+    function loginForm(loginFormElements) {
       browser.useCss().clearValue(loginFormElements[0].selector);
       browser.useCss().setValue(loginFormElements[0].selector, 'sushilkundu143@gmail.com');
       browser.useCss().clearValue(loginFormElements[1].selector);
       browser.useCss().setValue(loginFormElements[1].selector, 'goodservice');
       browser.pause(1000);
-      browser.useCss().click(loginFormElements[2].selector, function(response){
+      browser.useCss().click(loginFormElements[2].selector, function (response) {
         this.assert.ok(browser === this, 'Candidate login form submitted.');
       });
     }
@@ -214,6 +214,37 @@ module.exports = {
     browser.assert.urlEquals(browser.launch_url + '/j');
     // candidate login successful
     // candidate login - end here
+    // check the candidate header navigation link after login start here
+    var menuAfterLoginElements = [{
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[1]/h6',
+        text: 'Menu'
+      },
+      {
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[2]/a',
+        text: 'My Profile',
+        link: '/profile/edit'
+      },
+      {
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[3]/a',
+        text: 'Logout',
+        link: '/user/sign_out'
+      },
+      {
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[4]/a',
+        text: 'Recruiters',
+        link: '/user/sign_up?is_recruiter=true'
+      }
+    ];
+    browser.click('#mobMenuToggler', function (response) {
+      this.assert.ok(browser === this, 'Menu button clicked.');
+      browser.waitForElementPresent(menu, 2000);
+      browser.waitForElementVisible(menu, 2000);
+    });
+    browser.pause(1000);
+    // menu items and link testing function
+    navigation(menu, menuAfterLoginElements);
+    browser.pause(3000);
+    // candidate header navigation link check end here after login
     browser.pause(2000);
     browser.end();
   }

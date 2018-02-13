@@ -238,9 +238,9 @@ module.exports = {
     browser.click('select[id="job_posting_recruiter_team_id"]', function(response){
       this.assert.ok(browser === this, 'Select team dropdown clicked.');
     });
-    // set company id form the option value. For example here is : 669092.
-    browser.waitForElementVisible("option[value='669092']", 2000);
-    browser.click("option[value='669092']", function(response){
+    // set company id form the option value. For example here is : 670483.
+    browser.waitForElementVisible("option[value='670483']", 2000);
+    browser.click("option[value='670483']", function(response){
       this.assert.ok(browser === this, 'Select team dropdown clicked and value selected.');
     });
     browser.setValue('#' + input[2], 'UI Test Automation Engineer');

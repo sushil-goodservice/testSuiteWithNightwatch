@@ -1,6 +1,6 @@
 // BDD-style suite with "expect"
-var chai = require('chai');  
-var assert = chai.assert; 
+var chai = require('chai');
+var assert = chai.assert;
 var expect = chai.expect;
 var should = chai.should();
 // var expect = require('chai').expect;
@@ -8,9 +8,9 @@ var should = chai.should();
 module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
   'Recruiter  Add Team Member': function (browser) {
-    var menu = '.links .links-item', 
-    afterLoginMenu = '.headerlink-with-icon',
-    afterLoginMenuItem = '.headerlink-with-icon .dropdown .dropdown-menu li';
+    var menu = '.links .links-item',
+      afterLoginMenu = '.headerlink-with-icon',
+      afterLoginMenuItem = '.headerlink-with-icon .dropdown .dropdown-menu li';
     browser.url(browser.launch_url);
     browser.waitForElementPresent('body', 5000);
     browser.assert.title('Landing - the best tech jobs in 1 place');
@@ -51,37 +51,61 @@ module.exports = {
     browser.expect.element(menu).to.be.visible;
     browser.elements('css selector', menu, navigation);
     // recruiter header links test after login
-    function recruiterMenuDropdown(element){
+    function recruiterMenuDropdown(element) {
       // each of menu items with in menu dropdown test - presents, visiblity, inner text and link attributes
-      for(var i = 0; i < element.length; i++){
+      for (var i = 0; i < element.length; i++) {
         var currentElement = element[i];
         browser.expect.element(currentElement.linkSelector).to.present; // current link item presents test
         browser.expect.element(currentElement.linkSelector).to.be.visible; // current link item visibility test
         browser.expect.element(currentElement.linkSelector).text.to.equal(currentElement.linkText); // current link item inner-text test 
         browser.expect.element(currentElement.linkSelector).to.have.attribute('href').which.contains(currentElement.linkurl); // current link item url attribure test
-      }      
+      }
     }
+
     function navigationAfterLogin(items) {
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle').to.be.present;
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle').to.be.visible;
       browser.expect.element(afterLoginMenu + ' .dropdown .dropdown-menu').to.be.present;
       browser.pause(4000);
-      browser.click(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle', function(response) {
+      browser.click(afterLoginMenu + ' .dropdown .dropdown-toggle .navbar-header .navbar-toggle', function (response) {
         browser.waitForElementVisible(afterLoginMenu + ' .dropdown .dropdown-menu', 4000);
         this.assert.ok(browser === this, 'Recruiter header-menu dropdown-menu clicked.');
       });
       // make list of array of all link item in recruiter-menu dropdown after login
-      var menuItems = [
-        { linkSelector : afterLoginMenuItem + ':nth-of-type(1) a', linkText : 'My Jobs', linkurl : '/recruiter/jobs' },
-        { linkSelector : afterLoginMenuItem + ':nth-of-type(2) a', linkText : 'Add new Jobs', linkurl : '/recruiter/jobs/new' },
-        { linkSelector : afterLoginMenuItem + ':nth-of-type(3) a', linkText : 'Candidate Database', linkurl : '/recruiter/candidate_infos' },
-        { linkSelector : afterLoginMenuItem + ':nth-of-type(4) a', linkText : 'My Profile', linkurl : '/profile/edit' },
-        { linkSelector : afterLoginMenuItem + ':nth-of-type(5) a', linkText : 'My Organisation & Team', linkurl : '/recruiter/organisations' },
-        { linkSelector : afterLoginMenuItem + ':nth-of-type(6) a', linkText : 'Logout', linkurl : '/user/sign_out' }
+      var menuItems = [{
+          linkSelector: afterLoginMenuItem + ':nth-of-type(1) a',
+          linkText: 'My Jobs',
+          linkurl: '/recruiter/jobs'
+        },
+        {
+          linkSelector: afterLoginMenuItem + ':nth-of-type(2) a',
+          linkText: 'Add new Jobs',
+          linkurl: '/recruiter/jobs/new'
+        },
+        {
+          linkSelector: afterLoginMenuItem + ':nth-of-type(3) a',
+          linkText: 'Candidate Database',
+          linkurl: '/recruiter/candidate_infos'
+        },
+        {
+          linkSelector: afterLoginMenuItem + ':nth-of-type(4) a',
+          linkText: 'My Profile',
+          linkurl: '/profile/edit'
+        },
+        {
+          linkSelector: afterLoginMenuItem + ':nth-of-type(5) a',
+          linkText: 'My Organisation & Team',
+          linkurl: '/recruiter/organisations'
+        },
+        {
+          linkSelector: afterLoginMenuItem + ':nth-of-type(6) a',
+          linkText: 'Logout',
+          linkurl: '/user/sign_out'
+        }
       ];
       recruiterMenuDropdown(menuItems);
     }
-    browser.click('.recruiter-link a.ga-trackable', function(response){
+    browser.click('.recruiter-link a.ga-trackable', function (response) {
       this.assert.ok(browser === this, 'Recruiter link clicked, redirecting into recruiter signup page.');
     });
     browser.waitForElementPresent('body', 2000);
@@ -117,21 +141,33 @@ module.exports = {
     browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.visible;
     browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Candidate Signup');
     browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_up');
-    browser.click('a.block.text-blue', function(response){
+    browser.click('a.block.text-blue', function (response) {
       this.assert.ok(browser === this, 'Recruiter login page link clicked, redirecting recruiter login page.');
     });
     browser.waitForElementPresent('body', 2000);
     // recruiter login form, input element and label test
     browser.expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Recruiter Login');
-    var recruiterLoginFormElementsSet = [
-      {elementSelector : 'input[id=user_email]', labelSelector: 'label[for=user_email]' , elementLabelText: 'Email'},
-      {elementSelector : 'input[id=user_password]', labelSelector: 'label[for=user_password]' , elementLabelText: 'Password'},
-      {elementSelector : 'input[name=commit]', labelSelector: '' , elementLabelText: ''},
+    var recruiterLoginFormElementsSet = [{
+        elementSelector: 'input[id=user_email]',
+        labelSelector: 'label[for=user_email]',
+        elementLabelText: 'Email'
+      },
+      {
+        elementSelector: 'input[id=user_password]',
+        labelSelector: 'label[for=user_password]',
+        elementLabelText: 'Password'
+      },
+      {
+        elementSelector: 'input[name=commit]',
+        labelSelector: '',
+        elementLabelText: ''
+      },
     ];
-    function recruiterLoginFormElements(recruiterLoginFormElementsSet){
-      for(var i = 0; i < recruiterLoginFormElementsSet.length; i++){
+
+    function recruiterLoginFormElements(recruiterLoginFormElementsSet) {
+      for (var i = 0; i < recruiterLoginFormElementsSet.length; i++) {
         var currentElements = recruiterLoginFormElementsSet[i];
-        if(currentElements.labelSelector !== '' && currentElements.elementLabelText !== ''){
+        if (currentElements.labelSelector !== '' && currentElements.elementLabelText !== '') {
           browser.expect.element(currentElements.labelSelector).to.be.present;
           browser.expect.element(currentElements.labelSelector).to.be.visible;
           browser.expect.element(currentElements.labelSelector).text.to.contain(currentElements.elementLabelText);
@@ -166,7 +202,7 @@ module.exports = {
     browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_in');
     browser.setValue('input[type=email]', 'kapur.r1985@gmail.com');
     browser.setValue('input[type=password]', 'goodservice');
-    browser.click('input[type=submit]', function(response){
+    browser.click('input[type=submit]', function (response) {
       this.assert.ok(browser === this, 'Recruiter login form clicked.');
     });
     browser.waitForElementVisible('body.layout3.new-design', 2000);
@@ -193,38 +229,53 @@ module.exports = {
     });
     */
     // redirect to the team member page having the following team id.
-    var defineTeamID = 669092;
+    var defineTeamID = 670483;
     var link = '/recruiter/organisations/' + defineTeamID + '/members';
-    browser.click('a[href="'+ link +'"]', function(response){
+    browser.click('a[href="' + link + '"]', function (response) {
       this.assert.ok(browser === this, 'Add team member link clicked with team id ' + defineTeamID + '.');
       browser.waitForElementVisible('body.layout3.new-design', 3000);
     });
-    browser.assert.urlEquals( browser.launch_url + link );
+    browser.assert.urlEquals(browser.launch_url + link);
     // test if the element with following selector present in this page and visible 
-    var teamMemberEl = [
-      {selector : '.invite-team-wrapper'},
-      {selector : '.cardbox span.font-18.mb-20.bb.d-block.p-15.bold'},
-      {selector : '.add-member-div'},
-      {selector : '.form-box.team-member'},
-      {selector : '.table-responsive .table.table-bordered.mb-30'}
+    var teamMemberEl = [{
+        selector: '.invite-team-wrapper'
+      },
+      {
+        selector: '.cardbox span.font-18.mb-20.bb.d-block.p-15.bold'
+      },
+      {
+        selector: '.add-member-div'
+      },
+      {
+        selector: '.form-box.team-member'
+      },
+      {
+        selector: '.table-responsive .table.table-bordered.mb-30'
+      }
 
     ];
-    
-    function testPresentElementsInMembersPage(el){
-      for(var i = 0; i < el.length; i++){
-          var current = el[i];
-          browser.expect.element(current).to.be.present;
-          browser.expect.element(current).to.be.visible;
+
+    function testPresentElementsInMembersPage(el) {
+      for (var i = 0; i < el.length; i++) {
+        var current = el[i];
+        browser.expect.element(current).to.be.present;
+        browser.expect.element(current).to.be.visible;
       }
     }
     // test element with following selector fo the page having the following text present
-    var checkElementWithTitle = [
-      {selector : '.cardbox span.font-18.mb-20.bb.d-block.p-15.bold', text : 'Team Members'},
-      {selector : '.add-member-div .row .col-md-12 label.mb-10.bold.font-14', text : 'Add New team member'}
+    var checkElementWithTitle = [{
+        selector: '.cardbox span.font-18.mb-20.bb.d-block.p-15.bold',
+        text: 'Team Members'
+      },
+      {
+        selector: '.add-member-div .row .col-md-12 label.mb-10.bold.font-14',
+        text: 'Add New team member'
+      }
       // {selector : '.page-popup-like .cardbox .form-box .row .col-md-12 label.mb-10.bold.font-14', text : 'Your team members'}
     ];
-    function checkTextSelector(checkElementWithTitle){
-      for(var i = 0; i < checkElementWithTitle.length; i++){
+
+    function checkTextSelector(checkElementWithTitle) {
+      for (var i = 0; i < checkElementWithTitle.length; i++) {
         var currentCheckElement = checkElementWithTitle[i];
         browser.expect.element(currentCheckElement.selector).to.be.present;
         browser.expect.element(currentCheckElement.selector).to.be.visible;
@@ -233,13 +284,19 @@ module.exports = {
     }
     checkTextSelector(checkElementWithTitle);
     // check add team member form elements are visible and present
-    var checkTeamInviteFormElement = [
-      {selector : 'input[id=invites_0_invite_email]'},
-      {selector : 'input#invites_0_allow_admin_access[type=Checkbox]'},
-      {selector : 'input[type=submit]'}
+    var checkTeamInviteFormElement = [{
+        selector: 'input[id=invites_0_invite_email]'
+      },
+      {
+        selector: 'input#invites_0_allow_admin_access[type=Checkbox]'
+      },
+      {
+        selector: 'input[type=submit]'
+      }
     ];
-    function checkInputFormSendInvite(checkTeamInviteFormElement){
-      for(var i = 0; i < checkTeamInviteFormElement.length; i++){
+
+    function checkInputFormSendInvite(checkTeamInviteFormElement) {
+      for (var i = 0; i < checkTeamInviteFormElement.length; i++) {
         var currentTeamInviteFormElement = checkTeamInviteFormElement[i];
         browser.expect.element(currentTeamInviteFormElement.selector).to.be.present;
         browser.expect.element(currentTeamInviteFormElement.selector).to.be.visible;
@@ -248,7 +305,7 @@ module.exports = {
     checkInputFormSendInvite(checkTeamInviteFormElement);
     // add email of team member and submit the form
     browser.setValue('input[id=invites_0_invite_email]', 'sushilkundu143@gmail.com');
-    browser.click('input[type=submit]', function(response){
+    browser.click('input[type=submit]', function (response) {
       this.assert.ok(browser === this, 'New member add request submitted.');
     });
     browser.pause(5000);

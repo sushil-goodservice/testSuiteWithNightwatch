@@ -74,7 +74,7 @@ module.exports = {
     });
     browser.expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Candidate Signup');
     browser.waitForElementPresent('body', 2000);
-    browser.setValue('input[type=email]', 'kapur.r1985+35@gmail.com');
+    browser.setValue('input[type=email]', 'kapur.r1985+43@gmail.com');
     browser.setValue('input[type=password]', 'goodservice');
     browser.click('input[type=submit]');
     browser.pause(5000);
@@ -82,7 +82,7 @@ module.exports = {
     browser.setValue('input[type=email]', 'kapur.r1985@gmail.com');
     browser.click('.CwaK9');
     browser.pause(2000);
-    browser.setValue('input[type=password]', 'Kapur.rahul');
+    browser.setValue('input[type=password]', 'kapur.r1985');
     browser.click('.CwaK9', function(response) {
       this.assert.ok(browser === this, 'Login to G-mail Account.');
     });

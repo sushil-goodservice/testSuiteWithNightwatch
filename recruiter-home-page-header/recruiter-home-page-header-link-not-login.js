@@ -75,7 +75,7 @@ module.exports = {
     checkHomePageElementsTextLink(homePageElements);
     // Home Page element check function end here 
     // recruiter home page header elements checked
-    // Testing the navigation menu elements and corresponding links
+    // Testing the navigation menu elements and corresponding links when not login
     var menuUL = '.dropdown-menu.links-item';
     var buttonDropdown = '.headerlink-with-icon .dropdown .navbar-toggle';
     // set element for recruiter menu item when not login
@@ -96,7 +96,6 @@ module.exports = {
       browser.click(buttonDropdown, function (response) {
         browser.waitForElementVisible(menuUL, 2000);
       });
-
       for (i in menuElements) {
         var curentEl = menuElements[i];
         browser.expect.element(curentEl.selector).to.be.present;

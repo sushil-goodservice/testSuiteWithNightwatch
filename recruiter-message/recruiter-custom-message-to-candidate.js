@@ -180,6 +180,7 @@ module.exports = {
       }
     }
     recruiterLoginFormElements(recruiterLoginFormElementsSet);
+    // recruiter login form, input element and label test end
     browser.expect.element('.f-pwd').to.be.present;
     browser.expect.element('.f-pwd').to.be.visible;
     browser.expect.element('.f-pwd').text.to.contain('(Forgot your password?)');

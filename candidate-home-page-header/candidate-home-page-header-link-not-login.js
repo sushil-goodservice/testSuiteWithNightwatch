@@ -92,21 +92,21 @@ module.exports = {
     // check the candidate header navigation link when not login start here
     var menu = '#user-mobile-header .mob-dropdown .options-wrap .options-container'; // mobile menu element
     var menuNotLoginElements = [{
-        element: menu + ' .auxiliary-item h6.options-title',
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[1]/h6',
         text: 'Menu'
       },
       {
-        element: menu + ' .select-item a',
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[2]/a',
         text: 'Sign Up',
         link: '/user/sign_up'
       },
       {
-        element: menu + ' .select-item a',
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[3]/a',
         text: 'Login',
         link: '/user/sign_in'
       },
       {
-        element: menu + ' .select-item a',
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[4]/a',
         text: 'Recruiters',
         link: '/user/sign_up?is_recruiter=true'
       }
@@ -117,18 +117,19 @@ module.exports = {
       browser.waitForElementVisible(menu, 2000);
     });
     browser.pause(1000);
+    // menu items and link testing function
     function navigation(menu, menuNotLoginElements) {
       browser.expect.element(menu).to.be.present;
       browser.expect.element(menu).to.be.visible;
       for (var i in menuNotLoginElements) {
         var currentMenuNotLoginElements = menuNotLoginElements[i];
-        browser.expect.element(currentMenuNotLoginElements.element).to.be.present;
-        browser.expect.element(currentMenuNotLoginElements.element).to.be.visible;
+        browser.useXpath().expect.element(currentMenuNotLoginElements.element).to.be.present;
+        browser.useXpath().expect.element(currentMenuNotLoginElements.element).to.be.visible;
         if (currentMenuNotLoginElements.hasOwnProperty('link')) {
-          browser.expect.element(currentMenuNotLoginElements.element).text.to.contain(currentMenuNotLoginElements.text);
-          browser.expect.element(currentMenuNotLoginElements.element).to.have.attribute('href').which.contains(currentMenuNotLoginElements.link);
+          browser.useXpath().expect.element(currentMenuNotLoginElements.element).text.to.contain(currentMenuNotLoginElements.text);
+          browser.useXpath().expect.element(currentMenuNotLoginElements.element).to.have.attribute('href').which.contains(currentMenuNotLoginElements.link);
         } else {
-          browser.expect.element(currentMenuNotLoginElements.element).text.to.contain(currentMenuNotLoginElements.text);
+          browser.useXpath().expect.element(currentMenuNotLoginElements.element).text.to.contain(currentMenuNotLoginElements.text);
         }
       }
     }

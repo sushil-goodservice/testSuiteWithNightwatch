@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
-            failures="1"
+            failures="0"
             tests="1">
 
   <testsuite name="candidate-home-page-header-link-not-login"
-    errors="0" failures="1" hostname="" id="" package="candidate-home-page-header-link-not-login" skipped="0"
-    tests="1" time="8.345" timestamp="Tue, 13 Feb 2018 08:19:50 GMT">
+    errors="0" failures="0" hostname="" id="" package="candidate-home-page-header-link-not-login" skipped="0"
+    tests="1" time="11.57" timestamp="Tue, 13 Feb 2018 09:03:55 GMT">
   
-    <testcase name="Home Page Navigation Not Login" classname="candidate-home-page-header-link-not-login" time="8.345" assertions="47">
+    <testcase name="Home Page Navigation Not Login" classname="candidate-home-page-header-link-not-login" time="11.57" assertions="52">
 
     
 
@@ -99,8 +99,17 @@
 
     
 
-      <failure message="Expected element &lt;#user-mobile-header .mob-dropdown .options-wrap .options-container .select-item a&gt; text to contain: &#34;Login&#34;">    at navigation (/home/goodservice/Desktop/atsTesting/testCases/candidate-home-page-header/candidate-home-page-header-link-not-login.js:128:26)
-    at Object.module.exports.Home Page Navigation Not Login (/home/goodservice/Desktop/atsTesting/testCases/candidate-home-page-header/candidate-home-page-header-link-not-login.js:135:5)</failure>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
     </testcase>

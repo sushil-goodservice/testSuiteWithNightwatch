@@ -18,7 +18,7 @@ module.exports = {
 
     function homeElement() {
       for (var i = 0; i < home.length; i++) {
-        currentElement = home[i];
+        var currentElement = home[i];
         browser.expect.element(currentElement).to.be.present;
         browser.expect.element(currentElement).to.be.visible;
       }

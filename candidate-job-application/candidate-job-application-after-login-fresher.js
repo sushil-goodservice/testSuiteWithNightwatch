@@ -71,7 +71,7 @@ module.exports = {
     // check the page elements are present, visible, having the following text with the following  as mention the array.
     // Home Page element check function start here 
     function checkHomePageElementsTextLink(homePageElements) {
-      for (x in homePageElements) {
+      for (var x in homePageElements) {
         var currentHomePageElements = homePageElements[x];
         if (currentHomePageElements.text != '' && currentHomePageElements.link != '') {
           browser.expect.element(currentHomePageElements.element).to.be.present;

@@ -5,9 +5,9 @@
 
   <testsuite name="candidate-home-page-header-link-not-login"
     errors="0" failures="1" hostname="" id="" package="candidate-home-page-header-link-not-login" skipped="0"
-    tests="1" time="6.465" timestamp="Tue, 13 Feb 2018 04:59:34 GMT">
+    tests="1" time="8.345" timestamp="Tue, 13 Feb 2018 08:19:50 GMT">
   
-    <testcase name="Home Page Navigation Not Login" classname="candidate-home-page-header-link-not-login" time="6.465" assertions="5">
+    <testcase name="Home Page Navigation Not Login" classname="candidate-home-page-header-link-not-login" time="8.345" assertions="47">
 
     
 
@@ -15,8 +15,92 @@
 
     
 
-      <failure message="Expected element &lt;#user-header-search&gt; to be present - element was not found">    at checkHomePageElementsTextLink (/home/goodservice/Desktop/atsTesting/testCases/candidate-home-page-header/candidate-home-page-header-link-not-login.js:86:26)
-    at Object.module.exports.Home Page Navigation Not Login (/home/goodservice/Desktop/atsTesting/testCases/candidate-home-page-header/candidate-home-page-header-link-not-login.js:91:5)</failure>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+      <failure message="Expected element &lt;#user-mobile-header .mob-dropdown .options-wrap .options-container .select-item a&gt; text to contain: &#34;Login&#34;">    at navigation (/home/goodservice/Desktop/atsTesting/testCases/candidate-home-page-header/candidate-home-page-header-link-not-login.js:128:26)
+    at Object.module.exports.Home Page Navigation Not Login (/home/goodservice/Desktop/atsTesting/testCases/candidate-home-page-header/candidate-home-page-header-link-not-login.js:135:5)</failure>
 
     
     </testcase>

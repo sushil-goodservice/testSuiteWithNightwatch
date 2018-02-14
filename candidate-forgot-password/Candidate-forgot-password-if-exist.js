@@ -1,7 +1,7 @@
 // BDD-style suite with "expect"
 // var child_process = require('child_process');
-var chai = require('chai');  
-var assert = chai.assert; 
+var chai = require('chai');
+var assert = chai.assert;
 var expect = chai.expect;
 var should = chai.should();
 // var clean = require('db-test');
@@ -200,7 +200,7 @@ module.exports = {
     }
     cadidateLoginFormLinksTest(candidateLoginFormLinks);
     // candidate login page, page elements check - end here
-    browser.useCss().click('.f-pwd', function(response) {
+    browser.useCss().click('.f-pwd', function (response) {
       this.assert.ok(browser === this, 'Candidate forgot password link clicked.');
     });
     // candidate redirect to candidate login page
@@ -210,24 +210,83 @@ module.exports = {
     browser.useCss().expect.element('.alert.alert_success').to.be.visible;
     browser.useCss().expect.element('.alert.alert_success').to.be.present;
     browser.useCss().expect.element('.alert.alert_success').to.be.visible;
+    browser.useCss().expect.element('.card-box .clearfix h2').to.be.present;
+    browser.useCss().expect.element('.card-box .clearfix h2').to.be.visible;
     browser.useCss().expect.element('.card-box .clearfix h2').text.to.contain('Forgot your password?');
     // forgot password form elements check
-    browser.expect.element('label[for=user_email]').to.be.present;
-    browser.expect.element('label[for=user_email]').to.be.visible;
-    browser.expect.element('.card-box .clearfix h2').to.be.present;
-    browser.expect.element('.card-box .clearfix h2').to.be.visible;
-    browser.expect.element('.card-box .clearfix h2').text.to.equal('Forgot your password?');
-    browser.expect.element('label[for=user_email]').text.to.contain('Email');
-    browser.expect.element('input[name=commit]').to.be.present;
-    browser.expect.element('input[name=commit]').to.be.visible;
-    browser.expect.element('input[name=commit]').to.have.value.that.equals('Email Password Reset Link');
-     browser.expect.element('.btn-googleplus').to.be.present;
-    browser.expect.element('a.btn-googleplus').to.be.visible;
-    browser.expect.element('a.btn-googleplus').text.to.contain('Login with Google+');
-    browser.assert.attributeContains('a.btn-googleplus', 'href', '/user/auth/google_oauth2');
-    browser.setValue('input[id=user_email]', 'sushilkundu143@gmail.com');
-    browser.click('input[type=submit]');
-    browser.pause(5000);
+    // forgot password form elements and lebels check - start here
+    var forgotPasswordFormElements = [{
+        selector: 'input[id=user_email]',
+        labelSelector: 'label[for=user_email]',
+        labelText: 'Email'
+      },
+      {
+        selector: 'input[name=commit]',
+        inputVal: 'Email Password Reset Link'
+      }
+    ];
+    // candidate forgot password page form elements checking function
+    function forgotPasswordElementsTest(forgotPasswordFormElements) {
+      for (var currentFormElement of forgotPasswordFormElements) {
+        browser.useCss().expect.element(currentFormElement.selector).to.be.present;
+        browser.useCss().expect.element(currentFormElement.selector).to.be.visible;
+        if (currentFormElement.hasOwnProperty('labelSelector')) {
+          browser.useCss().expect.element(currentFormElement.labelSelector).to.be.present;
+          browser.useCss().expect.element(currentFormElement.labelSelector).to.be.visible;
+          browser.useCss().expect.element(currentFormElement.labelSelector).text.to.contain(currentFormElement.inputVal);
+        } else {
+          browser.expect.element(currentFormElement.selector).to.have.value.that.equals(currentFormElement.inputVal);
+        }
+      }
+    }
+    // forgot password form elements and lebels check - end here
+    // login form element check function - end here
+    var candidateForgotPasswordFormLinks = [{
+        selector: '//*[@id="edit-job"]/div/div/a[1]',
+        link: '/user/auth/google_oauth2',
+        text: 'Login with Google+'
+      },
+      {
+        selector: '//*[@id="edit-job"]/div/div/a[2]',
+        link: '/user/sign_up',
+        text: 'New User? Click here to Signup'
+      },
+      {
+        selector: '//*[@id="edit-job"]/div/div/a[3]',
+        link: '/user/sign_in',
+        text: 'Already registered? Click here to Login'
+      },
+      {
+        selector: '//*[@id="edit-job"]/div/div/a[4]',
+        link: '/user/confirmation/new',
+        text: 'Resend Email Confirmation'
+      }
+    ];
+    // candidate login page link checking function
+    function cadidateForgotPasswordFormLinksTest(candidateForgotPasswordFormLinks) {
+      for (var i in candidateForgotPasswordFormLinks) {
+        var currentlinkItem = candidateForgotPasswordFormLinks[i];
+        browser.useXpath().expect.element(currentlinkItem.selector).to.be.present;
+        browser.useXpath().expect.element(currentlinkItem.selector).to.be.visible;
+        browser.useXpath().expect.element(currentlinkItem.selector).text.to.equal(currentlinkItem.text);
+        browser.useXpath().expect.element(currentlinkItem.selector).to.have.attribute('href').which.contains(currentlinkItem.link);
+      }
+    }
+    cadidateForgotPasswordFormLinksTest(candidateForgotPasswordFormLinks);
+    // candidate login page, page elements check - end here
+    // candidate forgot password form submit - start here
+    function forgotPasswordFormSubmit(forgotPasswordFormElements) {
+      browser.useCss().clearValue(forgotPasswordFormElements[0].selector);
+      browser.useCss().setValue(forgotPasswordFormElements[0].selector, 'sushilkundu143@gmail.com');
+      browser.useCss().click(forgotPasswordFormElements[1].selector, function (response) {
+        this.assert.ok(browser === this, 'Candidate login form submitted.');
+      });
+      browser.pause(1000);
+    }
+    forgotPasswordFormSubmit(forgotPasswordFormElements);
+    // candidate forgot password form submit - end here
+    browser.useCss().waitForElementPresent('body', 2000);
+    browser.useCss().waitForElementVisible('body', 2000);
     browser.assert.urlContains('/user/sign_in?', 'Candidate Sucessfully redirect to login.');
     browser.end();
   }

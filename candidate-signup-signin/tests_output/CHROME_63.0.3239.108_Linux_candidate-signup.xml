@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="1">
+
+  <testsuite name="candidate-signup"
+    errors="0" failures="1" hostname="" id="" package="candidate-signup" skipped="0"
+    tests="1" time="6.170" timestamp="Thu, 15 Feb 2018 06:53:52 GMT">
+  
+    <testcase name="Signup" classname="candidate-signup" time="6.170" assertions="5">
+
+    
+
+    
+
+    
+
+      <failure message="Expected element &lt;#user-header-search&gt; to be present - element was not found">    at Object.module.exports.Signup (/home/goodservice/Desktop/atsTesting/testCases/candidate-signup-signin/candidate-signup.js:17:20)</failure>
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

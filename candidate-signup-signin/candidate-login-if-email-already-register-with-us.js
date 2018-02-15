@@ -160,7 +160,7 @@ module.exports = {
     candidateSignupFormCheck(signupFormElements);
     // login form element check function - end here
     // login form element check function - end here
-    var candidateLoginFormLinks = [{
+    var candidateSignupFormLinks = [{
         selector: '.pt-2 a.btn-googleplus:nth-of-type(1)',
         link: '/user/auth/google_oauth2',
         text: 'Login with Google+'
@@ -182,16 +182,16 @@ module.exports = {
       }
     ];
     // candidate login page link checking function
-    function cadidateLoginFormLinksTest(candidateLoginFormLinks) {
-      for (var i in candidateLoginFormLinks) {
-        var currentlinkItem = candidateLoginFormLinks[i];
+    function cadidateSignupFormLinksTest(candidateSignupFormLinks) {
+      for (var i in candidateSignupFormLinks) {
+        var currentlinkItem = candidateSignupFormLinks[i];
         browser.useCss().expect.element(currentlinkItem.selector).to.be.present;
         browser.useCss().expect.element(currentlinkItem.selector).to.be.visible;
         browser.useCss().expect.element(currentlinkItem.selector).text.to.equal(currentlinkItem.text);
         browser.useCss().expect.element(currentlinkItem.selector).to.have.attribute('href').which.contains(currentlinkItem.link);
       }
     }
-    cadidateLoginFormLinksTest(candidateLoginFormLinks);
+    cadidateSignupFormLinksTest(candidateSignupFormLinks);
     // candidate login page, page elements check - end here
     // candidate login - start here
     function signupForm(signupFormElements) {

@@ -8,14 +8,13 @@ var should = chai.should();
 module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
   'Recruiter Home Page Navigation When Not Login': function (browser) {
-    browser.resizeWindow(1000, 800);
     browser.url(browser.launch_url + '/recruiter/candidate_infos'); // redirecting to candidate search page
     browser.waitForElementPresent('body', 5000); // check if the body is loaded
     browser.waitForElementNotVisible('.loader-modal', 3000);
     browser.assert.title('Landing'); // change the page title here
     var recruiterHomePageElements = [{
         element: 'header.layout3-desktop-header'
-      },{
+      }, {
         element: '.header-logo'
       },
       {

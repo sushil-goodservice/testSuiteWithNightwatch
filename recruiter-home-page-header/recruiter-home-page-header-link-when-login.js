@@ -12,40 +12,25 @@ module.exports = {
     browser.waitForElementPresent('body', 5000); // check if the body is loaded
     browser.waitForElementNotVisible('.loader-modal', 3000);
     browser.assert.title('Landing'); // change the page title here
-    var homePageElements = [{
-        element: '.header-logo',
-        text: '',
-        link: ''
+    var recruiterHomePageElements = [{
+        element: 'header.layout3-desktop-header'
+      }, {
+        element: '.header-logo'
       },
       {
-        element: '.full-width.search',
-        text: '',
-        link: ''
+        element: '.content-box-recruiter.full-width'
       },
       {
-        element: '#candidate-info-container',
-        text: '',
-        link: ''
+        element: '#candidate-info-container'
       },
       {
-        element: '.sidebar-filter',
-        text: '',
-        link: ''
+        element: '.filter-icon-link'
       },
       {
-        element: '.table-data',
-        text: '',
-        link: ''
+        element: '.candidate-database'
       },
       {
-        element: 'ul.flex.vertical-align li a.btn.btn-sm.blue',
-        text: 'Add Job',
-        link: '/recruiter/jobs/new'
-      },
-      {
-        element: '.headerlink-with-icon .dropdown .navbar-toggle',
-        text: '',
-        link: ''
+        element: '.headerlink-with-icon .dropdown .navbar-toggle'
       },
       {
         element: '.header-logo a',
@@ -54,25 +39,20 @@ module.exports = {
       }
     ];
     // Home Page element check function start here 
-    function checkHomePageElementsTextLink(homePageElements) {
-      for (x in homePageElements) {
-        var currentHomePageElements = homePageElements[x];
-        if (currentHomePageElements.text != '' && currentHomePageElements.link != '') {
-          browser.expect.element(currentHomePageElements.element).to.be.present;
-          browser.expect.element(currentHomePageElements.element).to.be.visible;
+    function checkHomePageElementsTextLink(recruiterHomePageElements) {
+      for (var x in recruiterHomePageElements) {
+        var currentHomePageElements = recruiterHomePageElements[x];
+        browser.expect.element(currentHomePageElements.element).to.be.present;
+        browser.expect.element(currentHomePageElements.element).to.be.visible;
+        if (currentHomePageElements.hasOwnProperty('text') && currentHomePageElements.hasOwnProperty('link')) {
           browser.expect.element(currentHomePageElements.element).text.to.contain(currentHomePageElements.text);
           browser.expect.element(currentHomePageElements.element).to.have.attribute('href').which.equals(browser.launch_url + currentHomePageElements.link);
-        } else if (currentHomePageElements.text != '' && currentHomePageElements.link == '') {
-          browser.expect.element(currentHomePageElements.element).to.be.present;
-          browser.expect.element(currentHomePageElements.element).to.be.visible;
+        } else if (currentHomePageElements.hasOwnProperty('text')) {
           browser.expect.element(currentHomePageElements.element).text.to.equals(currentHomePageElements.text);
-        } else {
-          browser.expect.element(currentHomePageElements.element).to.be.present;
-          browser.expect.element(currentHomePageElements.element).to.be.visible;
         }
       }
     }
-    checkHomePageElementsTextLink(homePageElements);
+    checkHomePageElementsTextLink(recruiterHomePageElements);
     // Home Page element check function end here 
     // recruiter home page header elements checked
     // Testing the navigation menu elements and corresponding links when not login
@@ -127,24 +107,19 @@ module.exports = {
         elementLabelText: 'Password'
       },
       {
-        elementSelector: 'input[name=commit]',
-        labelSelector: '',
-        elementLabelText: ''
+        elementSelector: 'input[name=commit]'
       },
     ];
 
     function recruiterLoginFormElements(recruiterLoginFormElementsSet) {
-      for (var i = 0; i < recruiterLoginFormElementsSet.length; i++) {
+      for (var i in recruiterLoginFormElementsSet) {
         var currentElements = recruiterLoginFormElementsSet[i];
-        if (currentElements.labelSelector !== '' && currentElements.elementLabelText !== '') {
+        browser.expect.element(currentElements.elementSelector).to.be.present;
+        browser.expect.element(currentElements.elementSelector).to.be.visible;
+        if (currentElements.hasOwnProperty('labelSelector') && currentElements.hasOwnProperty('elementLabelText')) {
           browser.expect.element(currentElements.labelSelector).to.be.present;
           browser.expect.element(currentElements.labelSelector).to.be.visible;
           browser.expect.element(currentElements.labelSelector).text.to.contain(currentElements.elementLabelText);
-          browser.expect.element(currentElements.elementSelector).to.be.present;
-          browser.expect.element(currentElements.elementSelector).to.be.visible;
-        } else {
-          browser.expect.element(currentElements.elementSelector).to.be.present;
-          browser.expect.element(currentElements.elementSelector).to.be.visible;
         }
       }
     }
@@ -179,7 +154,7 @@ module.exports = {
     ];
 
     function pageElementLinksCheck(pageElementLinks) {
-      for (i in pageElementLinks) {
+      for (var i in pageElementLinks) {
         var current = pageElementLinks[i];
         browser.expect.element(current.selector).to.be.present;
         browser.expect.element(current.selector).to.be.visible;
@@ -252,7 +227,7 @@ module.exports = {
         browser.expect.element(dropDownMenu).to.be.present;
         browser.expect.element(dropDownMenu).to.be.visible;
       });
-      for (i in recruiterDropdownMenuItemsLogin) {
+      for (var i in recruiterDropdownMenuItemsLogin) {
         var currentItem = recruiterDropdownMenuItemsLogin[i];
         browser.expect.element(currentItem.selector).to.be.present;
         browser.expect.element(currentItem.selector).to.be.visible;

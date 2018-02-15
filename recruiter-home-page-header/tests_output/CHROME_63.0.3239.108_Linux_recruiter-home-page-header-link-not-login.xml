@@ -5,9 +5,9 @@
 
   <testsuite name="recruiter-home-page-header-link-not-login"
     errors="0" failures="0" hostname="" id="" package="recruiter-home-page-header-link-not-login" skipped="0"
-    tests="1" time="6.401" timestamp="Thu, 15 Feb 2018 09:04:25 GMT">
+    tests="1" time="6.106" timestamp="Thu, 15 Feb 2018 09:12:51 GMT">
   
-    <testcase name="Recruiter Home Page Navigation When Not Login" classname="recruiter-home-page-header-link-not-login" time="6.401" assertions="29">
+    <testcase name="Recruiter Home Page Navigation When Not Login" classname="recruiter-home-page-header-link-not-login" time="6.106" assertions="29">
 
     
 

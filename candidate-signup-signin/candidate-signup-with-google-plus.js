@@ -1,6 +1,6 @@
 // BDD-style suite with "expect"
-var chai = require('chai');  
-var assert = chai.assert; 
+var chai = require('chai');
+var assert = chai.assert;
 var expect = chai.expect;
 var should = chai.should();
 // var expect = require('chai').expect;
@@ -193,7 +193,7 @@ module.exports = {
     cadidateSignupFormLinksTest(candidateSignupFormLinks);
     // candidate login page, page elements check - end here
     // signup with google plus function - start here
-    function googlePlusSignup(){
+    function googlePlusSignup() {
       browser.click('.pt-2 a:nth-of-type(1).btn-googleplus');
       browser.waitForElementPresent('body', 5000);
       //browser.url('https://www.gmail.com');
@@ -210,33 +210,33 @@ module.exports = {
     // cadidate signup with google plus - end here
     // check the candidate header navigation link after login start here
     var menuAfterLoginElements = [{
-      element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[1]/h6',
-      text: 'Menu'
-    },
-    {
-      element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[2]/a',
-      text: 'My Profile',
-      link: '/profile/edit'
-    },
-    {
-      element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[3]/a',
-      text: 'Logout',
-      link: '/user/sign_out'
-    },
-    {
-      element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[4]/a',
-      text: 'Recruiters',
-      link: '/user/sign_up?is_recruiter=true'
-    }
-  ];
-  browser.click('#mobMenuToggler', function (response) {
-    this.assert.ok(browser === this, 'Menu button clicked.');
-    browser.waitForElementPresent(menu, 2000);
-    browser.waitForElementVisible(menu, 2000);
-  });
-  browser.pause(1000);
-  // menu items and link testing function
-  navigation(menu, menuAfterLoginElements);
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[1]/h6',
+        text: 'Menu'
+      },
+      {
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[2]/a',
+        text: 'My Profile',
+        link: '/profile/edit'
+      },
+      {
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[3]/a',
+        text: 'Logout',
+        link: '/user/sign_out'
+      },
+      {
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[4]/a',
+        text: 'Recruiters',
+        link: '/user/sign_up?is_recruiter=true'
+      }
+    ];
+    browser.click('#mobMenuToggler', function (response) {
+      this.assert.ok(browser === this, 'Menu button clicked.');
+      browser.waitForElementPresent(menu, 2000);
+      browser.waitForElementVisible(menu, 2000);
+    });
+    browser.pause(1000);
+    // menu items and link testing function
+    navigation(menu, menuAfterLoginElements);
     browser.end();
   }
 };

@@ -5,9 +5,9 @@
 
   <testsuite name="candidate-signup-with-google-plus"
     errors="0" failures="0" hostname="" id="" package="candidate-signup-with-google-plus" skipped="0"
-    tests="1" time="23.32" timestamp="Thu, 15 Feb 2018 07:31:46 GMT">
+    tests="1" time="23.75" timestamp="Thu, 15 Feb 2018 08:04:02 GMT">
   
-    <testcase name="Candidate Signup with Google Plus" classname="candidate-signup-with-google-plus" time="23.32" assertions="109">
+    <testcase name="Candidate Signup with Google Plus" classname="candidate-signup-with-google-plus" time="23.75" assertions="109">
 
     
 

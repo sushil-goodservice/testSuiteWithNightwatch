@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="0"
+            tests="1">
+
+  <testsuite name="candidate-login-if-email-already-register-with-us"
+    errors="1" failures="0" hostname="" id="" package="candidate-login-if-email-already-register-with-us" skipped="0"
+    tests="1" time="0.03900" timestamp="Thu, 15 Feb 2018 06:18:21 GMT">
+  
+    <testcase name="Candidate Login if email is already exist" classname="candidate-login-if-email-already-register-with-us" time="0.03900" assertions="0">
+    </testcase>
+  
+
+  
+    <system-err>
+        Error while running [Candidate Login If Email Already Register With Us / Candidate Login if email is already exist]:
+
+  TypeError: browser.assert.urlEqual is not a function
+    at Object.module.exports.Candidate Login if email is already exist (/home/goodservice/Desktop/atsTesting/testCases/candidate-signup-signin/candidate-login-if-email-already-register-with-us.js:209:20)
+    at Module.call (/usr/local/lib/node_modules/nightwatch/lib/runner/module.js:62:34)
+    at /usr/local/lib/node_modules/nightwatch/lib/runner/testcase.js:70:29
+    at _fulfilled (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:834:54)
+    at self.promiseDispatch.done (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:863:30)
+    at Promise.promise.promiseDispatch (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:796:13)
+    at /usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:556:49
+    at runSingle (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:137:13)
+    at flush (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:125:13)
+    at nextTickCallbackWith0Args (node.js:419:9)
+    </system-err>
+  
+
+  
+  </testsuite>
+</testsuites>

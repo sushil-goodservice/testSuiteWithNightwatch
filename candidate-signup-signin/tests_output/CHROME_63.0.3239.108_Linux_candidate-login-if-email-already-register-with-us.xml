@@ -3,11 +3,73 @@
             failures="0"
             tests="1">
 
-  <testsuite name="Candidate-forgot-password-if-not-exist"
-    errors="0" failures="0" hostname="" id="" package="Candidate-forgot-password-if-not-exist" skipped="0"
-    tests="1" time="18.49" timestamp="Wed, 14 Feb 2018 06:32:40 GMT">
+  <testsuite name="candidate-login-if-email-already-register-with-us"
+    errors="0" failures="0" hostname="" id="" package="candidate-login-if-email-already-register-with-us" skipped="0"
+    tests="1" time="27.02" timestamp="Thu, 15 Feb 2018 06:32:24 GMT">
   
-    <testcase name="Candidate Forgot Password If Exist" classname="Candidate-forgot-password-if-not-exist" time="18.49" assertions="123">
+    <testcase name="Candidate Login if email is already exist" classname="candidate-login-if-email-already-register-with-us" time="27.02" assertions="154">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
 

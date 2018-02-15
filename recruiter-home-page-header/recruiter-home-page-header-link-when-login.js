@@ -152,7 +152,7 @@ module.exports = {
         link: '/user/sign_in'
       }
     ];
-
+    // recruiter login form page link check function - start here
     function pageElementLinksCheck(pageElementLinks) {
       for (var i in pageElementLinks) {
         var current = pageElementLinks[i];
@@ -163,6 +163,7 @@ module.exports = {
       }
     }
     pageElementLinksCheck(pageElementLinks);
+    // recruiter login form page link check function - end here
     // recruiter login page links and innter text check - end here
     // recruiter login with following credentials
     function recruiterLogin(recruiterLoginFormElementsSet) {
@@ -215,7 +216,7 @@ module.exports = {
         link: '/user/sign_out'
       }
     ];
-
+    // recuiter menu and items check function - start here
     function menuDropdownAfterLoginRecruiter(recruiterDropdownLogin, dropDownIcon, recruiterDropdownMenuItemsLogin) {
       browser.expect.element(recruiterDropdownLogin).to.be.present;
       browser.expect.element(recruiterDropdownLogin).to.be.visible;

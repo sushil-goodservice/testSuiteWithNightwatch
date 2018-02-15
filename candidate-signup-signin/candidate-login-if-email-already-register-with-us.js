@@ -159,7 +159,6 @@ module.exports = {
     }
     candidateSignupFormCheck(signupFormElements);
     // login form element check function - end here
-    // login form element check function - end here
     var candidateSignupFormLinks = [{
         selector: '.pt-2 a.btn-googleplus:nth-of-type(1)',
         link: '/user/auth/google_oauth2',

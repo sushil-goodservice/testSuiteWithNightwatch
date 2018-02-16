@@ -222,9 +222,7 @@ module.exports = {
     browser.useCss().expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Recruiter Login');
     // recruiter login page, page elements, form box and elements check 
     // recuiter login form element -start here
-    /*
-    var recruiterLoginFormElements = [
-      {
+    var recruiterLoginFormElements = [{
         selector: 'input[id=user_email]',
         labelSelector: 'label[for=user_email]',
         labelText: 'Email'
@@ -236,67 +234,105 @@ module.exports = {
       },
       {
         selector: 'input[name=commit]',
-        value: 'Submit'
+        value: 'Login'
       }
     ];
-    */
-    browser.expect.element('label[for=user_email]').to.be.present;
-    browser.expect.element('label[for=user_email]').to.be.visible;
-    browser.expect.element('label[for=user_email]').text.to.contain('Email');
-    browser.expect.element('input[id=user_email]').to.be.present;
-    browser.expect.element('input[id=user_email]').to.be.visible;
-    browser.expect.element('label[for=user_password]').to.be.present;
-    browser.expect.element('label[for=user_password]').to.be.visible;
-    browser.expect.element('label[for=user_password]').text.to.contain('Password');
-    browser.expect.element('input[id=user_password]').to.be.present;
-    browser.expect.element('input[id=user_password]').to.be.visible;
-    browser.expect.element('input[name=commit]').to.be.present;
-    browser.expect.element('input[name=commit]').to.be.visible;
-    browser.expect.element('input[name=commit]').to.have.value.that.equals('Login');
-    browser.expect.element('.f-pwd').to.be.present;
-    browser.expect.element('.f-pwd').to.be.visible;
-    browser.expect.element('.f-pwd').text.to.contain('(Forgot your password?)');
-    browser.assert.attributeContains('.f-pwd', 'href', '/user/password/new?is_recruiter=true');
-    browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').to.be.present;
-    browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').to.be.visible;
-    browser.expect.element('.pt-2 a:nth-of-type(1).btn-googleplus').text.to.contain('Login with Google+');
-    browser.assert.attributeContains('.pt-2 a.btn-googleplus', 'href', '/user/auth/google_oauth2?is_recruiter=true');
-    browser.expect.element('.pt-2 a:nth-of-type(2)').to.be.present;
-    browser.expect.element('.pt-2 a:nth-of-type(2)').to.be.visible;
-    browser.expect.element('.pt-2 a:nth-of-type(2)').text.to.contain('New User? Click here to Signup');
-    browser.assert.attributeContains('.pt-2 a:nth-of-type(2)', 'href', '/user/sign_up?is_recruiter=true');
-    browser.expect.element('.pt-2 a:nth-of-type(3)').to.be.present;
-    browser.expect.element('.pt-2 a:nth-of-type(3)').to.be.visible;
-    browser.expect.element('.pt-2 a:nth-of-type(3)').text.to.contain('Resend Email Confirmation');
-    browser.assert.attributeContains('.pt-2 a:nth-of-type(3)', 'href', '/user/confirmation/new?is_recruiter=true');
-    browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.present;
-    browser.expect.element('.pt-2 a:nth-of-type(4)').to.be.visible;
-    browser.expect.element('.pt-2 a:nth-of-type(4)').text.to.contain('Candidate Login');
-    browser.assert.attributeContains('.pt-2 a:nth-of-type(4)', 'href', '/user/sign_in');
+    // recruiter login form check function
+    recruiterFormCheck(recruiterLoginFormElements);
+    // recuiter login form element -end here
+    // recruiter login page link check - start here
+    var recruiterLoginPageLinks = [{
+        selector: '.f-pwd',
+        link: '/user/password/new?is_recruiter=true',
+        text: '(Forgot your password?)'
+      }, {
+        selector: '.pt-2 a:nth-of-type(1).btn-googleplus',
+        link: '/user/auth/google_oauth2?is_recruiter=true',
+        text: 'Login with Google+'
+      },
+      {
+        selector: '.pt-2 a:nth-of-type(2)',
+        link: '/user/sign_up?is_recruiter=true',
+        text: 'New User? Click here to Signup'
+      },
+      {
+        selector: '.pt-2 a:nth-of-type(3)',
+        link: '/user/confirmation/new?is_recruiter=true',
+        text: 'Resend Email Confirmation'
+      },
+      {
+        selector: '.pt-2 a.text-blue:nth-of-type(4)',
+        link: '/user/sign_in',
+        text: 'Candidate Login'
+      }
+    ];
+    // recruiter login page link check function
+    recruiterFormLinksTest(recruiterLoginPageLinks);
+    // recruiter login page link check function end here
+    // recruiter forgot password link clicked
     browser.click('.f-pwd', function (response) {
       this.assert.ok(browser === this, 'Recruiter forgot password link clicked.');
     });
     browser.assert.urlEquals(browser.launch_url + '/user/password/new?is_recruiter=true', 'Recruiter Sucessfully redirect to forgot password page.');
+    // recruiter login page elements check
     browser.expect.element('.alert.alert_success').to.be.present;
     browser.expect.element('.alert.alert_success').to.be.visible;
     browser.expect.element('.alert.alert_success').to.be.present;
     browser.expect.element('.alert.alert_success').to.be.visible;
-    browser.expect.element('label[for=user_email]').to.be.present;
-    browser.expect.element('label[for=user_email]').to.be.visible;
     browser.expect.element('.card-box .clearfix h2').to.be.present;
     browser.expect.element('.card-box .clearfix h2').to.be.visible;
     browser.expect.element('.card-box .clearfix h2').text.to.equal('Forgot your password?');
-    browser.expect.element('label[for=user_email]').text.to.contain('Email');
-    browser.expect.element('input[name=commit]').to.be.present;
-    browser.expect.element('input[name=commit]').to.be.visible;
-    browser.expect.element('input[name=commit]').to.have.value.that.equals('Email Password Reset Link');
-    browser.expect.element('.btn-googleplus').to.be.present;
-    browser.expect.element('a.btn-googleplus').to.be.visible;
-    browser.expect.element('a.btn-googleplus').text.to.contain('Login with Google+');
-    browser.assert.attributeContains('a.btn-googleplus', 'href', '/user/auth/google_oauth2?is_recruiter=true');
-    browser.setValue('input[id=user_email]', 'sushilkundu143@gmail.com');
-    browser.click('input[type=submit]');
-    browser.waitForElementVisible('body', 2000);
+    // recruiter forgot password form element check - strat here
+    // recruiter forgot password form elements check - end here
+    var recruiterFormPasswordFormElements = [{
+        selector: 'input[id=user_email]',
+        labelSelector: 'label[for=user_email]',
+        labelText: 'Email'
+      },
+      {
+        selector: 'input[name=commit]',
+        value: 'Email Password Reset Link'
+      }
+    ];
+    // recuriter forgot password login form check function - start here
+    recruiterFormCheck(recruiterFormPasswordFormElements);
+    // recuriter forgot password login form check function - end here
+    // recruiter forgot password page links check - start here
+    var recuriterForgotPasswordPageLinks = [{
+        selector: '.card-box .clearfix a:nth-of-type(1).btn-googleplus',
+        link: '/user/auth/google_oauth2?is_recruiter=true',
+        text: 'Login with Google+'
+      },
+      {
+        selector: '.card-box .clearfix a:nth-of-type(2)',
+        link: '/user/sign_up?is_recruiter=true',
+        text: 'New User? Click here to Signup'
+      },
+      {
+        selector: '.card-box .clearfix a:nth-of-type(3)',
+        link: '/user/sign_in?is_recruiter=true',
+        text: 'Already registered? Click here to Login'
+      },
+      {
+        selector: '.card-box .clearfix a:nth-of-type(4)',
+        link: '/user/confirmation/new?is_recruiter=true',
+        text: 'Resend Email Confirmation'
+      }
+    ];
+    // recruiter forgot password link check function -start here
+    recruiterFormLinksTest(recuriterForgotPasswordPageLinks);
+    // recruiter forgot password link check function - end here
+    // recuiter forgot password function submit function - start here
+    function forgotPasswordSubmitForm() {
+      browser.clearValue(recruiterFormPasswordFormElements[0].selector);
+      browser.setValue(recruiterFormPasswordFormElements[0].selector, 'sushilkundu143@gmail.com');
+      browser.click(recruiterFormPasswordFormElements[1].selector, function (response) {
+        this.assert.ok(browser === this, 'Recruiter forgot password form submitting.');
+      });
+    }
+    forgotPasswordSubmitForm();
+    // recruiter forgot password function submit function - end here
+    browser.waitForElementVisible('body', 2000); // recruiter forgot password page submitted and redirecting to recruiter login page
     browser.assert.urlContains('/user/sign_in?is_recruiter=true', 'Recruiter Sucessfully redirect to login.');
     browser.end();
   }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
-            failures="0"
+            failures="1"
             tests="1">
 
   <testsuite name="candidate-login"
-    errors="0" failures="0" hostname="" id="" package="candidate-login" skipped="0"
-    tests="1" time="23.93" timestamp="Thu, 15 Feb 2018 06:54:38 GMT">
+    errors="0" failures="1" hostname="" id="" package="candidate-login" skipped="0"
+    tests="1" time="20.50" timestamp="Thu, 15 Feb 2018 12:57:46 GMT">
   
-    <testcase name="Candidate Login" classname="candidate-login" time="23.93" assertions="115">
+    <testcase name="Candidate Login" classname="candidate-login" time="20.50" assertions="99">
 
     
 
@@ -203,39 +203,8 @@
 
     
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
+      <failure message="Expected element &lt;#user-mobile-header .mob-dropdown .options-wrap .options-container&gt; to be present - element was not found">    at navigation (/home/goodservice/Desktop/atsTesting/testCases/candidate-signup-signin/candidate-login.js:103:22)
+    at Object.module.exports.Candidate Login (/home/goodservice/Desktop/atsTesting/testCases/candidate-signup-signin/candidate-login.js:245:5)</failure>
 
     
     </testcase>

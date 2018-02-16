@@ -1,97 +1,263 @@
 // BDD-style suite with "expect"
-var chai = require('chai');  
-var assert = chai.assert; 
+var chai = require('chai');
+var assert = chai.assert;
 var expect = chai.expect;
 var should = chai.should();
 // var expect = require('chai').expect;
 // This test set is for not login condition
 module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
-  'Signup': function (browser) {
-    var menu = '.links .links-item';
-    browser.url(browser.launch_url);
-    browser.waitForElementPresent('body', 5000);
-    browser.assert.title('Landing - the best tech jobs in 1 place');
-    browser.expect.element('.header-logo').to.be.present;
-    browser.expect.element('.header-logo').to.be.visible;
-    browser.expect.element('#user-header-search').to.be.present;
-    browser.expect.element('#user-header-search').to.be.visible;
-    browser.expect.element('.page-heading').to.be.present;
-    browser.expect.element('.page-heading').to.be.visible;
-    browser.expect.element('.header-logo a').to.be.present;
-    browser.expect.element('.header-logo a').to.be.visible;
-    browser.expect.element('.header-logo a').text.to.contain('LANDING .CO');
-    browser.expect.element('.header-logo a').to.have.attribute('href').which.contains('/');
-    browser.expect.element('.page-heading h2').to.be.present;
-    browser.expect.element('.page-heading h2').to.be.visible;
-    browser.expect.element('.page-heading h2').text.to.contain('Browse Jobs');
-    browser.expect.element('.popular-tags').to.be.present;
-    browser.expect.element('.popular-tags').to.be.visible;
-    browser.expect.element('.popular-tags .popular-tags-title').text.to.equal('Popular Search Tags:');
-    browser.expect.element('.pagination').to.be.present;
-    browser.expect.element('.pagination').to.be.visible;
-    browser.expect.element('.main-footer').to.be.present;
-    browser.expect.element('.main-footer').to.be.visible;
-    browser.expect.element('.main-footer .container a:nth-of-type(1)').text.to.contain('Browse Jobs');
-    browser.expect.element('.main-footer .container a:nth-of-type(1)').to.have.attribute('href').which.contains('/sitemap');
-    browser.expect.element('.main-footer .container a:nth-of-type(2)').text.to.contain('LANDING .CO');
-    browser.expect.element('.main-footer .container a:nth-of-type(2)').to.have.attribute('href').which.contains('/');
-    browser.saveScreenshot('./screenshots/expect-home.png');
-    function navigation(items) {
-      expect(items.value.length).to.equal(2); // Chai module
-      browser.expect.element(menu + ':nth-of-type(1) a span').text.to.contain('FOR CANDIDATES');
-      browser.expect.element(menu + ':nth-of-type(1) a').to.have.attribute('href').which.contains('/user/sign_up');
-      browser.expect.element(menu + ':nth-of-type(2) a span').text.to.contain('FOR RECRUITERS');
-      browser.expect.element(menu + ':nth-of-type(2) a').to.have.attribute('href').which.contains('/user/sign_up?is_recruiter=true');
+  'Candidate Signup': function (browser) {
+    browser.url(browser.launch_url); // redirect to home page url
+    browser.waitForElementPresent('body.mobile-visible', 5000); // wait for page body should be loaded.
+    browser.assert.title('Landing - the best tech jobs in 1 place'); // match the home page title
+    browser.expect.element('header.mobile-visible').to.be.present; // check mobile header should be present
+    browser.expect.element('.header.mobile-visible').to.be.visible; // check mobile header should be visible
+    browser.expect.element('#user-mobile-header .header-wrapper').to.be.present; // check mobile header inner div should be present
+    browser.expect.element('#user-mobile-header .header-wrapper').to.be.visible; // check mobile header inner div should be visible
+    // checkHomePageElementsTextLink: define function to test all the elements present in home page. 
+    var homePageElements = [{
+        element: '.mob-dropdown'
+      },
+      {
+        element: '.header-logo'
+      },
+      {
+        element: '.mob-search-link'
+      },
+      {
+        element: 'a.border-top.new-rec-btn',
+        text: 'Recruiters',
+        link: '/user/sign_up?is_recruiter=true'
+      },
+      {
+        element: 'form.candidate-search-wrap'
+      },
+      {
+        element: '.content-box'
+      },
+      {
+        element: '.pagination'
+      },
+      {
+        element: '.main-footer'
+      },
+      {
+        element: '.main-footer .container a:nth-of-type(1)',
+        text: 'Browse Jobs',
+        link: '/sitemap'
+      },
+      {
+        element: '.main-footer .container a:nth-of-type(2)',
+        text: 'LANDING .CO',
+        link: '/'
+      }
+    ];
+    // check the page elements are present, visible, having the following text with the following  as mention the array.
+    // Home (Candidate Home) Page element check function start here 
+    function checkHomePageElementsTextLink(homePageElements) {
+      for (var x in homePageElements) {
+        var currentHomePageElements = homePageElements[x];
+        browser.expect.element(currentHomePageElements.element).to.be.present;
+        browser.expect.element(currentHomePageElements.element).to.be.visible;
+        if (currentHomePageElements.hasOwnProperty('text') && currentHomePageElements.hasOwnProperty('link')) {
+          browser.expect.element(currentHomePageElements.element).text.to.contain(currentHomePageElements.text);
+          browser.expect.element(currentHomePageElements.element).to.have.attribute('href').which.contains(currentHomePageElements.link);
+        } else if (currentHomePageElements.hasOwnProperty('text')) {
+          browser.expect.element(currentHomePageElements.element).text.to.contain(currentHomePageElements.text);
+        }
+      }
     }
-    browser.expect.element(menu).to.be.present;
-    browser.expect.element(menu).to.be.visible;
-    browser.elements('css selector', menu, navigation);
-    function navigationAfterLogin(items) {
-      browser.waitForElementPresent(menu + ' .profile-link a.dropdown-toggle', 1000, false);
-      browser.expect.element(menu + ' .profile-link a.dropdown-toggle').to.be.present;
-      browser.expect.element(menu + ' .profile-link a.dropdown-toggle').to.be.visible;
-      browser.expect.element(menu + ' .profile-link a.dropdown-toggle  > span.d-block').text.to.contain('MY PROFILE');
-      browser.click(menu + ' .profile-link a.dropdown-toggle', function(response) {
-        this.assert.ok(browser === this, 'Candidate dropdown-menu clicked.');
+    checkHomePageElementsTextLink(homePageElements);
+    // Home (Candidate Home) Page element check function end here 
+    // check the candidate header navigation link when not login start here
+    var menu = '#user-mobile-header .mob-dropdown .options-wrap .options-container'; // mobile menu element
+    var menuNotLoginElements = [{
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[1]/h6',
+        text: 'Menu'
+      },
+      {
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[2]/a',
+        text: 'Sign Up',
+        link: '/user/sign_up'
+      },
+      {
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[3]/a',
+        text: 'Login',
+        link: '/user/sign_in'
+      },
+      {
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[4]/a',
+        text: 'Recruiters',
+        link: '/user/sign_up?is_recruiter=true'
+      }
+    ];
+    browser.click('#mobMenuToggler', function (response) {
+      this.assert.ok(browser === this, 'Menu button clicked.');
+      browser.waitForElementPresent(menu, 2000);
+      browser.waitForElementVisible(menu, 2000);
+    });
+    browser.pause(1000);
+    // menu items and link testing function
+    function navigation(menu, menuNotLoginElements) {
+      browser.expect.element(menu).to.be.present;
+      browser.expect.element(menu).to.be.visible;
+      for (var i in menuNotLoginElements) {
+        var currentMenuNotLoginElements = menuNotLoginElements[i];
+        browser.useXpath().expect.element(currentMenuNotLoginElements.element).to.be.present;
+        browser.useXpath().expect.element(currentMenuNotLoginElements.element).to.be.visible;
+        if (currentMenuNotLoginElements.hasOwnProperty('link')) {
+          browser.useXpath().expect.element(currentMenuNotLoginElements.element).text.to.contain(currentMenuNotLoginElements.text);
+          browser.useXpath().expect.element(currentMenuNotLoginElements.element).to.have.attribute('href').which.contains(currentMenuNotLoginElements.link);
+        } else {
+          browser.useXpath().expect.element(currentMenuNotLoginElements.element).text.to.contain(currentMenuNotLoginElements.text);
+        }
+      }
+    }
+    navigation(menu, menuNotLoginElements);
+    browser.pause(3000);
+    // candidate nevigation when not login - end here
+    // redirecting to candidate signup page 
+    browser.url(browser.launch_url + '/user/sign_up');
+    browser.assert.urlEquals(browser.launch_url + '/user/sign_up');
+    // end candidate signup page check - end here
+    // candidate signup form, elements check
+    // candidate login page, page elements check - start here
+    browser.useCss().waitForElementPresent('body', 2000);
+    browser.useCss().waitForElementVisible('body', 2000);
+    browser.useCss().expect.element('.page-popup-like').to.be.present;
+    browser.useCss().expect.element('.page-popup-like').to.be.visible;
+    browser.useCss().expect.element('.card-box h2.mb-15').to.be.present;
+    browser.useCss().expect.element('.card-box h2.mb-15').to.be.visible;
+    browser.useCss().expect.element('.card-box h2.mb-15').text.to.contain('Candidate Signup');
+    // candidate login div and form elements
+    var signupFormElements = [{
+        selector: '.new_user .field:nth-of-type(1) input[id=user_email]',
+        labelSelector: 'label[for=user_email]',
+        labelText: 'Email'
+      },
+      {
+        selector: '.new_user .field:nth-of-type(2) input[id=user_password]',
+        labelSelector: 'label[for=user_password]',
+        labelText: 'Set your password'
+      },
+      {
+        selector: '.new_user .actions input[type=submit]',
+        value: 'Submit'
+      }
+    ];
+    // login form element check function - start here
+    function candidateSignupFormCheck(signupFormElements) {
+      for (var i in signupFormElements) {
+        var currrentFormElements = signupFormElements[i];
+        browser.useCss().expect.element(currrentFormElements.selector).to.be.present;
+        browser.useCss().expect.element(currrentFormElements.selector).to.be.visible;
+        if (currrentFormElements.hasOwnProperty('labelSelector') && currrentFormElements.hasOwnProperty('labelText')) {
+          browser.useCss().expect.element(currrentFormElements.labelSelector).to.be.present;
+          browser.useCss().expect.element(currrentFormElements.labelSelector).to.be.visible;
+          browser.useCss().expect.element(currrentFormElements.labelSelector).text.to.equal(currrentFormElements.labelText);
+        } else {
+          browser.useCss().expect.element(currrentFormElements.selector).to.have.value.that.equals(currrentFormElements.value);
+        }
+      }
+    }
+    candidateSignupFormCheck(signupFormElements);
+    // candidate signup form element check function - end here
+    var candidateSignupFormLinks = [{
+        selector: '.pt-2 a.btn-googleplus:nth-of-type(1)',
+        link: '/user/auth/google_oauth2',
+        text: 'Login with Google+'
+      },
+      {
+        selector: '.pt-2 a.text-blue:nth-of-type(2)',
+        link: '/user/sign_in',
+        text: 'Already registered? Click here to Login'
+      },
+      {
+        selector: '.pt-2 a.text-blue:nth-of-type(3)',
+        link: '/user/confirmation/new',
+        text: 'Resend Email Confirmation'
+      },
+      {
+        selector: '.pt-2 a.text-blue:nth-of-type(4)',
+        link: '/user/sign_up?is_recruiter=true',
+        text: 'Recruiter Signup'
+      }
+    ];
+    // candidate signup page link checking function
+    function cadidateSignupFormLinksTest(candidateSignupFormLinks) {
+      for (var i in candidateSignupFormLinks) {
+        var currentlinkItem = candidateSignupFormLinks[i];
+        browser.useCss().expect.element(currentlinkItem.selector).to.be.present;
+        browser.useCss().expect.element(currentlinkItem.selector).to.be.visible;
+        browser.useCss().expect.element(currentlinkItem.selector).text.to.equal(currentlinkItem.text);
+        browser.useCss().expect.element(currentlinkItem.selector).to.have.attribute('href').which.contains(currentlinkItem.link);
+      }
+    }
+    cadidateSignupFormLinksTest(candidateSignupFormLinks);
+    // candidate signup page, page elements check - end here
+    // candidate signup - start here
+    function signupForm(signupFormElements) {
+      browser.useCss().clearValue(signupFormElements[0].selector);
+      browser.useCss().setValue(signupFormElements[0].selector, 'kapur.r1985+65@gmail.com');
+      browser.useCss().clearValue(signupFormElements[1].selector);
+      browser.useCss().setValue(signupFormElements[1].selector, 'goodservice');
+      browser.pause(1000);
+      browser.useCss().click(signupFormElements[2].selector, function (response) {
+        this.assert.ok(browser === this, 'Candidate signup form submitted.');
       });
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu').to.be.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a').to.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a').to.have.attribute('href').which.contains('/profile/edit');
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a span').to.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a span').to.be.visible;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(1) a span').text.to.equal('My Profile');
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a').to.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a').to.have.attribute('href').which.contains('/user/sign_out');
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a span').to.present;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a > span').to.be.visible;
-      browser.expect.element(menu + ':nth-of-type(1) .profile-link ul.dropdown-menu li:nth-of-type(2) a span').text.to.equal('Logout');
-      browser.expect.element(menu + ':nth-of-type(2) a span').text.to.contain('FOR RECRUITERS');
-      browser.expect.element(menu + ':nth-of-type(2) a').to.have.attribute('href').which.contains('/user/sign_up?is_recruiter=true');
     }
-    browser.click('a.ga-trackable', function(response){
-      this.assert.ok(browser == this, 'Click on the FOR CANDIDATES link and redirect to candidate signup page.');
-    });
-    browser.expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Candidate Signup');
-    browser.waitForElementPresent('body', 2000);
-    browser.setValue('input[type=email]', 'kapur.r1985+43@gmail.com');
-    browser.setValue('input[type=password]', 'goodservice');
-    browser.click('input[type=submit]');
-    browser.pause(5000);
-    browser.url('https://www.gmail.com');
-    browser.setValue('input[type=email]', 'kapur.r1985@gmail.com');
-    browser.click('.CwaK9');
-    browser.pause(2000);
-    browser.setValue('input[type=password]', 'kapur.r1985');
-    browser.click('.CwaK9', function(response) {
-      this.assert.ok(browser === this, 'Login to G-mail Account.');
-    });
+    signupForm(signupFormElements);
+    // end candidate signup function - end here
+    // login gmail to verify the account - start here
+    function loginToGmain() {
+      browser.url('https://www.gmail.com');
+      browser.setValue('input[type=email]', 'kapur.r1985@gmail.com');
+      browser.click('.CwaK9');
+      browser.pause(2000);
+      browser.setValue('input[type=password]', 'kapur.r1985');
+      browser.click('.CwaK9', function (response) {
+        this.assert.ok(browser === this, 'Login to G-mail Account.');
+      });
+    }
+    loginToGmain();
+    // login gmail to verify account - end here
     browser.pause(25000);
-     browser.url(browser.launch_url + '/j', function(result) {
+    browser.url(browser.launch_url + '/j', function (result) {
       this.assert.ok(browser == this, 'Current Url Matched.');
-     });
-    browser.waitForElementPresent('body.desktop-visible', 2000);
-    browser.elements('css selector', menu, navigationAfterLogin);
+    });
+    browser.waitForElementPresent('body.mobile-visible', 2000);
+    // candidate menu check after login - start here
+    // check the candidate header navigation link after login start here
+    var menuAfterSignupElements = [{
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[1]/h6',
+        text: 'Menu'
+      },
+      {
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[2]/a',
+        text: 'My Profile',
+        link: '/profile/edit'
+      },
+      {
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[3]/a',
+        text: 'Logout',
+        link: '/user/sign_out'
+      },
+      {
+        element: '//*[@id="user-mobile-header"]/div/div/div[1]/div/div/div[4]/a',
+        text: 'Recruiters',
+        link: '/user/sign_up?is_recruiter=true'
+      }
+    ];
+    browser.click('#mobMenuToggler', function (response) {
+      this.assert.ok(browser === this, 'Menu button clicked.');
+      browser.waitForElementPresent(menu, 2000);
+      browser.waitForElementVisible(menu, 2000);
+    });
+    browser.pause(1000);
+    // menu items and link testing function
+    navigation(menu, menuAfterSignupElements);
+    // candidate menu check after signup - end here
     browser.assert.urlEquals(browser.launch_url + '/j', 'Candidate signup Sucessful.');
     browser.end();
   }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="0"
+            tests="1">
+
+  <testsuite name="candidate-signup"
+    errors="1" failures="0" hostname="" id="" package="candidate-signup" skipped="0"
+    tests="1" time="0.05700" timestamp="Fri, 16 Feb 2018 08:10:42 GMT">
+  
+    <testcase name="Candidate Signup" classname="candidate-signup" time="0.05700" assertions="0">
+    </testcase>
+  
+
+  
+    <system-err>
+        Error while running [Candidate Signup / Candidate Signup]:
+
+  ReferenceError: navigationAfterLogin is not defined
+    at Object.module.exports.Candidate Signup (/home/goodservice/Desktop/atsTesting/testCases/candidate-signup-signin/candidate-signup.js:230:44)
+    at Module.call (/usr/local/lib/node_modules/nightwatch/lib/runner/module.js:62:34)
+    at /usr/local/lib/node_modules/nightwatch/lib/runner/testcase.js:70:29
+    at _fulfilled (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:834:54)
+    at self.promiseDispatch.done (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:863:30)
+    at Promise.promise.promiseDispatch (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:796:13)
+    at /usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:556:49
+    at runSingle (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:137:13)
+    at flush (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:125:13)
+    at nextTickCallbackWith0Args (node.js:419:9)
+    </system-err>
+  
+
+  
+  </testsuite>
+</testsuites>

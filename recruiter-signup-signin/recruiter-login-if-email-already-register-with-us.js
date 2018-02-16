@@ -210,7 +210,7 @@ module.exports = {
     recruiterFormLinksTest(recuiterSignupFormLinks);
     // recuiter login page, page elements check - end here
     // submitting the recruiter signup form - start here
-    function recruiterSignupFormFunction(recruiterSingupFormElements){
+    function recruiterSignupFormFunction(recruiterSingupFormElements) {
       browser.useCss().clearValue(recruiterSingupFormElements[0].selector);
       browser.useCss().setValue(recruiterSingupFormElements[0].selector, 'kapur.r1985@gmail.com');
       browser.useCss().clearValue(recruiterSingupFormElements[1].selector);
@@ -223,7 +223,7 @@ module.exports = {
       browser.useCss().setValue(recruiterSingupFormElements[4].selector, '9821634189');
       browser.useCss().click(recruiterSingupFormElements[5].selector, function (response) {
         this.assert.ok(browser === this, 'Recruiter login sucessful.');
-      }); 
+      });
     }
     recruiterSignupFormFunction(recruiterSingupFormElements);
     // submitting the recruiter signup form - end here
@@ -296,7 +296,7 @@ module.exports = {
     }
     recruiterLoginformSubmit();
     // recruiter login form submission - end here
-    
+
     // recruiter forgot password function submit function - end here
     browser.useCss().waitForElementVisible('body', 2000); // recruiter forgot password page submitted and redirecting to recruiter login page
     browser.waitForElementNotVisible('.loader-modal', 2000);

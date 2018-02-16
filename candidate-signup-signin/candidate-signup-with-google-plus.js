@@ -7,7 +7,7 @@ var should = chai.should();
 // This test set is for not login condition
 module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
-  'Candidate Signup with Google Plus': function (browser) {
+  'Candidate Resend confirmation instructions': function (browser) {
     browser.url(browser.launch_url); // redirect to home page url
     browser.waitForElementPresent('body.mobile-visible', 5000); // wait for page body should be loaded.
     browser.assert.title('Landing - the best tech jobs in 1 place'); // match the home page title
@@ -196,7 +196,6 @@ module.exports = {
     function googlePlusSignup() {
       browser.click('.pt-2 a:nth-of-type(1).btn-googleplus');
       browser.waitForElementPresent('body', 5000);
-      //browser.url('https://www.gmail.com');
       browser.setValue('input[type=email]', 'kapur.r1985@gmail.com');
       browser.click('.CwaK9');
       browser.pause(2000);

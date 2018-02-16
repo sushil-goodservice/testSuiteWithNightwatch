@@ -271,18 +271,18 @@ module.exports = {
     // recruiter login page link check function end here
     // recruiter forgot password link clicked
     // recruiter login form submission - start here
-    function recruiterLoginformSubmit(){
+    function recruiterLoginformSubmit() {
       browser.useCss().clearValue(recruiterLoginFormElements[0].selector);
       browser.useCss().setValue(recruiterLoginFormElements[0].selector, 'kapur.r1985@gmail.com');
       browser.useCss().clearValue(recruiterLoginFormElements[1].selector);
       browser.useCss().setValue(recruiterLoginFormElements[1].selector, 'goodservice');
-      browser.useCss().click(recruiterLoginFormElements[2].selector, function(response){
+      browser.useCss().click(recruiterLoginFormElements[2].selector, function (response) {
         this.assert.ok(browser === this, 'Recruiter login sucessful.');
       });
-    } 
+    }
     recruiterLoginformSubmit();
     // recruiter login form submission - end here
-   
+
     // recruiter forgot password function submit function - end here
     browser.useCss().waitForElementVisible('body', 2000); // recruiter forgot password page submitted and redirecting to recruiter login page
     browser.waitForElementNotVisible('.loader-modal', 2000);

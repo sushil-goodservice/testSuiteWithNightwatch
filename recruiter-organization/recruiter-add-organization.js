@@ -376,7 +376,8 @@ module.exports = {
     organizationPage(orgPageElements);
     // recruiter organization page elements check function - end here
     // recruiter remove organization function - start here
-    
+    var organisationID = '410';
+    browser.click('a[href="/recruiter/organisations/"' + organisationID + ']', 'Leave Organization link cliked.');
     // recruiter remove organization function - end here
     browser.waitForElementVisible('body', 2000);
     browser.assert.urlEquals(browser.launch_url + '/recruiter/organisations');

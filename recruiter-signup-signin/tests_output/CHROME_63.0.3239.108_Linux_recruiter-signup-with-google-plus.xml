@@ -5,9 +5,9 @@
 
   <testsuite name="recruiter-signup-with-google-plus"
     errors="0" failures="0" hostname="" id="" package="recruiter-signup-with-google-plus" skipped="0"
-    tests="1" time="28.30" timestamp="Fri, 16 Feb 2018 10:20:01 GMT">
+    tests="1" time="25.37" timestamp="Mon, 19 Feb 2018 05:03:32 GMT">
   
-    <testcase name="Recruiter forgot Password if Exist" classname="recruiter-signup-with-google-plus" time="28.30" assertions="107">
+    <testcase name="Recruiter forgot Password if Exist" classname="recruiter-signup-with-google-plus" time="25.37" assertions="107">
 
     
 

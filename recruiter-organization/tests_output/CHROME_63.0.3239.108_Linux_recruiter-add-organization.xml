@@ -3,11 +3,127 @@
             failures="0"
             tests="1">
 
-  <testsuite name="recruiter-login"
-    errors="0" failures="0" hostname="" id="" package="recruiter-login" skipped="0"
-    tests="1" time="22.28" timestamp="Mon, 19 Feb 2018 08:33:37 GMT">
+  <testsuite name="recruiter-add-organization"
+    errors="0" failures="0" hostname="" id="" package="recruiter-add-organization" skipped="0"
+    tests="1" time="27.71" timestamp="Mon, 19 Feb 2018 12:02:29 GMT">
   
-    <testcase name="Recruiter forgot Password if Exist" classname="recruiter-login" time="22.28" assertions="144">
+    <testcase name="Recruiter forgot Password if Exist" classname="recruiter-add-organization" time="27.71" assertions="202">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
 

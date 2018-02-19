@@ -116,38 +116,50 @@ module.exports = {
         }
         navigation(menu, menuNotLoginElements);
         browser.pause(3000);
-        // candidate header navigation link check end here when not login
-        browser.url(browser.launch_url + '/user/sign_in');
-        // candidate login page check - start here
-        // candidate login page, page elements check - start here
-        browser.useCss().waitForElementPresent('body', 2000);
-        browser.useCss().waitForElementVisible('body', 2000);
+        // redirecting to recruiter signup page 
+        browser.url(browser.launch_url + '/user/sign_up?is_recruiter=true');
+        browser.pause(2000);
+        browser.assert.urlEquals(browser.launch_url + '/user/sign_up?is_recruiter=true');
+        // recruiter signup page elements check
+        browser.useCss().waitForElementPresent('body.bg-grey', 2000);
         browser.useCss().expect.element('.page-popup-like').to.be.present;
         browser.useCss().expect.element('.page-popup-like').to.be.visible;
-        browser.useCss().expect.element('.card-box h2.mb-15').to.be.present;
-        browser.useCss().expect.element('.card-box h2.mb-15').to.be.visible;
-        browser.useCss().expect.element('.card-box h2.mb-15').text.to.contain('Candidate Login');
-        // candidate login div and form elements
-        var loginFormElements = [{
-                selector: '.new_user .field:nth-of-type(1) input[id=user_email]',
+        browser.useCss().expect.element('.page-popup-like .card-box h2.mb-15').text.to.equal('Recruiter Signup');
+        // recruiter signup page box and form elements check - start here
+        var recruiterSingupFormElements = [{
+                selector: 'input[id=user_email]',
                 labelSelector: 'label[for=user_email]',
                 labelText: 'Email'
             },
             {
-                selector: '.new_user .field:nth-of-type(2) input[id=user_password]',
+                selector: 'input[id=user_password]',
                 labelSelector: 'label[for=user_password]',
-                labelText: 'Password'
+                labelText: 'Set your password'
             },
             {
-                selector: '.new_user .actions input[type=submit]',
-                value: 'Login'
-
+                selector: 'input[id=user_name]',
+                labelSelector: 'label[for=designation]',
+                labelText: 'Your Name'
+            },
+            {
+                selector: 'input[id=company]',
+                labelSelector: 'label[for=company]',
+                labelText: 'Company Name'
+            },
+            {
+                selector: 'input[id=phone]',
+                labelSelector: 'label[for=phone]',
+                labelText: 'Mobile Number'
+            },
+            {
+                selector: 'input[name=commit]',
+                value: 'Submit'
             }
         ];
-        // login form element check function - start here
-        function candidateFormCheck(loginFormElements) {
-            for (var i in loginFormElements) {
-                var currrentFormElements = loginFormElements[i];
+        // recruiter signup form elements check function
+        function recruiterFormCheck(recruiterSingupFormElements) {
+            for (var i in recruiterSingupFormElements) {
+                var currrentFormElements = recruiterSingupFormElements[i];
                 browser.useCss().expect.element(currrentFormElements.selector).to.be.present;
                 browser.useCss().expect.element(currrentFormElements.selector).to.be.visible;
                 if (currrentFormElements.hasOwnProperty('labelSelector') && currrentFormElements.hasOwnProperty('labelText')) {
@@ -159,51 +171,50 @@ module.exports = {
                 }
             }
         }
-        candidateFormCheck(loginFormElements);
+        recruiterFormCheck(recruiterSingupFormElements);
+        // recruiter signup page box and form elements check - end here
+        // recruiter singup page links check - start here
         // login form element check function - end here
-        var candidateLoginFormLinks = [{
-                selector: '.f-pwd',
-                link: '/user/password/new',
-                text: '(Forgot your password?)'
-            },
-            {
+        var recuiterSignupFormLinks = [{
                 selector: '.pt-2 a.btn-googleplus:nth-of-type(1)',
-                link: '/user/auth/google_oauth2',
+                link: '/user/auth/google_oauth2?is_recruiter=true',
                 text: 'Login with Google+'
             },
             {
                 selector: '.pt-2 a.text-blue:nth-of-type(2)',
-                link: '/user/sign_up',
-                text: 'New User? Click here to Signup'
+                link: '/user/sign_in?is_recruiter=true',
+                text: 'Already registered? Click here to Login'
             },
             {
                 selector: '.pt-2 a.text-blue:nth-of-type(3)',
-                link: '/user/confirmation/new',
+                link: '/user/confirmation/new?is_recruiter=true',
                 text: 'Resend Email Confirmation'
             },
             {
                 selector: '.pt-2 a.text-blue:nth-of-type(4)',
-                link: '/user/sign_in?is_recruiter=true',
-                text: 'Recruiter Login'
+                link: '/user/sign_up',
+                text: 'Candidate Signup'
             }
         ];
-        // candidate login page link checking function
-        function cadidateFormLinksTest(candidateLoginFormLinks) {
-            for (var i in candidateLoginFormLinks) {
-                var currentlinkItem = candidateLoginFormLinks[i];
+        // recuiter signup page link checking function
+        function recruiterFormLinksTest(recuiterSignupFormLinks) {
+            for (var i in recuiterSignupFormLinks) {
+                var currentlinkItem = recuiterSignupFormLinks[i];
                 browser.useCss().expect.element(currentlinkItem.selector).to.be.present;
                 browser.useCss().expect.element(currentlinkItem.selector).to.be.visible;
                 browser.useCss().expect.element(currentlinkItem.selector).text.to.equal(currentlinkItem.text);
                 browser.useCss().expect.element(currentlinkItem.selector).to.have.attribute('href').which.contains(currentlinkItem.link);
             }
         }
-        cadidateFormLinksTest(candidateLoginFormLinks);
+        recruiterFormLinksTest(recuiterSignupFormLinks);
+        // recuiter signup page, page elements check - end here
+        // recruiter signup page links check - end here
         // candidate login page, page elements check - end here
-        browser.useCss().click(candidateLoginFormLinks[3].selector, function (response) {
+        browser.useCss().click(recuiterSignupFormLinks[2].selector, function (response) {
             this.assert.ok(browser === this, 'Candidate Resend confirmation instructions link clicked.');
         });
         // candidate login page check - end here
-        browser.assert.urlEquals(browser.launch_url + '/user/confirmation/new');
+        browser.assert.urlEquals(browser.launch_url + '/user/confirmation/new?is_recruiter=true');
         // redirecting to candidate singup page 
         // candidate signup page, page elements check - start here
         browser.useCss().waitForElementPresent('body.bg-grey', 2000);
@@ -245,17 +256,17 @@ module.exports = {
         // login form element check function - end here
         var candidateConfirmFormLinks = [{
                 selector: '.card-box a.btn-googleplus:nth-of-type(1)',
-                link: '/user/auth/google_oauth2',
+                link: '/user/auth/google_oauth2?is_recruiter=true',
                 text: 'Login with Google+'
             },
             {
                 selector: '.card-box a.text-blue:nth-of-type(2)',
-                link: '/user/sign_up',
+                link: '/user/sign_up?is_recruiter=true',
                 text: 'New User? Click here to Signup'
             },
             {
                 selector: '.card-box a.text-blue:nth-of-type(3)',
-                link: '/user/sign_in',
+                link: '/user/sign_in?is_recruiter=true',
                 text: 'Already registered? Click here to Login'
             }
         ];

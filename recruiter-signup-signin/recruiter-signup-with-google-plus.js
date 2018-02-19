@@ -197,7 +197,7 @@ module.exports = {
         text: 'Candidate Signup'
       }
     ];
-    // recuiter login page link checking function
+    // recuiter signup page link checking function
     function recruiterFormLinksTest(recuiterSignupFormLinks) {
       for (var i in recuiterSignupFormLinks) {
         var currentlinkItem = recuiterSignupFormLinks[i];
@@ -208,7 +208,7 @@ module.exports = {
       }
     }
     recruiterFormLinksTest(recuiterSignupFormLinks);
-    // recuiter login page, page elements check - end here
+    // recuiter signup page, page elements check - end here
     // recruiter signup page links check - end here
     browser.useCss().click(recuiterSignupFormLinks[0].selector, function (response) {
       this.assert.ok(browser === this, 'Recruiter login page link clicked, redirecting recruiter login page.');

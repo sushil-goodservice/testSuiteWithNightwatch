@@ -3,35 +3,11 @@
             failures="0"
             tests="1">
 
-  <testsuite name="recruiter-login"
-    errors="0" failures="0" hostname="" id="" package="recruiter-login" skipped="0"
-    tests="1" time="22.28" timestamp="Mon, 19 Feb 2018 08:33:37 GMT">
+  <testsuite name="recruiter-resend-confirmation-instructions"
+    errors="0" failures="0" hostname="" id="" package="recruiter-resend-confirmation-instructions" skipped="0"
+    tests="1" time="20.92" timestamp="Mon, 19 Feb 2018 05:28:10 GMT">
   
-    <testcase name="Recruiter forgot Password if Exist" classname="recruiter-login" time="22.28" assertions="144">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
+    <testcase name="Candidate Resend confirmation instructions" classname="recruiter-resend-confirmation-instructions" time="20.92" assertions="132">
 
     
 

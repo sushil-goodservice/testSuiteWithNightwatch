@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="0"
+            tests="1">
+
+  <testsuite name="recruiter-resend-confirmation-instructions"
+    errors="1" failures="0" hostname="" id="" package="recruiter-resend-confirmation-instructions" skipped="0"
+    tests="1" time="0.04800" timestamp="Mon, 19 Feb 2018 05:08:14 GMT">
+  
+    <testcase name="Candidate Resend confirmation instructions" classname="recruiter-resend-confirmation-instructions" time="0.04800" assertions="0">
+    </testcase>
+  
+
+  
+    <system-err>
+        Error while running [Recruiter Resend Confirmation Instructions / Candidate Resend confirmation instructions]:
+
+  ReferenceError: candidateLoginFormLinks is not defined
+    at Object.module.exports.Candidate Resend confirmation instructions (/home/goodservice/Desktop/atsTesting/testCases/recruiter-resend-confirmation-instructions/recruiter-resend-confirmation-instructions.js:213:32)
+    at Module.call (/usr/local/lib/node_modules/nightwatch/lib/runner/module.js:62:34)
+    at /usr/local/lib/node_modules/nightwatch/lib/runner/testcase.js:70:29
+    at _fulfilled (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:834:54)
+    at self.promiseDispatch.done (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:863:30)
+    at Promise.promise.promiseDispatch (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:796:13)
+    at /usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:556:49
+    at runSingle (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:137:13)
+    at flush (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:125:13)
+    at nextTickCallbackWith0Args (node.js:419:9)
+    </system-err>
+  
+
+  
+  </testsuite>
+</testsuites>

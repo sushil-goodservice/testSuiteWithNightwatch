@@ -5,9 +5,13 @@
 
   <testsuite name="candidate-resend-confirmation-instructions"
     errors="0" failures="0" hostname="" id="" package="candidate-resend-confirmation-instructions" skipped="0"
-    tests="1" time="13.87" timestamp="Fri, 16 Feb 2018 12:36:27 GMT">
+    tests="1" time="19.08" timestamp="Mon, 19 Feb 2018 04:42:08 GMT">
   
-    <testcase name="Candidate Resend confirmation instructions" classname="candidate-resend-confirmation-instructions" time="13.87" assertions="121">
+    <testcase name="Candidate Resend confirmation instructions" classname="candidate-resend-confirmation-instructions" time="19.08" assertions="123">
+
+    
+
+    
 
     
 

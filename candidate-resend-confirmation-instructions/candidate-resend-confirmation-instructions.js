@@ -272,7 +272,16 @@ module.exports = {
         candidateFormLinksCheck(candidateConfirmFormLinks);
         // candidate login page, page elements check - end here
         // candidate resend confirmation function - start here
-        
+        function resendCofirmationSubmission(confirmFormElements) {
+            browser.clearValue(confirmFormElements[0].selector);
+            browser.setValue(confirmFormElements[0].selector, 'sushilkundu143@gmail.com');
+            browser.click(confirmFormElements[1].selector);
+        }
+        resendCofirmationSubmission(confirmFormElements);
+        // candidate resenf confirmation function - end here
+        browser.waitForElementPresent('body', 2000);
+        browser.assert.urlContains(browser.launch_url + '/user/sign_in', 'Redirected to candidate login page.');
+        browser.pause(3000);
         // candidate resend confirmation function - end here
         browser.end();
     }

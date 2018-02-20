@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="0"
+            tests="1">
+
+  <testsuite name="recruiter-edit-organization"
+    errors="1" failures="0" hostname="" id="" package="recruiter-edit-organization" skipped="0"
+    tests="1" time="0.07400" timestamp="Tue, 20 Feb 2018 06:58:03 GMT">
+  
+    <testcase name="Recruiter forgot Password if Exist" classname="recruiter-edit-organization" time="0.07400" assertions="0">
+    </testcase>
+  
+
+  
+    <system-err>
+        Error while running [Recruiter Edit Organization / Recruiter forgot Password if Exist]:
+
+  TypeError: Cannot read property &#39;selector&#39; of undefined
+    at submitRecruiterOrgaization (/home/goodservice/Desktop/atsTesting/testCases/recruiter-organization/recruiter-edit-organization.js:446:52)
+    at Object.module.exports.Recruiter forgot Password if Exist (/home/goodservice/Desktop/atsTesting/testCases/recruiter-organization/recruiter-edit-organization.js:450:5)
+    at Module.call (/usr/local/lib/node_modules/nightwatch/lib/runner/module.js:62:34)
+    at /usr/local/lib/node_modules/nightwatch/lib/runner/testcase.js:70:29
+    at _fulfilled (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:834:54)
+    at self.promiseDispatch.done (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:863:30)
+    at Promise.promise.promiseDispatch (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:796:13)
+    at /usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:556:49
+    at runSingle (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:137:13)
+    at flush (/usr/local/lib/node_modules/nightwatch/node_modules/q/q.js:125:13)
+    </system-err>
+  
+
+  
+  </testsuite>
+</testsuites>

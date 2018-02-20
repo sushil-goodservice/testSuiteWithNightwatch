@@ -375,10 +375,51 @@ module.exports = {
     }
     organizationPage(orgPageElements);
     // recruiter organization page elements check function - end here
-    // recruiter remove organization function - start here
-    var organisationID = '410';
-    browser.click('a[href="/recruiter/organisations/"' + organisationID + ']', 'Leave Organization link cliked.');
-    // recruiter remove organization function - end here
+    browser.click('.content-box-recruiter .org-heading a.outline.pull-right', function (response) {
+      this.assert.ok(browser === this, 'Click on add organisations buttons.');
+    });
+    browser.waitForElementVisible('body', 2000);
+    browser.assert.urlEquals(browser.launch_url + '/recruiter/organisations/new');
+    browser.expect.element('.forms-box-mobile').to.be.present;
+    browser.expect.element('.forms-box-mobile').to.be.visible;
+    browser.expect.element('.page-popup-like').to.be.present;
+    browser.expect.element('.page-popup-like').to.be.visible;
+    browser.expect.element('form#new_company').to.be.present;
+    browser.expect.element('form#new_company').to.be.visible;
+    browser.expect.element('form#new_company .cardbox h2').text.to.equals('Add Recruiter Organisation');
+    // recruiter add organization form, elements and form submission - start here
+    var addOrganizatonForm = [{
+        selector: 'form#new_company .form-box .form-group:nth-of-type(1) .row .col-md-8.col-sm-8 input#company_name',
+        labelSelector: 'form#new_company .form-box .form-group:nth-of-type(1) .row .col-md-4.col-sm-4 .control-label',
+        labelText: 'Company Name'
+      },
+      {
+        selector: 'form#new_company .form-box .form-group:nth-of-type(2) .row .col-md-8.col-sm-8 input#company_website',
+        labelSelector: 'form#new_company .form-box .form-group:nth-of-type(2) .row .col-md-4.col-sm-4 .control-label',
+        labelText: 'Website'
+      },
+      {
+        selector: 'form#new_company .form-box .form-group:nth-of-type(3) .row .col-md-8.col-sm-8 input[type=submit]',
+        value: 'Submit'
+      }
+    ];
+    recruiterFormCheck(addOrganizatonForm);
+    // recruiter add organization form, elements and form submission - end here
+    // submit recruiter  organization form function - start here
+    var company_name = "XXX Testing",
+      website = "www.xxx.com";
+
+    function recruitrerAddOrganization(addOrganizatonForm) {
+      browser.clearValue(addOrganizatonForm[0].selector);
+      browser.setValue(addOrganizatonForm[0].selector, company_name);
+      browser.clearValue(addOrganizatonForm[1].selector);
+      browser.setValue(addOrganizatonForm[1].selector, website);
+      browser.click(addOrganizatonForm[2].selector, function (response) {
+        this.assert.ok(browser === this, 'Submitting the add organization form.');
+      });
+    }
+    recruitrerAddOrganization(addOrganizatonForm);
+    // sumit recruiter orgaization form function - end here
     browser.waitForElementVisible('body', 2000);
     browser.assert.urlEquals(browser.launch_url + '/recruiter/organisations');
     browser.end();

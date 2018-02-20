@@ -7,7 +7,7 @@ var should = chai.should();
 // This test set is for not login condition
 module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
-  'Signup': function (browser) {
+  'Recruiter Job Posting': function (browser) {
     var menu = '.links .links-item', afterLoginMenu = '.headerlink-with-icon';
     browser.url(browser.launch_url); // open url https://landing.co
     browser.waitForElementPresent('body', 5000); //check if the body is to be present

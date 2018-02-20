@@ -7,7 +7,7 @@ var should = chai.should();
 // This test set is for not login condition
 module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
-  'Recruiter forgot Password if Exist': function (browser) {
+  'Recruiter Signup': function (browser) {
     browser.url(browser.launch_url); // redirect to home page url
     browser.waitForElementPresent('body.mobile-visible', 5000); // wait for page body should be loaded.
     browser.assert.title('Landing - the best tech jobs in 1 place'); // match the home page title
@@ -211,15 +211,15 @@ module.exports = {
     // submitting the recruiter signup form - start here
     function recruiterSignupFormFunction(recruiterSingupFormElements) {
       browser.useCss().clearValue(recruiterSingupFormElements[0].selector);
-      browser.useCss().setValue(recruiterSingupFormElements[0].selector, 'kapur.r1985+60@gmail.com');
+      browser.useCss().setValue(recruiterSingupFormElements[0].selector, 'kapur.r1985+61@gmail.com'); // add recruiter email to register new recruiter
       browser.useCss().clearValue(recruiterSingupFormElements[1].selector);
-      browser.useCss().setValue(recruiterSingupFormElements[1].selector, 'goodservice');
+      browser.useCss().setValue(recruiterSingupFormElements[1].selector, 'goodservice'); // add your preffered password
       browser.useCss().clearValue(recruiterSingupFormElements[2].selector);
-      browser.useCss().setValue(recruiterSingupFormElements[2].selector, 'Rahul KP');
+      browser.useCss().setValue(recruiterSingupFormElements[2].selector, 'Rahul KP'); // add your preffered name
       browser.useCss().clearValue(recruiterSingupFormElements[3].selector);
-      browser.useCss().setValue(recruiterSingupFormElements[3].selector, 'Goodservice-Demo');
+      browser.useCss().setValue(recruiterSingupFormElements[3].selector, 'Goodservice-Demo'); // add your preffered organization name
       browser.useCss().clearValue(recruiterSingupFormElements[4].selector);
-      browser.useCss().setValue(recruiterSingupFormElements[4].selector, '9821634189');
+      browser.useCss().setValue(recruiterSingupFormElements[4].selector, '9821634189'); // add your preffered phone number
       browser.useCss().click(recruiterSingupFormElements[5].selector, function (response) {
         this.assert.ok(browser === this, 'Recruiter login sucessful.');
       });

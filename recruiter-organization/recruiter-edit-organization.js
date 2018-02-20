@@ -7,7 +7,7 @@ var should = chai.should();
 // This test set is for not login condition
 module.exports = {
   // Testing the page element like body, search box, logo and link, text, heading, footer and footer links
-  'Recruiter forgot Password if Exist': function (browser) {
+  'Recruiter Edit Organization': function (browser) {
     browser.url(browser.launch_url); // redirect to home page url
     browser.waitForElementPresent('body.mobile-visible', 5000); // wait for page body should be loaded.
     browser.assert.title('Landing - the best tech jobs in 1 place'); // match the home page title
